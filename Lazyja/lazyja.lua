@@ -152,7 +152,7 @@ function TurnToClosest()
 	
 	
 	for i,v in pairs(marray) do
-		if (v["name"] ~= player.name) and (v["distance"] > 0) and (v["valid_target"]) and (v["in_party"] == false) then
+		if (v["name"] ~= player.name) and (v["name"] ~= "Emblazoned Reliquary") and (v["distance"] > 0) and (v["valid_target"]) and (v["in_party"] == false) then
 			if v["distance"] < dist then
 				dist = v["distance"]
 				mobname = v["name"]
@@ -186,7 +186,7 @@ function pewpew()
 			windower.send_command('input /equipset '..cureSet)
 			windower.send_command('input /ma \"Cure IV\" <me>')
 			coroutine.sleep(delay)
-		elseif checkMPP(18) and not checkHPP(85) then
+		elseif checkMPP(30) and not checkHPP(85) then
 			windower.send_command('input /equipset '..dtSet)
 			windower.send_command('input /ja Convert <me>')
 		else
