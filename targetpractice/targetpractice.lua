@@ -3,8 +3,11 @@ _addon.author = 'Myrchee'
 _addon.version = '1.0'
 --_addon.commands = {'targetpractice','tp','tpa'}
 _addon.command = 'tp'
-require ('packets')
-require ('chat')
+
+require('tables')
+require('packets')
+require('functions')
+require('chat')
 
 cc = 8 --chat color
 delay = 0.001
@@ -86,8 +89,8 @@ function mobarray(params)
 	for i,v in pairs(marray) do
 	--for i,v in pairs(windower.ffxi.get_mob_array()) do
 		windower.add_to_chat(cc,'i = '..i)
-		--ArrayToChat(v, params)
-		ArrayToChat(marray[i], params)
+		ArrayToChat(v, params)
+		--ArrayToChat(marray[i], params)
 		--coroutine.sleep(delay)
 	end
 end
