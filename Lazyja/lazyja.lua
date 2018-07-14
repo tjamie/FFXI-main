@@ -32,7 +32,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 _addon.name = 'lazyja'
 _addon.author = 'Myrchee'
-_addon.version = '1.2'
+_addon.version = '1.3'
 _addon.command = 'lazyja'
 
 require('logger')
@@ -47,7 +47,7 @@ res = require('resources')
 packets = require('packets')
 
 
-delay = 6  -- how much delay in between spells
+delay = 6  -- time (seconds) between spells
 maxDistance = 20 --yalms
 
 --/equipsets
@@ -88,10 +88,13 @@ windower.register_event('addon command', function(...)
 			continue = 1
 			windower.send_command('input /equipset '..dtSet)
 			coroutine.sleep(1)
-			pewpew()
 		elseif cmd:lower() == 'stop' then
 			continue = 0
 		end
+	end
+	
+	while continue == 1 do
+		pewpew()
 	end
 end)
 
@@ -179,8 +182,8 @@ end
 
 function pewpew()
 	--TODO: move TurnToClosest() and only cast buffs if nothing is nearby
-	windower.add_to_chat(2,'Starting')
-	while continue == 1 do
+	--windower.add_to_chat(2,'Starting')
+	--while continue == 1 do
 		--Cure if needed
 		if checkHPP(65) then
 			windower.send_command('input /equipset '..cureSet)
@@ -189,6 +192,7 @@ function pewpew()
 		elseif checkMPP(30) and not checkHPP(85) then
 			windower.send_command('input /equipset '..dtSet)
 			windower.send_command('input /ja Convert <me>')
+			coroutine.sleep(2)
 		else
 			--TODO: check for close enemies before casting buffs
 			for i,v in pairs(buff_list) do
@@ -279,5 +283,5 @@ function pewpew()
 				--windower.send_command('input /ma ',spell_list[math.fmod(loopcount, 3)],' <t>')
 				--end
 		end
-	end
+	--end
 end
