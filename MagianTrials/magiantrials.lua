@@ -7,7 +7,7 @@ Using this will probably get you banned. Don't do it.
 
 _addon.name = 'magiantrials'
 _addon.author = 'Myrchee'
-_addon.version = '1.1'
+_addon.version = '1.2'
 _addon.command = 'mtrial'
 
 require('logger')
@@ -22,7 +22,9 @@ res = require('resources')
 packets = require('packets')
 
 --distance for attacking, in yalms
-atkd = 3
+atkd = 4
+--minimum distance
+dmin = 1
 
 --target mob
 target = 'Angler Tiger'
@@ -31,7 +33,7 @@ target = 'Angler Tiger'
 ws = 'Randgrith'
 
 --HP threshold for ws usage (set to 100 if killshot not needed)
-threshold = 50
+threshold = 40
 
 continue = 0
 
@@ -44,6 +46,9 @@ windower.register_event('addon command', function(...)
 			coroutine.sleep(1)
 		elseif cmd:lower() == 'stop' then
 			continue = 0
+		elseif cmd == 'threshold' then
+			threshold = args[2]
+			windower.add_to_chat(2,'New threshold for using '..ws..' is '..threshold)
 		end
 	end
 	
@@ -162,6 +167,11 @@ function DoTrial()
 				if math.sqrt(mob.distance) > atkd then
 					GoToMob(vecPlayer,vecMob)
 					coroutine.sleep(1)
+					windower.ffxi.run(false)
+				elseif math.sqrt(mob.distance) < dmin then
+					--back up if too close
+					windower.ffxi.run(GetAngle(vecPlayer, vecMob) - math.pi)
+					coroutine.sleep(0.5)
 					windower.ffxi.run(false)
 				elseif mob.hpp < threshold then
 					windower.send_command('input /ws \"'..ws..'\" <t>')
