@@ -7,7 +7,7 @@ Using this will probably get you banned. Don't do it.
 
 _addon.name = 'magiantrials'
 _addon.author = 'Myrchee'
-_addon.version = '1.0'
+_addon.version = '1.1'
 _addon.command = 'mtrial'
 
 require('logger')
@@ -150,6 +150,12 @@ function DoTrial()
 				mob = windower.ffxi.get_mob_by_target('t') or windower.ffxi.get_mob_by_id(tar_id)
 				--mob = windower.ffxi.get_mob_by_id(tar_id)
 				player = windower.ffxi.get_mob_by_target('me')
+				if player.status == 0 then
+					--target and engage if haven't already done so -- the command before this while statement can miss or disengage
+					windower.send_command('input /targetbnpc')
+					coroutine.sleep(0.1)
+					windower.send_command('input /a <t>')
+				end
 				vecPlayer = {x = player.x, y = player.y}
 				vecMob = {x = mob.x, y = mob.y}
 				windower.ffxi.turn(GetAngle(vecPlayer, vecMob))
