@@ -2,7 +2,7 @@
 
 _addon.name = 'circles'
 _addon.author = 'Myrchee'
-_addon.version = '1.0'
+_addon.version = '1.1'
 _addon.command = 'circles'
 
 require('logger')
