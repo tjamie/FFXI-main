@@ -19,6 +19,7 @@ packets = require('packets')
 startDistance = 8
 continue = 0
 zoneID = 0
+i = 1
 
 wp = T{
 	[243] = T{ --Ru'Lude Gardens
@@ -29,14 +30,13 @@ wp = T{
 	},
 	[249] = T{ --Mhaura
 		[1] = {x = -10, y = 67},
-		[2] = {x = -16, y = -16},
+		[2] = {x = 20, y = 70},
 		[3] = {x = 46, y = 74},
 		[4] = {x = 44, y = 48},
-		[5] = {x = 44, y = 48},
-		[6] = {x = -21, y = 44},
-		[7] = {x = -29, y = 35},
-		[8] = {x = -39, y = 25},
-		[9] = {x = -36, y = 54}
+		[5] = {x = -21, y = 44},
+		[6] = {x = -29, y = 35},
+		[7] = {x = -39, y = 25},
+		[8] = {x = -36, y = 54}
 	}
 }
 
@@ -70,18 +70,43 @@ function RunCircles()
 	local vecPlayer
 	local vecWaypoint
 	local dist
+	local i = 2
+	local iMax = #wp[zone]
 	
-	for i,v in pairs(wp[zone]) do
-		vecWaypoint = {x = v.x, y = v.y}
+	--for i,v in pairs(wp[zone]) do
+	--	vecWaypoint = {x = v.x, y = v.y}
+	--	--debug
+	--	windower.add_to_chat(2,'Going to ['..i..'] -- '..v.x..', '..v.y)
+	--	dist = 9999
+	--	while (dist > 4) and (continue == 1) do
+	--		vecPlayer = UpdatePlayerPosition()
+	--		dist = GetDistance(vecPlayer, vecWaypoint)
+	--		GoToWaypoint(vecPlayer,vecWaypoint)
+	--		coroutine.sleep(1)
+	--		windower.ffxi.run(false)
+	--		coroutine.sleep(0.05)
+	--	end	
+	--end
+	
+	while continue == 1 do
+		vecWaypoint = {x = wp[zone][i].x, y = wp[zone][i].y}
 		dist = 9999
+		--debug
+		windower.add_to_chat(2,'Going to ['..i..'] -- '..wp[zone][i].x..', '..wp[zone][i].y)
 		while (dist > 4) and (continue == 1) do
 			vecPlayer = UpdatePlayerPosition()
 			dist = GetDistance(vecPlayer, vecWaypoint)
-			GoToWaypoint(vecPlayer,vecWaypoint)
+			GoToWaypoint(vecPlayer, vecWaypoint)
 			coroutine.sleep(1)
 			windower.ffxi.run(false)
+			coroutine.sleep(0.1)
 		end
-				
+		
+		i = i + 1
+		
+		if i > iMax then
+			i = 1
+		end
 	end
 	
 end
@@ -118,10 +143,10 @@ end
 
 function GoToWaypoint(player, location)
 	if continue == 1 then
-		coroutine.sleep(0.1)
 		local angle = GetAngle(player,location)
-		--windower.ffxi.turn(angle)
+		windower.ffxi.turn(angle)
 		windower.ffxi.run(angle)
+		--windower.ffxi.run(location.y, location.x)
 	end
 end
 
