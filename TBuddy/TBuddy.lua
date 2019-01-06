@@ -10,7 +10,7 @@ modification, are permitted provided that the following conditions are met:
     * Redistributions in binary form must reproduce the above copyright
       notice, this list of conditions and the following disclaimer in the
       documentation and/or other materials provided with the distribution.
-    * Neither the name of Jumper nor the
+    * Neither the name of Treasury Buddy nor the
       names of its contributors may be used to endorse or promote products
       derived from this software without specific prior written permission.
 
@@ -108,7 +108,7 @@ DynamisArmor = T{
 	[32] = "Valor Surcoat",
 	[33] = "Valor Gauntlets",
 	[34] = "Valor Breeches",
-	[35] = "Valor Leggins",
+	[35] = "Valor Leggings",
 	[36] = "Abyss Burgeonet",
 	[37] = "Abyss Cuirass",
 	[38] = "Abyss Gauntlets",
@@ -120,7 +120,7 @@ DynamisArmor = T{
 	[44] = "Monster Trousers",
 	[45] = "Monster Gaiters",
 	[46] = "Bard's Roundlet",
-	[47] = "Bard's Jstcorps",
+	[47] = "Bard's Justaucorps",
 	[48] = "Bard's Cuffs",
 	[49] = "Bard's Cannions",
 	[50] = "Bard's Slippers",
