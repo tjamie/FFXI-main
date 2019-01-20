@@ -3,12 +3,7 @@ Don't get banned. Or do.
 ]]
 
 
---windower.ffxi.get_mob_by_target('t').status => 0 = idle, 1 = attacking
---windower.ffxi.get_mob_by_target('t').claim_id => 0 = unclaimed, anything else = claimed
---claim_id = id of player with claim?
---so can do something like
-
-
+--lolpseudocode
 --[[
 mob = windower.ffxi.get_mob_by_target('t')
 player = windower.ffxi.get_mob_by_target('me')
@@ -73,11 +68,11 @@ Fight(mob){
 
 ]]
 
---time is stored in minutes, so 0 = 0:00, 480 = 08:00, 960 = 16:00
+--time is stored in (game) minutes, so 0 = 0:00, 480 = 08:00, 960 = 16:00
 
 _addon.name = 'dyna'
 _addon.author = 'Myrchee'
-_addon.version = '0.1'
+_addon.version = '0.3'
 _addon.commands = {'dyna', 'dfarm'}
 
 require('logger')
@@ -96,8 +91,13 @@ stepTP = 100
 stepID = 220
 
 timeDelay = 0.1 --time for coroutine.sleep
+startDelay = 15
 wpDistance = 2 --proximity to waypoints required (in yalms)
+searchRadius = 150 --yalms
+aggroRadius = 15
 
+atkd = 3.5 --max attack distance
+dmin = 1 --min attack distance
 continue = 0
 
 jaTargets = T{
@@ -134,8 +134,14 @@ wpStart = T{ --move from start to camps - will need to change when dynamis campa
 		[1] = {x = 0, y = 0}
 	},
 	[41] = T{
-		[1] = {x = 0, y = 0},
-		[2] = {x = 0, y = 0}
+		[1] = {x = -4, y = 99},
+		[2] = {x = -9, y = 70},
+		[3] = {x = -47, y = 75},
+		[4] = {x = -61, y = 53},
+		[5] = {x = -62, y = 10},
+		[6] = {x = -55, y = -15},
+		[7] = {x = 3, y = -26},
+		[8] = {x = 46, y = -91}
 	}
 }
 
@@ -153,7 +159,7 @@ wp = T{ --waypoints for moving between camps
 	},
 	[41] = T{ --Dynamis - Qufim
 		[0] = T{ --0-8 to 8-16
-			[1] = {x = 39, y = -165},
+			[1] = {x = 39, y = -105},
 			[2] = {x = 88, y = 34},
 			[3] = {x = 76, y = 82},
 			[4] = {x = 120, y = 110},
@@ -205,6 +211,13 @@ windower.register_event('addon command', function(...)
 	end
 end)
 
+windower.register_event('action message',function (actor_id, target_id, actor_index, target_index, message_id, param_1, param_2, param_3)
+	if (message_id == 5) or (message_id == 154) then
+		windower.add_to_chat(2,'Disengaging -- unable to see target.')
+		windower.send_command('input /a off')
+	end
+end)
+
 windower.register_event('zone change', function(new_id, old_id)
 	if continue == 1 then
 		continue = 0
@@ -216,18 +229,26 @@ end)
 function MyMoneyAndINeedItNow()
 	--initialization to get to first camp from entrance
 	i = 1
+	
 	local zone = windower.ffxi.get_info()['zone']
 	local vecPlayer
 	local vecWaypoint
 	local dist
+	local tdist = 9999
+	local campNum = 0
+	local destination
 	
+	coroutine.sleep(startDelay)
+	summon(trusts)
 	sneakInvisible()
 	
-	while (i < #wpStart[zone]) and (continue == 1) do
-		vecWaypoint = {x = wp[zone][i].x, y = wp[zone][i].y}
+	--TODO: validate zone/location
+	--startup/run to first camp
+	while (i <= #wpStart[zone]) and (continue == 1) do
+		vecWaypoint = {x = wpStart[zone][i].x, y = wpStart[zone][i].y}
 		dist = 9999
 		--debug
-		windower.add_to_chat(2,'Going to ['..i..'] -- '..wp[zone][i].x..', '..wp[zone][i].y)
+		windower.add_to_chat(2,'Going to ['..i..'] -- '..wpStart[zone][i].x..', '..wpStart[zone][i].y)
 		while (dist > wpDistance) and (continue == 1) do
 			vecPlayer = UpdatePlayerPosition()
 			dist = GetDistance(vecPlayer, vecWaypoint)
@@ -244,17 +265,116 @@ function MyMoneyAndINeedItNow()
 	
 	i = 1
 	
-	while (continue == 1) do
+	--goto camp
+	--while (continue == 1) do
+		--TODO: go to camp for current time,, then cycle through each, etc
+		--then if time >8 go to second
+		--then if time >16 go to third
+		--TODO: consolidate this because no
+		if getHour() > 0 then
+			while (i <= #wp[zone][0]) and (continue == 1) do
+				vecWaypoint = {x = wp[zone][0][i].x, y = wp[zone][0][i].y}
+				dist = 9999
+				--debug
+				windower.add_to_chat(2,'Going to ['..i..'] -- '..wp[zone][0][i].x..', '..wp[zone][0][i].y)
+				while (dist > wpDistance) and (continue == 1) do
+					vecPlayer = UpdatePlayerPosition()
+					dist = GetDistance(vecPlayer, vecWaypoint)
+					GoToWaypoint(vecPlayer, vecWaypoint)
+					coroutine.sleep(timeDelay)
+					windower.ffxi.run(false)
+					--coroutine.sleep(0.1)
+				end
+				i = i + 1
+				--if i > iMax then
+				--	i = 1
+				--end
+			end
+			campNum = 8
+		end
 		
+		i = 1
+		
+		if getHour() > 8 then
+			while (i <= #wp[zone][8]) and (continue == 1) do
+				vecWaypoint = {x = wp[zone][8][i].x, y = wp[zone][8][i].y}
+				dist = 9999
+				--debug
+				windower.add_to_chat(2,'Going to ['..i..'] -- '..wp[zone][8][i].x..', '..wp[zone][8][i].y)
+				while (dist > wpDistance) and (continue == 1) do
+					vecPlayer = UpdatePlayerPosition()
+					dist = GetDistance(vecPlayer, vecWaypoint)
+					GoToWaypoint(vecPlayer, vecWaypoint)
+					coroutine.sleep(timeDelay)
+					windower.ffxi.run(false)
+					--coroutine.sleep(0.1)
+				end
+				i = i + 1
+				--if i > iMax then
+				--	i = 1
+				--end
+			end
+			campNum = 16
+		end
+		
+		i = 1
+	--end
+	
+	--fight stuff at camp, check hour
+	--check time, then check mobs for time within a distance range, go to center if none found IN RANGE
+	--(also make sure mob to be engaged isn't claimed)
+	--prioritize unclaimed, attacking mobs within 10 yalms regardless of name
+	
+	while (continue == 1) do
+		if (getHour() ~= campNum) then
+			--go to camp upon time change
+			--TODO: check is being attacked before sneakInvisible
+			destination = GetDestination()
+			sneakInvisible()
+			i = 1
+			while (i <= #wp[zone][destination]) do
+				vecWaypoint = {x = wp[zone][destination][i].x, y = wp[zone][destination][i].y}
+				dist = 9999
+				windower.add_to_chat(2,'Going to ['..i..'] -- '..wp[zone][destination][i].x..', '..wp[zone][destination][i].y)
+				while (dist > wpDistance) and (continue == 1) do
+					vecPlayer = UpdatePlayerPosition()
+					dist = GetDistance(vecPlayer, vecWaypoint)
+					GoToWaypoint(vecPlayer, vecWaypoint)
+					coroutine.sleep(timeDelay)
+					windower.ffxi.run(false)
+					--coroutine.sleep(0.1)
+				end
+				i = i + 1
+			end
+			campNum = getHour()
+		end
+		CureCheck()
+		MonsterHunter(zone)
 	end
 	
-	
+end
+
+function checkHPP(threshold)
+	local player = windower.ffxi.get_player()
+	--local threshold = 60
+	if (player.vitals.hpp < threshold) then
+		return true
+	else
+		return false
+	end
+end
+
+function CureCheck()
+	if checkHPP(60) == true then
+		windower.send_command('input /ja \"Curing Waltz III\" <me>')
+		coroutine.sleep(5)
+	end
 end
 
 function Step()
 	local mob = windower.ffxi.get_mob_by_target('t')
 	local tar_id = mob["id"]
-	while (mob.hpp > 0) and (mob.valid_target == true) do
+	while (mob.hpp > 0) and (mob.valid_target == true) and ((mob.claim_id == 0) or (mob.claim_id == playerID)) do
 		mob = windower.ffxi.get_mob_by_target('t') or windower.ffxi.get_mob_by_id(tar_id)
 		if (windower.ffxi.get_player().vitals.tp > stepTP) then
 			if isReady(stepID) == true then
@@ -264,6 +384,15 @@ function Step()
 		coroutine.sleep(1)
 	end
 end
+
+function SimpleStep()
+	if (windower.ffxi.get_player().vitals.tp > stepTP) then
+		if isReady(stepID) == true then
+			windower.send_command('input /ja \"'..step..'\" <t>')
+		end
+	end
+end
+
 function isReady(abilityID)
 	if windower.ffxi.get_ability_recasts()[abilityID] > 0 then
 		return false
@@ -274,18 +403,41 @@ end
 
 function getHour()
 	local currentTime = windower.ffxi.get_info()['time']
-	if currentTime < 480
+	if currentTime < 480 then
 		return 0
-	elseif currentTime < 960
+	elseif currentTime < 960 then
 		return 8
 	else
 		return 16
 	end
 end
 
+function GetDestination()
+	local k = getHour()
+	if k == 0 then
+		return 16
+	elseif k == 8 then
+		return 0
+	else
+		return 8
+	end
+end
+
 function GoToWaypoint(player, location)
 	if continue == 1 then
 		local angle = GetAngle(player,location)
+		windower.ffxi.run(angle)
+	end
+end
+
+function GetDistance(player, location)
+	return math.sqrt((location.x - player.x)^2 + (location.y - player.y)^2)
+end
+
+function GoToMob(playervec, mobvec)
+	if continue == 1 then
+		coroutine.sleep(0.1)
+		local angle = GetAngle(playervec,mobvec)
 		windower.ffxi.run(angle)
 	end
 end
@@ -300,14 +452,14 @@ end
 function summon(trustList)
 	local castDelay = 6
 	for i = 1,#trustList,1 do
-		windower.ffxi.send_command('input /ma \"'..trustList[i]..'\" <me>')
+		windower.send_command('input /ma \"'..trustList[i]..'\" <me>')
 		coroutine.sleep(castDelay)
 	end
 end
 
 function sneakInvisible()
 	local castDelay = 4
-	windower.ffxi.send_command('input /ja \"Spectral Jig\" <me>')
+	windower.send_command('input /ja \"Spectral Jig\" <me>')
 	coroutine.sleep(castDelay)
 end
 
@@ -331,6 +483,115 @@ function ValidateLocation()
 	end
 end
 
+function GetDynamisMob(zone)
+	local player = windower.ffxi.get_mob_by_target('me')
+	local hour = getHour()
+	--local zone = windower.ffxi.get_info()['zone']
+	marray = windower.ffxi.get_mob_array()
+	
+	--just to prevent returning a nil value
+	target_id = player.id
+	
+	local dist = 99999
+	
+	for i,v in pairs(marray) do
+		if (checkValidTarget(v, hour, zone, player.id) == true) then
+			if (v["distance"] < dist) then
+				dist = v["distance"]
+				mobname = v["name"]
+				--mobx = v["x"]
+				--moby = v["y"]
+				target_id = v["id"]
+			end
+		end
+	end
+	
+	return target_id
+end
+
+function checkValidTarget(mob, hour, zone, playerID)
+	--if mob = target unclaimed by other player OR attacking non-target unclaimed by another player
+	if ((mob["name"] == jaTargets[zone][hour]) and (mob["hpp"] > 0) and (mob["valid_target"] == true) and (math.sqrt(mob["distance"]) < searchRadius) and ((mob["claim_id"] == 0) or (mob["claim_id"] == playerID))) or (((math.sqrt(mob["distance"]) < aggroRadius) and (mob["status"] == 1)) and ((mob["claim_id"] == 0) or (mob["claim_id"] == playerID))) then
+		return true
+	else
+		return false
+	end
+end
+
+function MonsterHunter(zone)
+	local player = windower.ffxi.get_mob_by_target('me')
+	local vecPlayer
+	local vecMob
+	tar_id = GetDynamisMob(zone)
+	local mob = windower.ffxi.get_mob_by_id(tar_id)
+	local d = 99999
+	local proceed = 0
+	
+	while (d > atkd) and (tar_id ~= player.id) do
+		--update position information
+		if continue == 1 then
+			mob = windower.ffxi.get_mob_by_id(tar_id)
+			player = windower.ffxi.get_mob_by_target('me')
+			vecPlayer = {x = player.x, y = player.y}
+			vecMob = {x = mob.x, y = mob.y}
+			
+			GoToMob(vecPlayer,vecMob)
+			coroutine.sleep(1)
+			windower.ffxi.run(false)
+			d = math.sqrt(windower.ffxi.get_mob_by_id(tar_id).distance)
+			--to account for new spawns/despawns/claims
+			tar_id = GetDynamisMob(zone)
+			proceed = 1
+		end
+	end
+	
+	if proceed == 1 then
+		--update position information
+		mob = windower.ffxi.get_mob_by_id(tar_id)
+		player = windower.ffxi.get_mob_by_target('me')
+		vecPlayer = {x = player.x, y = player.y}
+		vecMob = {x = mob.x, y = mob.y}
+		--turn
+		windower.ffxi.turn(GetAngle(vecPlayer, vecMob))
+		--target, attack
+		coroutine.sleep(0.2)
+		windower.send_command('input /targetbnpc')
+		windower.send_command('input /a <t>')
+		
+		--turn, check hpp, and WS
+		while (mob.hpp > 0) and (continue == 1) and (mob.valid_target == true) and ((mob.claim_id == 0) or (mob.claim_id == player.id)) do
+			mob = windower.ffxi.get_mob_by_target('t') or windower.ffxi.get_mob_by_id(tar_id)
+			player = windower.ffxi.get_mob_by_target('me')
+			
+			CureCheck()
+			
+			if (player.status == 0) and (math.abs(mob.z - player.z) < 2) then
+			--math.abs(mob.z - player.z) < 2 then
+				--target and engage if haven't already done so -- the command before this while statement can miss or disengage
+				--don't attack if dHeight too great
+				coroutine.sleep(0.1)
+				windower.send_command('input /targetbnpc')
+				coroutine.sleep(0.1)
+				windower.send_command('input /a <t>')
+			end
+			vecPlayer = {x = player.x, y = player.y}
+			vecMob = {x = mob.x, y = mob.y}
+			windower.ffxi.turn(GetAngle(vecPlayer, vecMob))
+			if math.sqrt(mob.distance) > atkd then
+				GoToMob(vecPlayer,vecMob)
+				coroutine.sleep(1)
+				windower.ffxi.run(false)
+			elseif math.sqrt(mob.distance) < dmin then
+				--back up if too close
+				windower.ffxi.run(GetAngle(vecPlayer, vecMob) - math.pi)
+				coroutine.sleep(0.5)
+				windower.ffxi.run(false)
+			else
+				SimpleStep()
+			end
+		end
+	end
+end
 
 --[[
 function GetClosestMob()
