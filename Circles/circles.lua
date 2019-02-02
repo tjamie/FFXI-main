@@ -2,7 +2,7 @@
 
 _addon.name = 'circles'
 _addon.author = 'Myrchee'
-_addon.version = '1.1'
+_addon.version = '1.3'
 _addon.command = 'circles'
 
 require('logger')
@@ -32,11 +32,17 @@ wp = T{
 		[1] = {x = -10, y = 67},
 		[2] = {x = 20, y = 70},
 		[3] = {x = 46, y = 74},
-		[4] = {x = 44, y = 48},
+		[4] = {x = 45, y = 50},
 		[5] = {x = -21, y = 44},
 		[6] = {x = -29, y = 35},
-		[7] = {x = -39, y = 25},
+		[7] = {x = -38, y = 25},
 		[8] = {x = -36, y = 54}
+	},
+	[291] = T{ --Reisenjima (Omen Entrance)
+		[1] = {x = -360, y = -840},
+		[2] = {x = -355, y = -818},
+		[3] = {x = -372, y = -813},
+		[4] = {x = -385, y = -834}
 	}
 }
 
@@ -58,8 +64,12 @@ windower.register_event('addon command', function(...)
 	end
 	
 	while continue == 1 do
-	 RunCircles()
+		RunCircles()
 	end
+end)
+
+windower.register_event('zone change', function(new_id, old_id)
+	continue = 0
 end)
 
 function RunCircles()
@@ -93,13 +103,13 @@ function RunCircles()
 		dist = 9999
 		--debug
 		windower.add_to_chat(2,'Going to ['..i..'] -- '..wp[zone][i].x..', '..wp[zone][i].y)
-		while (dist > 4) and (continue == 1) do
+		while (dist > 2) and (continue == 1) do
 			vecPlayer = UpdatePlayerPosition()
 			dist = GetDistance(vecPlayer, vecWaypoint)
 			GoToWaypoint(vecPlayer, vecWaypoint)
-			coroutine.sleep(1)
-			windower.ffxi.run(false)
 			coroutine.sleep(0.1)
+			windower.ffxi.run(false)
+			--coroutine.sleep(0.1)
 		end
 		
 		i = i + 1
@@ -144,7 +154,7 @@ end
 function GoToWaypoint(player, location)
 	if continue == 1 then
 		local angle = GetAngle(player,location)
-		windower.ffxi.turn(angle)
+		--windower.ffxi.turn(angle)
 		windower.ffxi.run(angle)
 		--windower.ffxi.run(location.y, location.x)
 	end
