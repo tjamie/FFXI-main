@@ -128,8 +128,8 @@ end
 function Rotate()
 	while continue == 1 do
 		local player = windower.ffxi.get_mob_by_target('me')
-		local spintime = 0.2
-		local dir = player.facing + (0.2*(math.pi/2))
+		local amt = 0.3
+		local dir = player.facing + (amt*(math.pi/2))
 		windower.ffxi.turn(dir)
 		coroutine.sleep(0.2)
 	end
