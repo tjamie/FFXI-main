@@ -2,7 +2,7 @@
 
 _addon.name = 'circles'
 _addon.author = 'Myrchee'
-_addon.version = '1.3'
+_addon.version = '1.4'
 _addon.command = 'circles'
 
 require('logger')
@@ -54,7 +54,11 @@ windower.register_event('addon command', function(...)
 			if ValidateLocation() == 1 then
 				continue = 1
 				coroutine.sleep(1)
+				RunCircles()
 			end
+		elseif cmd:lower() == 'rotate' then
+			continue = 1
+			Rotate()
 		elseif cmd:lower() == 'stop' then
 			windower.add_to_chat(2,'Stopping.')
 			continue = 0
@@ -63,9 +67,9 @@ windower.register_event('addon command', function(...)
 		end
 	end
 	
-	while continue == 1 do
-		RunCircles()
-	end
+	--while continue == 1 do
+	--	RunCircles()
+	--end
 end)
 
 windower.register_event('zone change', function(new_id, old_id)
@@ -119,6 +123,16 @@ function RunCircles()
 		end
 	end
 	
+end
+
+function Rotate()
+	while continue == 1 do
+		local player = windower.ffxi.get_mob_by_target('me')
+		local spintime = 0.2
+		local dir = player.facing + (0.2*(math.pi/2))
+		windower.ffxi.turn(dir)
+		coroutine.sleep(0.2)
+	end
 end
 
 function ValidateLocation()
