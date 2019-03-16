@@ -18,6 +18,7 @@ packets = require('packets')
 
 startDistance = 8
 continue = 0
+rotDir = 1
 zoneID = 0
 i = 1
 
@@ -58,7 +59,12 @@ windower.register_event('addon command', function(...)
 			end
 		elseif cmd:lower() == 'rotate' then
 			continue = 1
-			Rotate()
+			rotDir = 1
+			Rotate(rotDir)
+		elseif cmd:lower() == 'rrotate' then
+			continue = 1
+			rotDir = -1
+			Rotate(rotDir)
 		elseif cmd:lower() == 'stop' then
 			windower.add_to_chat(2,'Stopping.')
 			continue = 0
@@ -125,11 +131,11 @@ function RunCircles()
 	
 end
 
-function Rotate()
+function Rotate(rotDir)
 	while continue == 1 do
 		local player = windower.ffxi.get_mob_by_target('me')
 		local amt = 0.3
-		local dir = player.facing + (amt*(math.pi/2))
+		local dir = player.facing + (rotDir*(amt*(math.pi/2)))
 		windower.ffxi.turn(dir)
 		coroutine.sleep(0.2)
 	end
