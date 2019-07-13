@@ -1,13 +1,15 @@
 --[[
 
-Using this will probably get you banned. Don't do it.
+Don't get banned :)
 
-]]
+This currently assumes that nothing is claimed by other players because I'm lazy and you shouldn't
+be using this around other people anyway.
 
+]]--
 
 _addon.name = 'magiantrials'
 _addon.author = 'Myrchee'
-_addon.version = '1.2'
+_addon.verion = '1.8'
 _addon.command = 'mtrial'
 
 require('logger')
@@ -21,57 +23,181 @@ require('chat')
 res = require('resources')
 packets = require('packets')
 
---distance for attacking, in yalms
+debug = false
+
+-- chat color index
+cc = 2
+-- max attack distance (yalms)
 atkd = 4
---minimum distance
+-- min distance
 dmin = 1
+-- Required target name
+target = 'Sensenmann'
+-- WS required
+ws = 'Catastrophe'
+-- enemy HPP for WS
+threshold = 99
 
---target mob
-target = 'Angler Tiger'
+continue = false
 
---weaponskill needed
-ws = 'Randgrith'
-
---HP threshold for ws usage (set to 100 if killshot not needed)
-threshold = 40
-
-continue = 0
-
-windower.register_event('addon command', function(...)
+-- events
+windower.register_event('addon command', fuction(...)
 	local args = T{...}
-    local cmd = args[1]
-	if cmd then 
+	local cmd = args[1]
+	if cmd then
 		if cmd:lower() == 'start' then
-			continue = 1
+			continue = true
 			coroutine.sleep(1)
+			Trial()
 		elseif cmd:lower() == 'stop' then
-			continue = 0
-		elseif cmd == 'threshold' then
+			continue = false
+		elseif cmd:lower() == 'threshold' then
 			threshold = args[2]
-			windower.add_to_chat(2,'New threshold for using '..ws..' is '..threshold)
+			windower.add_to_chat(cc, 'New threshold: '..threshold)
+		elseif cmd:lower() == 'debug' then
+			if debug then
+				debug = false
+				windower.add_to_chat(cc, 'Debug mode disabled.')
+			else
+				debug = true
+				windower.add_to_chat(cc, 'Debug mode enabled.')
+			end
 		end
-	end
-	
-	while continue == 1 do
-	 DoTrial()
 	end
 end)
 
 windower.register_event('zone change', function(new_id, old_id)
-	continue = 0
+	continue = false
 	windower.add_to_chat(2, 'Area changed -- stopping magiantrials')
 end)
+-- events end
+
+function Trial()
+	if debug then
+		windower.add_to_chat(cc, 'Starting Trial()')
+	end
+	
+	while continue do
+		local player = windower.ffxi.get_mob_by_target('me')
+		tar_id = GetClosestMob()
+		--local mob = windower.ffxi.get_mob_by_id(tar_id)
+		--local d = 99999
+		
+		if tar_id ~= player.id then
+			-- Move to target range (i.e., start of line 124 in ver 1.2)
+			GoToTarget(tar_id)
+			-- Turn to target and engage (i.e., start of line 139 in ver. 1.2)
+			Battle(tar_id)
+		end
+	end
+end
+
+function Battle(tar_id)
+	if debug then
+		windower.add_to_chat(cc, 'Starting Battle('..tar_id..')')
+	end
+	
+	local mob = windower.ffxi.get_mob_by_id(tar_id)
+	local player = windower.ffxi.get_mob_by_target('me')
+	local posTar = {x = mob.x, y = mob.y}
+	local posPlayer = {x = player.x, y = player.y}
+	
+	while (player.status == 0) and (mob.hpp > 0) and (continue) do
+		Engage(tar_id)
+		mob = windower.ffxi.get_mob_by_id(tar_id)
+		coroutine.sleep(2)
+	end
+	
+	while (mob.hpp > 0) and (continue) do
+		mob = windower.ffxi.get_mob_by_id(tar_id)
+		player = windower.ffxi.get_mob_by_target('me')
+		posTar = {x = mob.x, y = mob.y}
+		posPlayer = {x = player.x, y = player.y}
+		
+		FaceTarget(posPlayer, posTar)
+		
+		if math.sqrt(mob.distance) > atkd then
+			ApproachTarget(posPlayer, posTar)
+			coroutine.sleep(1)
+			windower.ffxi.run(false)
+		elseif math.sqrt(mob.distance) < dmin then
+			Backup(posPlayer, posTar)
+			coroutine.sleep(0.5)
+			windower.ffxi.run(false)
+		elseif mob.hpp < threshold then
+			windower.send_command('input /ws \"'..ws..'\" <t>')
+		end
+	end
+end
+
+function GoToTarget(tar_id)
+	-- Move to target, turn when in range, engage
+	local d = 99999
+	local mob = windower.ffxi.get_mob_by_id(tar_id)
+	local player = windower.ffxi.get_mob_by_target('me')
+	local posTar = {x = mob.x, y = mob.y}
+	local posPlayer = {x = player.x, y = player.y}
+	
+	while (d > atkd) and (mob.hpp > 0) and (mob.valid_target) and (continue) do
+		-- Update position info
+		mob = windower.ffxi.get_mob_by_id(tar_id)
+		player = windower.get_mob_by_target('me')
+		posTar = {x = mob.x, y = mob.y}
+		posPlayer = {x = player.x, y = player.y}
+		
+		ApproachTarget(posPlayer, posTar)
+		coroutine.sleep(1)
+		windower.ffxi.run(false)
+		d = math.sqrt(windower.ffxi.get_mob_by_id(tar_id).distance)
+	end
+end
+
+function GetClosestMob()
+	local player = windower.ffxi.get_mob_by_target('me')
+	marray = windower.ffxi.get_mob_array()
+	
+	-- Prevent nil from popping up
+	target_id = player.id
+	
+	local dist = 99999
+	
+	for i,v in pairs(marray) do
+		if (v.name == target) and (v.hpp > 0) then
+			if v.distance < dist then
+				dist = v.distance
+				target_id = v.id
+			end
+		end
+	end
+	
+	return target_id
+end
+
+function ApproachTarget(posPlayer, posTar)
+	coroutine.sleep(0.1)
+	--local angle = GetAngle(posPlayer, posTar)
+	--windower.ffxi.run(angle)
+	windower.ffxi.run(posTar.x, posTar.y)	
+end
+
+function Backup(posPlayer, posTar)
+	coroutine.sleep(0.1)
+	windower.ffxi.run(GetAngle(posPlayer, posTar) - math.pi)
+end
+
+function FaceTarget(posPlayer, posTar)
+
+end
 
 function checkHPP(threshold)
 	local player = windower.ffxi.get_player()
-	--local threshold = 60
-	if (player.vitals.hpp < threshold) then
+	local cureThreshold = 60
+	if (player.vitals.hpp < cureThreshold) then
 		return true
 	else
 		return false
 	end
 end
-
 
 function GetAngle(playervec,mobvec)
 	--radians
@@ -80,104 +206,21 @@ function GetAngle(playervec,mobvec)
 	return angle
 end
 
-function GetClosestMob()
-	local player = windower.ffxi.get_mob_by_target('me')
-	marray = windower.ffxi.get_mob_array()
-	
-	--just to prevent returning a nil value
-	target_id = player.id
-	
-	local dist = 99999
-	
-	for i,v in pairs(marray) do
-		if (v["name"] == target) and (v["hpp"] > 0) and (v["valid_target"] == true) then
-			if v["distance"] < dist then
-				dist = v["distance"]
-				mobname = v["name"]
-				--mobx = v["x"]
-				--moby = v["y"]
-				target_id = v["id"]
-			end
-		end
+function Engage(tar_id)
+	if debug then
+		windower.add_to_chat(cc, 'Starting Engage('..tar_id..')'
 	end
 	
-	
-	return target_id
-end
-
-function GoToMob(playervec, mobvec)
-	coroutine.sleep(0.1)
-	local angle = GetAngle(playervec,mobvec)
-	--windower.ffxi.turn(angle)
-	windower.ffxi.run(angle)
-end
-
-function DoTrial()
 	local player = windower.ffxi.get_mob_by_target('me')
-	tar_id = GetClosestMob()
 	local mob = windower.ffxi.get_mob_by_id(tar_id)
-	local d = 99999
-	local continue2 = 0
 	
-	--while continue == 1 do
-		--move to target, turn again when in range, then /targetbnpc, then /a <t>
-		while (d > atkd) and (tar_id ~= player.id) do
-			--update position information
-			mob = windower.ffxi.get_mob_by_id(tar_id)
-			player = windower.ffxi.get_mob_by_target('me')
-			vecPlayer = {x = player.x, y = player.y}
-			vecMob = {x = mob.x, y = mob.y}
-			
-			GoToMob(vecPlayer,vecMob)
-			coroutine.sleep(1)
-			windower.ffxi.run(false)
-			d = math.sqrt(windower.ffxi.get_mob_by_id(tar_id).distance)
-			continue2 = 1
-		end
+	if (mob.id ~= player.id) and (mob.id ~= nil) then
+		engage = packets.new('outgoing', 0x1a, {
+		['Target'] = mob.id,
+		['Target Index'] = mob.index,
+		['Category']     = 0x02,
+		})
 		
-		--turn to and attack target
-		if continue2 == 1 then
-			--update position information
-			mob = windower.ffxi.get_mob_by_id(tar_id)
-			player = windower.ffxi.get_mob_by_target('me')
-			vecPlayer = {x = player.x, y = player.y}
-			vecMob = {x = mob.x, y = mob.y}
-			--turn
-			windower.ffxi.turn(GetAngle(vecPlayer, vecMob))
-			--target, attack
-			coroutine.sleep(0.5)
-			windower.send_command('input /targetbnpc')
-			coroutine.sleep(0.1)
-			windower.send_command('input /a <t>')
-			
-			--turn, check hpp, and WS
-			while (mob.hpp > 0) and (continue == 1) and (mob.valid_target == true) do
-				mob = windower.ffxi.get_mob_by_target('t') or windower.ffxi.get_mob_by_id(tar_id)
-				--mob = windower.ffxi.get_mob_by_id(tar_id)
-				player = windower.ffxi.get_mob_by_target('me')
-				if player.status == 0 then
-					--target and engage if haven't already done so -- the command before this while statement can miss or disengage
-					windower.send_command('input /targetbnpc')
-					coroutine.sleep(0.1)
-					windower.send_command('input /a <t>')
-				end
-				vecPlayer = {x = player.x, y = player.y}
-				vecMob = {x = mob.x, y = mob.y}
-				windower.ffxi.turn(GetAngle(vecPlayer, vecMob))
-				if math.sqrt(mob.distance) > atkd then
-					GoToMob(vecPlayer,vecMob)
-					coroutine.sleep(1)
-					windower.ffxi.run(false)
-				elseif math.sqrt(mob.distance) < dmin then
-					--back up if too close
-					windower.ffxi.run(GetAngle(vecPlayer, vecMob) - math.pi)
-					coroutine.sleep(0.5)
-					windower.ffxi.run(false)
-				elseif mob.hpp < threshold then
-					windower.send_command('input /ws \"'..ws..'\" <t>')
-				end
-			end
-		end
-		
-	--end
+		packets.inject(engage)
+	end
 end
