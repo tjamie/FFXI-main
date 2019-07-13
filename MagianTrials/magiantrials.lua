@@ -1,10 +1,7 @@
 --[[
-
 Don't get banned :)
-
 This currently assumes that nothing is claimed by other players because I'm lazy and you shouldn't
 be using this around other people anyway.
-
 ]]--
 
 _addon.name = 'magiantrials'
@@ -28,7 +25,7 @@ debug = false
 -- chat color index
 cc = 2
 -- max attack distance (yalms)
-atkd = 4
+atkd = 3.5
 -- min distance
 dmin = 1
 -- Required target name
@@ -41,7 +38,7 @@ threshold = 99
 continue = false
 
 -- events
-windower.register_event('addon command', fuction(...)
+windower.register_event('addon command', function(...)
 	local args = T{...}
 	local cmd = args[1]
 	if cmd then
@@ -67,8 +64,10 @@ windower.register_event('addon command', fuction(...)
 end)
 
 windower.register_event('zone change', function(new_id, old_id)
-	continue = false
-	windower.add_to_chat(2, 'Area changed -- stopping magiantrials')
+	if continue then
+		continue = false
+		windower.add_to_chat(2, 'Area changed -- stopping magiantrials')
+	end
 end)
 -- events end
 
@@ -79,15 +78,20 @@ function Trial()
 	
 	while continue do
 		local player = windower.ffxi.get_mob_by_target('me')
-		tar_id = GetClosestMob()
+		--tar_id = GetClosestMob()
 		--local mob = windower.ffxi.get_mob_by_id(tar_id)
 		--local d = 99999
 		
-		if tar_id ~= player.id then
+		local mob = windower.ffxi.get_mob_by_id(GetClosestMob())
+		
+		if mob.id ~= player.id then
 			-- Move to target range (i.e., start of line 124 in ver 1.2)
-			GoToTarget(tar_id)
+			GoToTarget(mob.id)
 			-- Turn to target and engage (i.e., start of line 139 in ver. 1.2)
-			Battle(tar_id)
+			mob = windower.ffxi.get_mob_by_id(GetClosestMob())
+			if (mob.hpp > 0) and (mob.valid_target) then
+				Battle(mob.id)
+			end
 		end
 	end
 end
@@ -102,13 +106,14 @@ function Battle(tar_id)
 	local posTar = {x = mob.x, y = mob.y}
 	local posPlayer = {x = player.x, y = player.y}
 	
-	while (player.status == 0) and (mob.hpp > 0) and (continue) do
+	while (player.status == 0) and (mob.hpp > 0) and (mob.valid_target) and (continue) do
 		Engage(tar_id)
 		mob = windower.ffxi.get_mob_by_id(tar_id)
+		player = windower.ffxi.get_mob_by_target('me')
 		coroutine.sleep(2)
 	end
 	
-	while (mob.hpp > 0) and (continue) do
+	while (mob.hpp > 0) and (mob.valid_target) and (continue) do
 		mob = windower.ffxi.get_mob_by_id(tar_id)
 		player = windower.ffxi.get_mob_by_target('me')
 		posTar = {x = mob.x, y = mob.y}
@@ -118,13 +123,13 @@ function Battle(tar_id)
 		
 		if math.sqrt(mob.distance) > atkd then
 			ApproachTarget(posPlayer, posTar)
-			coroutine.sleep(1)
+			coroutine.sleep(0.2)
 			windower.ffxi.run(false)
 		elseif math.sqrt(mob.distance) < dmin then
 			Backup(posPlayer, posTar)
 			coroutine.sleep(0.5)
 			windower.ffxi.run(false)
-		elseif mob.hpp < threshold then
+		elseif (mob.hpp < threshold) and (windower.ffxi.get_player().vitals.tp > 999) then
 			windower.send_command('input /ws \"'..ws..'\" <t>')
 		end
 	end
@@ -137,18 +142,22 @@ function GoToTarget(tar_id)
 	local player = windower.ffxi.get_mob_by_target('me')
 	local posTar = {x = mob.x, y = mob.y}
 	local posPlayer = {x = player.x, y = player.y}
+	coroutine.sleep(1)
 	
 	while (d > atkd) and (mob.hpp > 0) and (mob.valid_target) and (continue) do
-		-- Update position info
-		mob = windower.ffxi.get_mob_by_id(tar_id)
-		player = windower.get_mob_by_target('me')
+		-- Update position info with closest target
+		mob = windower.ffxi.get_mob_by_id(GetClosestMob())
+		player = windower.ffxi.get_mob_by_target('me')
 		posTar = {x = mob.x, y = mob.y}
 		posPlayer = {x = player.x, y = player.y}
 		
 		ApproachTarget(posPlayer, posTar)
+		if debug then
+			windower.add_to_chat(cc, 'Going to '..mob.x..', '..mob.y..' ID '..mob.id)
+		end
 		coroutine.sleep(1)
 		windower.ffxi.run(false)
-		d = math.sqrt(windower.ffxi.get_mob_by_id(tar_id).distance)
+		d = math.sqrt(windower.ffxi.get_mob_by_id(mob.id).distance)
 	end
 end
 
@@ -162,7 +171,7 @@ function GetClosestMob()
 	local dist = 99999
 	
 	for i,v in pairs(marray) do
-		if (v.name == target) and (v.hpp > 0) then
+		if (v.name == target) and (v.hpp > 0) and (v.valid_target) then
 			if v.distance < dist then
 				dist = v.distance
 				target_id = v.id
@@ -170,14 +179,20 @@ function GetClosestMob()
 		end
 	end
 	
+	
+	if (debug) and (target_id ~= player.id) then
+		local temp = windower.ffxi.get_mob_by_id(target_id)
+		windower.add_to_chat(cc, 'Closest target ID '..temp.id..' ('..temp.name..')')
+	end
+	
 	return target_id
 end
 
 function ApproachTarget(posPlayer, posTar)
 	coroutine.sleep(0.1)
-	--local angle = GetAngle(posPlayer, posTar)
-	--windower.ffxi.run(angle)
-	windower.ffxi.run(posTar.x, posTar.y)	
+	local angle = GetAngle(posPlayer, posTar)
+	windower.ffxi.run(angle)
+	--windower.ffxi.run(posTar.x, posTar.y)	
 end
 
 function Backup(posPlayer, posTar)
@@ -186,7 +201,7 @@ function Backup(posPlayer, posTar)
 end
 
 function FaceTarget(posPlayer, posTar)
-
+	windower.ffxi.turn(GetAngle(posPlayer, posTar))
 end
 
 function checkHPP(threshold)
@@ -208,7 +223,7 @@ end
 
 function Engage(tar_id)
 	if debug then
-		windower.add_to_chat(cc, 'Starting Engage('..tar_id..')'
+		windower.add_to_chat(cc, 'Starting Engage('..tar_id..')')
 	end
 	
 	local player = windower.ffxi.get_mob_by_target('me')
