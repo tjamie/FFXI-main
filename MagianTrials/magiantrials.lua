@@ -6,7 +6,7 @@ be using this around other people anyway.
 
 _addon.name = 'magiantrials'
 _addon.author = 'Myrchee'
-_addon.verion = '1.8'
+_addon.verion = '1.8.1'
 _addon.command = 'mtrial'
 
 require('logger')
@@ -25,15 +25,15 @@ debug = false
 -- chat color index
 cc = 2
 -- max attack distance (yalms)
-atkd = 3.5
+atkd = 3.4
 -- min distance
 dmin = 1
 -- Required target name
-target = 'Sensenmann'
+target = 'Overking Apkallu'
 -- WS required
 ws = 'Catastrophe'
 -- enemy HPP for WS
-threshold = 99
+threshold = 50
 
 continue = false
 
@@ -44,13 +44,27 @@ windower.register_event('addon command', function(...)
 	if cmd then
 		if cmd:lower() == 'start' then
 			continue = true
+			windower.send_command('input /autoattack off')
 			coroutine.sleep(1)
 			Trial()
 		elseif cmd:lower() == 'stop' then
 			continue = false
 		elseif cmd:lower() == 'threshold' then
-			threshold = args[2]
+			threshold = tonumber(args[2])
 			windower.add_to_chat(cc, 'New threshold: '..threshold)
+		elseif cmd:lower() == 'target' then
+			if args[3] then
+				target = args[2]..' '..args[3]
+			else
+				target = args[2]
+			end
+			windower.add_to_chat(cc, 'New target: '..target)
+		elseif cmd:lower() == 'dmin' then
+			dmin = tonumber(args[2])
+			windower.add_to_chat(cc, 'New minimum attack distance:  '..dmin)
+		elseif cmd:lower() == 'dmax' then
+			atkd = tonumber(args[2])
+			windower.add_to_chat(cc, 'New maximum attack distance: '..atkd)
 		elseif cmd:lower() == 'debug' then
 			if debug then
 				debug = false
@@ -106,7 +120,7 @@ function Battle(tar_id)
 	local posTar = {x = mob.x, y = mob.y}
 	local posPlayer = {x = player.x, y = player.y}
 	
-	while (player.status == 0) and (mob.hpp > 0) and (mob.valid_target) and (continue) do
+	while (player.status == 0) and (mob.hpp > 0) and (mob.distance < 400) and (mob.valid_target) and (continue) do
 		Engage(tar_id)
 		mob = windower.ffxi.get_mob_by_id(tar_id)
 		player = windower.ffxi.get_mob_by_target('me')
