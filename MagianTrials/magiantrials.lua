@@ -6,7 +6,7 @@ be using this around other people anyway.
 
 _addon.name = 'magiantrials'
 _addon.author = 'Myrchee'
-_addon.verion = '1.8.1'
+_addon.verion = '1.8.2'
 _addon.command = 'mtrial'
 
 require('logger')
@@ -62,9 +62,11 @@ windower.register_event('addon command', function(...)
 		elseif cmd:lower() == 'dmin' then
 			dmin = tonumber(args[2])
 			windower.add_to_chat(cc, 'New minimum attack distance:  '..dmin)
-		elseif cmd:lower() == 'dmax' then
+			CheckAttackDistance()
+		elseif (cmd:lower() == 'dmax') or (cmd:lower() == 'atkd') then
 			atkd = tonumber(args[2])
 			windower.add_to_chat(cc, 'New maximum attack distance: '..atkd)
+			CheckAttackDistance()
 		elseif cmd:lower() == 'debug' then
 			if debug then
 				debug = false
@@ -251,5 +253,11 @@ function Engage(tar_id)
 		})
 		
 		packets.inject(engage)
+	end
+end
+
+function CheckAttackDistance()
+	if dmin > atkd then
+		windower.add_to_chat(cc, 'Warning: minimum distance ('..dmin..') is greater than maximum distance ('..atkd..')')
 	end
 end
