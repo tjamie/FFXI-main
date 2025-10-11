@@ -6,7 +6,7 @@ be using this around other people anyway.
 
 _addon.name = 'magiantrials'
 _addon.author = 'Myrchee'
-_addon.verion = '1.8.2'
+_addon.verion = '1.8.3'
 _addon.command = 'mtrial'
 
 require('logger')
@@ -25,15 +25,15 @@ debug = false
 -- chat color index
 cc = 2
 -- max attack distance (yalms)
-atkd = 3.4
+atkd = 3
 -- min distance
 dmin = 1
 -- Required target name
-target = 'Overking Apkallu'
+target = 'Pasture Funguar'
 -- WS required
-ws = 'Catastrophe'
+ws = 'Savage Blade'
 -- enemy HPP for WS
-threshold = 50
+threshold = 70
 
 continue = false
 
@@ -44,10 +44,11 @@ windower.register_event('addon command', function(...)
 	if cmd then
 		if cmd:lower() == 'start' then
 			continue = true
-			windower.send_command('input /autoattack off')
+			windower.send_command('input /autotarget off')
 			coroutine.sleep(1)
 			Trial()
 		elseif cmd:lower() == 'stop' then
+			windower.add_to_chat(cc, 'Stopping mtrial')
 			continue = false
 		elseif cmd:lower() == 'threshold' then
 			threshold = tonumber(args[2])
@@ -62,11 +63,9 @@ windower.register_event('addon command', function(...)
 		elseif cmd:lower() == 'dmin' then
 			dmin = tonumber(args[2])
 			windower.add_to_chat(cc, 'New minimum attack distance:  '..dmin)
-			CheckAttackDistance()
-		elseif (cmd:lower() == 'dmax') or (cmd:lower() == 'atkd') then
+		elseif cmd:lower() == 'dmax' then
 			atkd = tonumber(args[2])
 			windower.add_to_chat(cc, 'New maximum attack distance: '..atkd)
-			CheckAttackDistance()
 		elseif cmd:lower() == 'debug' then
 			if debug then
 				debug = false
@@ -109,6 +108,8 @@ function Trial()
 				Battle(mob.id)
 			end
 		end
+
+		coroutine.sleep(1)
 	end
 end
 
@@ -123,13 +124,20 @@ function Battle(tar_id)
 	local posPlayer = {x = player.x, y = player.y}
 	
 	while (player.status == 0) and (mob.hpp > 0) and (mob.distance < 400) and (mob.valid_target) and (continue) do
+		if debug then
+			windower.add_to_chat(cc, 'Attempting to engage ID '..tar_id)
+		end
 		Engage(tar_id)
 		mob = windower.ffxi.get_mob_by_id(tar_id)
 		player = windower.ffxi.get_mob_by_target('me')
 		coroutine.sleep(2)
 	end
 	
+	--- fight after engagement
 	while (mob.hpp > 0) and (mob.valid_target) and (continue) do
+		if debug then
+			windower.add_to_chat(cc, 'Fighting ID '..tar_id)
+		end
 		mob = windower.ffxi.get_mob_by_id(tar_id)
 		player = windower.ffxi.get_mob_by_target('me')
 		posTar = {x = mob.x, y = mob.y}
@@ -145,9 +153,15 @@ function Battle(tar_id)
 			Backup(posPlayer, posTar)
 			coroutine.sleep(0.5)
 			windower.ffxi.run(false)
-		elseif (mob.hpp < threshold) and (windower.ffxi.get_player().vitals.tp > 999) then
+		end
+
+		if (math.sqrt(mob.distance) < atkd) and (mob.hpp < threshold) and (windower.ffxi.get_player().vitals.tp > 999) then
+			if debug then
+				windower.add_to_chat(cc, 'Using '..ws..'on ID '..tar_id)
+			end
 			windower.send_command('input /ws \"'..ws..'\" <t>')
 		end
+		coroutine.sleep(1)
 	end
 end
 
@@ -193,8 +207,7 @@ function GetClosestMob()
 				target_id = v.id
 			end
 		end
-	end
-	
+	end	
 	
 	if (debug) and (target_id ~= player.id) then
 		local temp = windower.ffxi.get_mob_by_id(target_id)
@@ -213,7 +226,8 @@ end
 
 function Backup(posPlayer, posTar)
 	coroutine.sleep(0.1)
-	windower.ffxi.run(GetAngle(posPlayer, posTar) - math.pi)
+	local angle = GetAngle(posPlayer, posTar) - math.pi
+	windower.ffxi.run(angle)
 end
 
 function FaceTarget(posPlayer, posTar)
@@ -253,11 +267,5 @@ function Engage(tar_id)
 		})
 		
 		packets.inject(engage)
-	end
-end
-
-function CheckAttackDistance()
-	if dmin > atkd then
-		windower.add_to_chat(cc, 'Warning: minimum distance ('..dmin..') is greater than maximum distance ('..atkd..')')
 	end
 end
