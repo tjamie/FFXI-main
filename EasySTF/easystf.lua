@@ -59,7 +59,10 @@ area_names = T{
     ["windwoods"] = "Windurst+Woods",
     ["windwalls"] = "Windurst+Walls",
     ["windwaters"] = "Windurst+Waters",
-    ["portwind"] = "Port+Windurst"
+    ["portwind"] = "Port+Windurst",
+    ["eschazitah"] = "Escha+-+Zi'Tah",
+    ["escharuaun"] = "Escha+-+Ru'Aun",
+    ["reisenjima"] = "Reisenjima"
 }
 
 function report(player, area, reason)
