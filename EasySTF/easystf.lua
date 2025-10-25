@@ -58,6 +58,7 @@ area_names = T{
     ["metalworks"] = "Metalworks",
     ["windwoods"] = "Windurst+Woods",
     ["windwalls"] = "Windurst+Walls",
+    ["windwaters"] = "Windurst+Waters",
     ["portwind"] = "Port+Windurst"
 }
 
