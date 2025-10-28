@@ -55,6 +55,7 @@ area_names = T{
     ["psandoria"] = "Port+San+d'Oria",
     ["bastokmine"] = "Bastok+Mines",
     ["bastokmark"] = "Bastok+Markets",
+    ["portbastok"] = "Port+Bastok",
     ["metalworks"] = "Metalworks",
     ["windwoods"] = "Windurst+Woods",
     ["windwalls"] = "Windurst+Walls",
