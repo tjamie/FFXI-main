@@ -1,4 +1,30 @@
--- work in progress obvs
+--[[
+Copyright © 2025, Myrchee of Quetzalcoatl & Bahamut
+All rights reserved.
+
+Redistribution and use in source and binary forms, with or without
+modification, are permitted provided that the following conditions are met:
+
+    * Redistributions of source code must retain the above copyright
+      notice, this list of conditions and the following disclaimer.
+    * Redistributions in binary form must reproduce the above copyright
+      notice, this list of conditions and the following disclaimer in the
+      documentation and/or other materials provided with the distribution.
+    * Neither the name of <addon name> nor the
+      names of its contributors may be used to endorse or promote products
+      derived from this software without specific prior written permission.
+
+THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND
+ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED
+WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
+DISCLAIMED. IN NO EVENT SHALL <your name> BE LIABLE FOR ANY
+DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES
+(INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;
+LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND
+ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
+(INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
+SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+]]
 
 _addon.name = "Easy STF"
 _addon.author = "Myrchee"
@@ -20,7 +46,7 @@ cc = 2
 
 windower.register_event("addon command", function(...)
 	local args = T{...}
-    local cmd = args[1] --table index starts at 1 because this language is cursed
+    local cmd = args[1]
 	if cmd then 
 		if cmd:lower() == "help" then
             help()
@@ -166,7 +192,6 @@ function report(player, area, reason)
     local ltn12 = require("ltn12")
 
     local form_url = "https://support.na.square-enix.com/form.php"
-    --local form_data = "fo=18&id=20&la=1&p=0" .. url_month .. url_day .. url_server .. url_area .. url_player .. url_details
     local form_data = url_form_type(reason) .. url_month .. url_day .. url_server .. url_area .. url_player .. url_details
     local request_url = form_url .. "?" .. form_data
 
@@ -175,7 +200,6 @@ function report(player, area, reason)
         url = form_url .. "?" .. form_data,
         method = "POST",
         headers = {
-            -- ["Content-Type"] = "application/x-www-form-urlencoded",
             ["Content-Length"] = 0
         },
     }
