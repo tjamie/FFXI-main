@@ -27,6 +27,8 @@ windower.register_event("addon command", function(...)
             test_form_type(reason)
         elseif cmd:lower() == "listareas" then
             list_areas()
+        elseif cmd:lower() == "listreasons" then
+            list_reasons()
         elseif (cmd:lower() == "report") and (#args > 3) then
             local player = args[2]
             local area = args[3]
@@ -47,7 +49,7 @@ report_reasons = T{
     ["rmt"] = "User+is+using+a+bot+to+spam+mercenary+advertisements+for+RMT+purposes",
     ["rmt-alt"] = "User+is+associated+with+a+character+that+is+spamming+mercenary+advertisements+for+RMT+purposes",
     ["multibox"] = "User+is+using+a+bot+to+use+several+characters+simultaneously",
-    ["multibox-exp"] = "User+is+using+a+bot+to+use+several+characters+simultaneously+in+order+to+automate+experience+points+farming"
+    ["multibox-exp"] = "User+is+using+a+bot+to+use+several+characters+simultaneously+in+order+to+automate+experience+points+farming",
     ["bot-general"] = "User+is+using+a+bot+to+automate+content",
     ["bot-rmt"] = "User+is+using+a+bot+to+farm+items+for+RMT+purposes"
 }
@@ -88,6 +90,15 @@ function list_areas()
     for i,v in pairs(area_names) do
         local area_clean = string.gsub(v, "+", " ")
         windower.add_to_chat(cc, "    " .. i .. " - " .. area_clean)
+    end
+    windower.add_to_chat(cc, "}")
+end
+
+function list_reasons()
+    windower.add_to_chat(cc, "Currently supported justifications:\n{")
+    for i,v in pairs(report_reasons) do
+        local reason_clean = string.gsub(v, "+", " ")
+        windower.add_to_chat(cc, "    " .. i .. " - " .. reason_clean)
     end
     windower.add_to_chat(cc, "}")
 end
