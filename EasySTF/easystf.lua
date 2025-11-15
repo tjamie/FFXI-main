@@ -23,7 +23,8 @@ windower.register_event("addon command", function(...)
     local cmd = args[1] --table index starts at 1 because this language is cursed
 	if cmd then 
 		if cmd:lower() == "test" then
-            get_info()
+            local reason = args[2]
+            test_form_type(reason)
         elseif cmd:lower() == "listareas" then
             list_areas()
         elseif (cmd:lower() == "report") and (#args > 3) then
@@ -44,7 +45,10 @@ end)
 
 report_reasons = T{
     ["rmt"] = "User+is+using+a+bot+to+spam+mercenary+advertisements+for+RMT+purposes",
-    ["rmt-alt"] = "User+is+associated+with+a+character+that+is+spamming+mercenary+advertisements+for+RMT+purposes"
+    ["rmt-alt"] = "User+is+associated+with+a+character+that+is+spamming+mercenary+advertisements+for+RMT+purposes",
+    ["multibox"] = "User+is+using+a+bot+to+use+several+characters+simultaneously",
+    ["bot-general"] = "User+is+using+a+bot+to+automate+content",
+    ["bot-rmt"] = "User is using a bot to farm items for RMT purposes"
 }
 
 area_names = T{
@@ -82,9 +86,9 @@ function report(player, area, reason)
     local player = string.upper(string.sub(player, 1, 1)) .. string.sub(player, 2)
     windower.add_to_chat(cc, "date: " .. info.month .. "-" .. info.day .. "   server: " .. info.server)
     windower.add_to_chat(cc, "player: " .. player)
-    windower.add_to_chat(cc, "area: " .. area_names[area:lower()])
+    windower.add_to_chat(cc, "area: " .. string.gsub(area_names[area:lower()], "+", " "))
     windower.add_to_chat(cc, "reason: " .. reason)
-    windower.add_to_chat(cc, "reason verbose: " .. report_reasons[reason:lower()])
+    windower.add_to_chat(cc, "reason verbose: " .. string.gsub(report_reasons[reason:lower()], "+", " "))
 
     local url_month = "&date1=" .. info.month
     local url_day = "&date2=" .. info.day
@@ -92,16 +96,23 @@ function report(player, area, reason)
     local url_area = "&ffxi_area=" .. area_names[area:lower()]
     local url_player = "&rep_character_name=" .. player
     local url_details = "&details=" .. report_reasons[reason:lower()]
+    local url_form_type = function(reason)
+        if reason:lower() == "rmt" or reason:lower() == "rmt-alt" then
+            return "fo=18&id=20&la=1&p=0"
+        else
+            -- ie, non-rmt botting that's obnoxious
+            return "fo=17&id=20&la=1&p=0"
+        end
+    end
 
     -- HTTP setup
     local http = require("socket.http")
     local ltn12 = require("ltn12")
 
     local form_url = "https://support.na.square-enix.com/form.php"
-    local form_data = "fo=18&id=20&la=1&p=0" .. url_month .. url_day .. url_server .. url_area .. url_player .. url_details
+    --local form_data = "fo=18&id=20&la=1&p=0" .. url_month .. url_day .. url_server .. url_area .. url_player .. url_details
+    local form_data = url_form_type(reason) .. url_month .. url_day .. url_server .. url_area .. url_player .. url_details
     local request_url = form_url .. "?" .. form_data
-    -- windower.add_to_chat(cc, "POST URL: " .. report_url)
-    -- windower.add_to_chat(cc, "Sending POST request...")
 
     -- HTTP request
     local response_body, status_code, response_headers = http.request{
@@ -143,4 +154,16 @@ function test_request()
         windower.add_to_chat(cc, 'status code ' .. statusCode)
         windower.add_to_chat(cc, 'body: ' .. body)
     end
+end
+
+function test_form_type(reason)
+    local url_form_type = function(reason)
+        if reason:lower() == "rmt" or reason:lower() == "rmt-alt" then
+            return "fo=18&id=20&la=1&p=0"
+        else
+            -- ie, non-rmt botting that's obnoxious
+            return "fo=17&id=20&la=1&p=0"
+        end
+    end
+    windower.add_to_chat(cc, url_form_type(reason))
 end
