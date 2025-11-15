@@ -47,6 +47,7 @@ report_reasons = T{
     ["rmt"] = "User+is+using+a+bot+to+spam+mercenary+advertisements+for+RMT+purposes",
     ["rmt-alt"] = "User+is+associated+with+a+character+that+is+spamming+mercenary+advertisements+for+RMT+purposes",
     ["multibox"] = "User+is+using+a+bot+to+use+several+characters+simultaneously",
+    ["multibox-exp"] = "User+is+using+a+bot+to+use+several+characters+simultaneously+in+order+to+automate+experience+points+farming"
     ["bot-general"] = "User+is+using+a+bot+to+automate+content",
     ["bot-rmt"] = "User+is+using+a+bot+to+farm+items+for+RMT+purposes"
 }
