@@ -24,6 +24,8 @@ windower.register_event('addon command', function(...)
 	if cmd then 
 		if cmd:lower() == 'test' then
             get_info()
+        elseif cmd:lower() == 'listareas' then
+            list_areas()
         elseif (cmd:lower() == 'report') and (#args > 3) then
             local player = args[2]
             local area = args[3]
@@ -65,6 +67,15 @@ area_names = T{
     ["escharuaun"] = "Escha+-+Ru'Aun",
     ["reisenjima"] = "Reisenjima"
 }
+
+function list_areas()
+    windower.add_to_chat(cc, "Currently supported zones:\n{")
+    for i,v in pairs(area_names) do
+        local area_clean = string.gsub(v, "+", " ")
+        windower.add_to_chat(cc, "    " .. i .. " - " .. area_clean)
+    end
+    windower.add_to_chat(cc, "}")
+end
 
 function report(player, area, reason)
     local info = get_info()
