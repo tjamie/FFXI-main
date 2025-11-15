@@ -48,10 +48,11 @@ report_reasons = T{
     ["rmt-alt"] = "User+is+associated+with+a+character+that+is+spamming+mercenary+advertisements+for+RMT+purposes",
     ["multibox"] = "User+is+using+a+bot+to+use+several+characters+simultaneously",
     ["bot-general"] = "User+is+using+a+bot+to+automate+content",
-    ["bot-rmt"] = "User is using a bot to farm items for RMT purposes"
+    ["bot-rmt"] = "User+is+using+a+bot+to+farm+items+for+RMT+purposes"
 }
 
 area_names = T{
+    -- towns and cities
     ["norg"] = "Norg",
     ["kazham"] = "Kazham",
     ["selbina"] = "Selbina",
@@ -67,9 +68,18 @@ area_names = T{
     ["windwalls"] = "Windurst+Walls",
     ["windwaters"] = "Windurst+Waters",
     ["portwind"] = "Port+Windurst",
+    ["whitegate"] = "Aht+Urghan+Whitegate",
+    ["alzahbi"] = "Al+Zahbi",
+    -- outdoor areas 
+    -- Aht Urghan
+    ["bhafthicket"] = "Bhaflau+Thickets",
+    ["mamook"] = "Mamook",
+    ["wajaom"] = "Wajaom Woodlands",
+    ["aydeewa"] = "Aydeewa Subterrane",
+    -- Rhapsodies
     ["eschazitah"] = "Escha+-+Zi'Tah",
     ["escharuaun"] = "Escha+-+Ru'Aun",
-    ["reisenjima"] = "Reisenjima"
+    ["reisenjima"] = "Reisenjima",
 }
 
 function list_areas()
