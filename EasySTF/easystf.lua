@@ -166,12 +166,7 @@ end
 function report(player, area, reason)
     local info = get_info()
     local player = string.upper(string.sub(player, 1, 1)) .. string.sub(player, 2)
-    windower.add_to_chat(cc, "date: " .. info.month .. "-" .. info.day .. "   server: " .. info.server)
-    windower.add_to_chat(cc, "player: " .. player)
-    windower.add_to_chat(cc, "area: " .. string.gsub(area_names[area:lower()], "+", " "))
-    windower.add_to_chat(cc, "reason: " .. reason)
-    windower.add_to_chat(cc, "reason verbose: " .. string.gsub(report_reasons[reason:lower()], "+", " "))
-
+    
     local url_month = "&date1=" .. info.month
     local url_day = "&date2=" .. info.day
     local url_server = "&ffxi_world=" .. info.server
@@ -186,15 +181,15 @@ function report(player, area, reason)
             return "fo=17&id=20&la=1&p=0"
         end
     end
-
+    
     -- HTTP setup
     local http = require("socket.http")
     local ltn12 = require("ltn12")
-
+    
     local form_url = "https://support.na.square-enix.com/form.php"
     local form_data = url_form_type(reason) .. url_month .. url_day .. url_server .. url_area .. url_player .. url_details
     local request_url = form_url .. "?" .. form_data
-
+    
     -- HTTP request
     local response_body, status_code, response_headers = http.request{
         url = form_url .. "?" .. form_data,
@@ -203,17 +198,23 @@ function report(player, area, reason)
             ["Content-Length"] = 0
         },
     }
-    windower.add_to_chat(cc, "Response code " .. status_code)
+
+    if status_code == 200 or status_code == 302 then
+        windower.add_to_chat(cc, "Player(s) reported: ".. player .. " (" .. info.server .. " | " .. info.month .. "/" .. info.day .. " | " .. string.gsub(area_names[area:lower()], "+", " ") .. ")")
+        windower.add_to_chat(cc, "Reason: " .. string.gsub(report_reasons[reason:lower()], "+", " "))
+    else
+        windower.add_to_chat(cc "Unexpected response from server - " .. status_code)
+    end
 end
 
 function get_info()
     local info = windower.ffxi.get_info()
     local server = resources.servers[info.server].en
-
+    
     local os = require('os')
     local month = os.date('%m')
     local day = os.date('%d')
-
+    
     local info_out = {
         month = month,
         day = day,
