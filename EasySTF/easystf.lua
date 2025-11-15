@@ -3,7 +3,7 @@
 _addon.name = "Easy STF"
 _addon.author = "Myrchee"
 _addon.verion = "0.0.1"
-_addon.command = "stf"
+_addon.commands = {"stf", "easystf"}
 
 require("logger")
 require("strings")
@@ -22,9 +22,8 @@ windower.register_event("addon command", function(...)
 	local args = T{...}
     local cmd = args[1] --table index starts at 1 because this language is cursed
 	if cmd then 
-		if cmd:lower() == "test" then
-            local reason = args[2]
-            test_form_type(reason)
+		if cmd:lower() == "help" then
+            help()
         elseif cmd:lower() == "listareas" then
             list_areas()
         elseif cmd:lower() == "listreasons" then
@@ -44,6 +43,17 @@ windower.register_event("addon command", function(...)
         end
 	end
 end)
+
+help_commands = T{
+    [1] = "help - Displays the list of commands available in this addon.",
+    [2] = "listareas - Displays the list of areas and their truncated names that are currently implemented.",
+    [3] = "listreasons - Displays the list of reporting justifications that are currently implemented.",
+    [4] = [[report - Report player to the Special Task Force. Syntax is as follows:
+        //stf report Playername Area Reason
+        e.g., //stf report Johnfinalfantasy BastokMark rmt
+        Multiple characters can be reported at once by separating each name by a comma (",").
+        e.g., //stf report Johnfinalfantasy,Janefinalfantasy,Timfinalfantasy Area Reason]]
+}
 
 report_reasons = T{
     ["rmt"] = "User+is+using+a+bot+to+spam+mercenary+advertisements+for+RMT+purposes",
@@ -85,22 +95,46 @@ area_names = T{
     ["reisenjima"] = "Reisenjima",
 }
 
-function list_areas()
-    windower.add_to_chat(cc, "Currently supported zones:\n{")
-    for i,v in pairs(area_names) do
-        local area_clean = string.gsub(v, "+", " ")
-        windower.add_to_chat(cc, "    " .. i .. " - " .. area_clean)
+function sort_keys(in_table)
+    local keys = {}
+    for k in pairs(in_table) do
+        table.insert(keys, k)
     end
-    windower.add_to_chat(cc, "}")
+    table.sort(keys)
+    return keys
+end
+
+function help()
+    -- force output to be printed in order
+    local help_keys = sort_keys(help_commands)
+
+    windower.add_to_chat(cc, "\n[EasySTF] Available commands:")
+    for _,key in ipairs(help_keys) do
+        windower.add_to_chat(cc, "    " .. help_commands[key])
+    end
+    windower.add_to_chat(cc, " ")
+end
+
+function list_areas()
+    local area_keys = sort_keys(area_names)
+
+    windower.add_to_chat(cc, "\n[EasySTF] Currently supported zones:")
+    for _,key in ipairs(area_keys) do
+        local area_clean = string.gsub(area_names[key], "+", " ")
+        windower.add_to_chat(cc, "    " .. key .. " - " .. area_clean)
+    end
+    windower.add_to_chat(cc, " ")
 end
 
 function list_reasons()
-    windower.add_to_chat(cc, "Currently supported justifications:\n{")
-    for i,v in pairs(report_reasons) do
-        local reason_clean = string.gsub(v, "+", " ")
-        windower.add_to_chat(cc, "    " .. i .. " - " .. reason_clean)
+    local reason_keys = sort_keys(report_reasons
+)
+    windower.add_to_chat(cc, "\n[EasySTF] Currently supported justifications:")
+    for _,key in ipairs(reason_keys) do
+        local reason_clean = string.gsub(report_reasons[key], "+", " ")
+        windower.add_to_chat(cc, "    " .. key .. " - " .. reason_clean)
     end
-    windower.add_to_chat(cc, "}")
+    windower.add_to_chat(cc, " ")
 end
 
 function report(player, area, reason)
@@ -146,7 +180,6 @@ function report(player, area, reason)
         },
     }
     windower.add_to_chat(cc, "Response code " .. status_code)
-
 end
 
 function get_info()
@@ -164,28 +197,4 @@ function get_info()
     }
 
     return info_out
-
-end
-
-function test_request()
-    local http = require('socket.http')
-    local url = 'https://google.com'
-    local body, statusCode, headers, statusText = http.request(url)
-
-    if statusCode == 200 then
-        windower.add_to_chat(cc, 'status code ' .. statusCode)
-        windower.add_to_chat(cc, 'body: ' .. body)
-    end
-end
-
-function test_form_type(reason)
-    local url_form_type = function(reason)
-        if reason:lower() == "rmt" or reason:lower() == "rmt-alt" then
-            return "fo=18&id=20&la=1&p=0"
-        else
-            -- ie, non-rmt botting that's obnoxious
-            return "fo=17&id=20&la=1&p=0"
-        end
-    end
-    windower.add_to_chat(cc, url_form_type(reason))
 end
