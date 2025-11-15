@@ -1,32 +1,32 @@
 -- work in progress obvs
 
-_addon.name = 'Easy STF'
-_addon.author = 'Myrchee'
-_addon.verion = '0.0.1'
-_addon.command = 'stf'
+_addon.name = "Easy STF"
+_addon.author = "Myrchee"
+_addon.verion = "0.0.1"
+_addon.command = "stf"
 
-require('logger')
-require('strings')
-require('tables')
-require('lists')
-require('sets')
-require('maths')
-require('functions')
-require('chat')
-resources = require('resources')
-packets = require('packets')
+require("logger")
+require("strings")
+require("tables")
+require("lists")
+require("sets")
+require("maths")
+require("functions")
+require("chat")
+resources = require("resources")
+packets = require("packets")
 
 cc = 2
 
-windower.register_event('addon command', function(...)
+windower.register_event("addon command", function(...)
 	local args = T{...}
     local cmd = args[1] --table index starts at 1 because this language is cursed
 	if cmd then 
-		if cmd:lower() == 'test' then
+		if cmd:lower() == "test" then
             get_info()
-        elseif cmd:lower() == 'listareas' then
+        elseif cmd:lower() == "listareas" then
             list_areas()
-        elseif (cmd:lower() == 'report') and (#args > 3) then
+        elseif (cmd:lower() == "report") and (#args > 3) then
             local player = args[2]
             local area = args[3]
             local reason = args[4]
