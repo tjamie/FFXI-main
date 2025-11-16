@@ -28,7 +28,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 _addon.name = "Easy STF"
 _addon.author = "Myrchee"
-_addon.verion = "0.0.1"
+_addon.verion = "1.0.0"
 _addon.commands = {"stf", "easystf"}
 
 require("logger")
