@@ -8,7 +8,7 @@ lua load easystf
 ```
 
 ## Commands
-#### report
+### report
 ```
 stf report [player] [area] [reason]
 ```
@@ -20,19 +20,19 @@ stf report Johnfinalfantasy,Janefinalfantasy BastokMark rmt
 ```
 Additional commands to list implemented areas and reporting justifications are detailed further below.
 
-#### help
+### help
 ```
 stf help
 ```
 Displays a list and brief description of every command available in this addon.
 
-#### listareas
+### listareas
 ```
 stf listareas
 ```
 Displays a list of areas and their truncated names that are currently implemented.
 
-#### listreasons
+### listreasons
 ```
 stf listreasons
 ```
