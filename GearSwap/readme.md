@@ -1,0 +1,1 @@
+Unless otherwise noted, .luas in this folder (GearSwap/data) were originally written by others and modified by me.
