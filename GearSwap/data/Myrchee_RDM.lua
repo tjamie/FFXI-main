@@ -81,7 +81,7 @@ nukeModes = M('normal', 'acc')
 -- Defaults are the first in each list
 
 mainWeapon = M('Crocea Mors', 'Naegling', 'Maxentius', 'Tauret', 'Qutrub Knife')
-subWeapon = M('Daybreak', 'Thibron', 'Ammurapi Shield', 'Pukulatmuj +1', 'Ceremonial Dagger')
+subWeapon = M('Daybreak', 'Thibron', 'Beatific Shield +1', 'Pukulatmuj +1', 'Ceremonial Dagger')
 ------------------------------------------------------------------------------------------------------
 
 ----------------------------------------------------------
@@ -527,10 +527,9 @@ function get_sets()
     }	
 
     -- Whatever you want to equip mid-cast as a catch all for all spells, and we'll overwrite later for individual spells
-    sets.midcast.casting = {
-        left_ring	=	"Shiva Ring",    
-        main		=	"Bunzi's Rod",
-        sub		    =	"Ammurapi Shield",
+    sets.midcast.casting = {  
+        -- main		=	"Bunzi's Rod",
+        -- sub		    =	"Ammurapi Shield",
         -- ammo		=	"Pemphredo Tathlum",
         ammo        =   "Dosis Tathlum",
         neck		=	"Dls. Torque +2",
@@ -539,8 +538,8 @@ function get_sets()
         right_ear	=	"Malignance Earring",
         back		=	RDMCape.MACC,
         -- right_ring	=	"Freke Ring",
-        right_ring  =   "Stikini Ring",
-        left_ring   =   "Acumen Ring"
+        -- right_ring  =   "Stikini Ring",
+        -- left_ring   =   "Acumen Ring"
     }
 
     sets.midcast.nuking.normal = {
