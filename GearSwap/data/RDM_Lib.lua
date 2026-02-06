@@ -63,6 +63,8 @@ spell_maps = {
     ['Fire Maneuver']='Maneuver',['Ice Maneuver']='Maneuver',['Wind Maneuver']='Maneuver',['Earth Maneuver']='Maneuver',['Thunder Maneuver']='Maneuver',['Water Maneuver']='Maneuver',['Light Maneuver']='Maneuver',['Dark Maneuver']='Maneuver',
     ['Enstone']='Enspell',['Enwater']='Enspell',['Enaero']='Enspell',['Enfire']='Enspell',['Enblizzard']='Enspell',['Enthunder']='Enspell',
 	['Gain-AGI']='Gain',['Gain-CHR']='Gain',['Gain-DEX']='Gain',['Gain-INT']='Gain',['Gain-MND']='Gain',['Gain-STR']='Gain',['Gain-VIT']='Gain',
+    ['Cocoon']='DefBlue',
+    ['Cursed Sphere']='EnmityBlue',['Sound Blast']='EnmityBlue',['Jettatura']='EnmityBlue',['Sheep Song']='EnmityBlue',['Blank Gaze']='EnmityBlue',['Soporific']='EnmityBlue',['Geist Wall']='EnmityBlue',['Head Butt']='EnmityBlue',
 }
 
 enfeeb_maps = {
@@ -520,7 +522,7 @@ function precast(spell)
     end
 
     -- Moving on to other types of magic
-    if spell.type == 'WhiteMagic' or spell.type == 'BlackMagic' or spell.type == 'Ninjutsu' then
+    if spell.type == 'WhiteMagic' or spell.type == 'BlackMagic' or spell.type == 'Ninjutsu' or spell.type == 'BlueMagic' then
      
         -- Stoneskin Precast
         if spell.name == 'Stoneskin' then
@@ -575,7 +577,10 @@ function midcast(spell)
         else
             equip(sets.midcast.cure.normal)
         end
-
+    -- Blue Magic (enmity)
+    -- elseif spell.name:match('EnmityBlue') then
+    elseif spell.skill == 'Blue Magic' then
+        equip(sets.midcast.enmity)
     -- Enhancing
     elseif spell.skill == 'Enhancing Magic' then
 

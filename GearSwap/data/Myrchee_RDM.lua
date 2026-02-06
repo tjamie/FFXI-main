@@ -608,7 +608,7 @@ function get_sets()
         -- left_ring	=	"Mujin Band",    
         -- neck		=	"Mizu. Kubikazari",
         -- right_ring	=	"Locus Ring",
-    })	
+    })
 	
     -- Enfeebling
 
@@ -834,6 +834,20 @@ function get_sets()
 
     })
 
+    ------------
+    -- Blue Magic (enmity)
+    ------------
+    -- Will ideally some some degree of SIRD if possible
+    sets.midcast.enmity = set_combine(sets.me.melee.dtsw, {
+        ammo = "Staunch Tathlum +1", --SIRD 11
+        body = "Emet Harness", --enmity +9,
+        legs = "Carmine Cuisses +1", --SIRD 20
+        neck = "Unmoving Collar +1", --enmity +10
+        right_ring = "Petrov Ring", --enmity +4
+        left_ear = "Friomsi Earring", --enmity +2
+        right_ear = "Magnetic Earring", --SIRD 8
+        back = RDMCape.VIT, --enmity +10
+    })
 	
     ------------
     -- Aftercast
