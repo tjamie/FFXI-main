@@ -50,7 +50,7 @@
         Thunderstorm = 5
         GrandFall = 1
      
-        StartLockStyle = '85'
+        StartLockStyle = '29'
         IdleMode = 'Refresh'
         AccMode = false
         ImpactDebuff = false
@@ -97,7 +97,7 @@
         RELIC.Hands = "Glyphic Bracers +1"
 
         -- Empyrean
-        EMPY.Head = "Beckoner's Horn +1"
+        EMPY.Head = "Beckoner's Horn +2"
         EMPY.Earring = "Beck. Earring"
 
         -- Capes
@@ -133,7 +133,7 @@
             main="Gridarvor",
             sub="Elan Strap",
             ammo="Sancus Sachet +1",
-            head=AF.Head,
+            head=EMPY.Head,
             body="Shomonjijoe +1",
             hands="Nyame Gauntlets",
             legs="Assid. Pants +1",
@@ -1108,32 +1108,32 @@
         -- Select initial macro set and set lockstyle
         -- This section likely requires changes or removal if you aren't Pergatory
         -- NOTE: This doesn't change your macro set for you during play, your macros have to do that. This is just for when the Lua is loaded.
-        if pet.isvalid then
-            if pet.name=='Fenrir' then
-                send_command('input /macro book 10;wait .1;input /macro set 2;wait 3;input /lockstyleset '..StartLockStyle)
-            elseif pet.name=='Ifrit' then
-                send_command('input /macro book 10;wait .1;input /macro set 3;wait 3;input /lockstyleset '..StartLockStyle)
-            elseif pet.name=='Titan' then
-                send_command('input /macro book 10;wait .1;input /macro set 4;wait 3;input /lockstyleset '..StartLockStyle)
-            elseif pet.name=='Leviathan' then
-                send_command('input /macro book 10;wait .1;input /macro set 5;wait 3;input /lockstyleset '..StartLockStyle)
-            elseif pet.name=='Garuda' then
-                send_command('input /macro book 10;wait .1;input /macro set 6;wait 3;input /lockstyleset '..StartLockStyle)
-            elseif pet.name=='Shiva' then
-                send_command('input /macro book 10;wait .1;input /macro set 7;wait 3;input /lockstyleset '..StartLockStyle)
-            elseif pet.name=='Ramuh' then
-                send_command('input /macro book 10;wait .1;input /macro set 8;wait 3;input /lockstyleset '..StartLockStyle)
-            elseif pet.name=='Diabolos' then
-                send_command('input /macro book 10;wait .1;input /macro set 9;wait 3;input /lockstyleset '..StartLockStyle)
-            elseif pet.name=='Cait Sith' then
-                send_command('input /macro book 11;wait .1;input /macro set 2;wait 3;input /lockstyleset '..StartLockStyle)
-            elseif pet.name=='Siren' then
-                send_command('input /macro book 11;wait .1;input /macro set 4;wait 3;input /lockstyleset '..StartLockStyle)
-            end
-        else
+        -- if pet.isvalid then
+        --     if pet.name=='Fenrir' then
+        --         send_command('input /macro book 10;wait .1;input /macro set 2;wait 3;input /lockstyleset '..StartLockStyle)
+        --     elseif pet.name=='Ifrit' then
+        --         send_command('input /macro book 10;wait .1;input /macro set 3;wait 3;input /lockstyleset '..StartLockStyle)
+        --     elseif pet.name=='Titan' then
+        --         send_command('input /macro book 10;wait .1;input /macro set 4;wait 3;input /lockstyleset '..StartLockStyle)
+        --     elseif pet.name=='Leviathan' then
+        --         send_command('input /macro book 10;wait .1;input /macro set 5;wait 3;input /lockstyleset '..StartLockStyle)
+        --     elseif pet.name=='Garuda' then
+        --         send_command('input /macro book 10;wait .1;input /macro set 6;wait 3;input /lockstyleset '..StartLockStyle)
+        --     elseif pet.name=='Shiva' then
+        --         send_command('input /macro book 10;wait .1;input /macro set 7;wait 3;input /lockstyleset '..StartLockStyle)
+        --     elseif pet.name=='Ramuh' then
+        --         send_command('input /macro book 10;wait .1;input /macro set 8;wait 3;input /lockstyleset '..StartLockStyle)
+        --     elseif pet.name=='Diabolos' then
+        --         send_command('input /macro book 10;wait .1;input /macro set 9;wait 3;input /lockstyleset '..StartLockStyle)
+        --     elseif pet.name=='Cait Sith' then
+        --         send_command('input /macro book 11;wait .1;input /macro set 2;wait 3;input /lockstyleset '..StartLockStyle)
+        --     elseif pet.name=='Siren' then
+        --         send_command('input /macro book 11;wait .1;input /macro set 4;wait 3;input /lockstyleset '..StartLockStyle)
+        --     end
+        -- else
             -- Macro set for no avatar out (usually the case unless you're reloading Gearswap in the field)
-            send_command('input /macro book 10;wait .1;input /macro set 1;wait 3;input /lockstyleset '..StartLockStyle)
-        end
+        send_command('input /macro book 17;wait .1;input /macro set 1;wait 3;input /lockstyleset '..StartLockStyle)
+        -- end
         -- End macro set / lockstyle section
     end
      
