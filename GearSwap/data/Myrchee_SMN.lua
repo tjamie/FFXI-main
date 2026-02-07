@@ -137,12 +137,12 @@
             body="Shomonjijoe +1",
             hands="Nyame Gauntlets",
             legs="Assid. Pants +1",
-            feet={ name="Apogee Pumps +1", augments={'MP+80','Pet: Attack+35','Blood Pact Dmg.+8',}},
-            neck="Elite Royal Collar",
+            feet=APOGEE.Feet.ATK,
+            neck="Caller's Pendant",
             waist="Incarnation Sash",
             left_ear="Enmerkar Earring",
-            right_ear="Beck. Earring",
-            left_ring="Evoker's Ring",
+            right_ear=EMPY.Earring,
+            left_ring="Defending Ring",
             right_ring="Murky Ring",
             back=SMNCape.ACC,
             -- main="Nirvana",
@@ -799,28 +799,8 @@
      
         -- This is your default idle gear used as a baseline for most idle sets below. Put gear here and you won't have to repeat it over and over.
         -- I focus on refresh. Strong alternatives: Asteria Mitts, Convoker Horn, Shomonjijoe
-        sets.aftercast = {
-            main="Gridarvor",
-            sub="Elan Strap",
-            ammo="Sancus Sachet +1",
-            -- head="Beckoner's Horn +3",
-            head=EMPY.Head,
-            neck="Elite Royal Collar",
-            left_ear="Enmerkar Earring",
-            right_ear=EMPY.Earring,
-            -- body={ name="Apo. Dalmatica +1", augments={'MP+80','Pet: "Mag.Atk.Bns."+35','Blood Pact Dmg.+8',}},
-            body="Shomonjijoe +1",
-            -- hands={ name="Merlinic Dastanas", augments={'Pet: Crit.hit rate +2','"Mag.Atk.Bns."+25','"Refresh"+2','Mag. Acc.+10 "Mag.Atk.Bns."+10',}},
-            hands="Bunzi's Gloves",
-            left_ring="Evoker's Ring",
-            --ring1={name="Stikini Ring +1", bag="wardrobe2"},
-            right_ring="Murky Ring",
-            back=SMNCape.ACC,
-            waist="Incarnation Sash",
-            legs="Assiduity Pants +1",
-            --feet="Herald's Gaiters"
-            feet=APOGEE.Feet.ATK,
-        }
+        sets.aftercast = set_combine(sets.DT_Base, {
+        })
         
         -- sets.aftercast.ForceIlvl = set_combine(sets.aftercast, {
             -- feet="Baayami Sabots +1"
@@ -834,17 +814,13 @@
         
         -- Main perpetuation set ~~ Strong Alternatives:
         -- Gridarvor, Asteria Mitts, Shomonjijoe, Convoker's Horn, Evans Earring, Isa Belt
-        sets.aftercast.Avatar = {
-            main="Gridarvor",
-            sub="Elan Strap",
-            ammo="Sancus Sachet +1",
-            head=EMPY.Head,
-            neck="Elite Royal Collar",
+        sets.aftercast.Avatar = set_combine(sets.DT_Base, {
+            neck="Caller's Pendant",
             left_ear="Enmerkar Earring",
             right_ear=EMPY.Earring,
             body="Shomonjijoe +1",
             hands="Bunzi's Gloves",
-            left_ring="Evoker's Ring",
+            left_ring="Defending Ring",
             right_ring="Murky Ring",
             back=SMNCape.ACC,
             waist="Incarnation Sash",
@@ -865,7 +841,7 @@
             -- waist="Lucidity Sash",
             -- legs="Assiduity Pants +1",
             -- feet="Baayami Sabots +1"
-        }
+        })
         -- If you have Fucho and don't need Lucidity Sash for perp down, you can uncomment the belt here to enable using it.
         sets.aftercast.Avatar.LowMP = set_combine(sets.aftercast.Avatar, {
             --waist="Fucho-no-obi"
@@ -877,6 +853,8 @@
      
         -- Damage Taken set
         sets.aftercast.DT = set_combine(sets.DT_Base, {
+            legs="Bunzi's Pants",
+
         })
      
         sets.aftercast.DT.Avatar = set_combine(sets.aftercast.DT, {
