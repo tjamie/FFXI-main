@@ -181,7 +181,7 @@ function get_sets()
     AF.Feet		=	"Atrophy Boots +3"
 
     --Vitiation
-    RELIC.Head		=	"Viti. Chapeau +3"
+    RELIC.Head		=	"Viti. Chapeau +4"
     RELIC.Body		=	"Viti. Tabard +3"
     RELIC.Hands 	=	""
     RELIC.Legs		=	""
@@ -837,7 +837,7 @@ function get_sets()
     ------------
     -- Blue Magic (enmity)
     ------------
-    -- Will ideally some some degree of SIRD if possible
+    -- Will ideally want some some degree of SIRD if possible
     sets.midcast.enmity = set_combine(sets.me.melee.dtsw, {
         ammo = "Staunch Tathlum +1", --SIRD 11
         body = "Emet Harness", --enmity +9,
