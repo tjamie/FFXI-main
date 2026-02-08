@@ -368,7 +368,9 @@ function get_sets()
         right_ring="Ifrit Ring",1,
         back		=	RDMCape.MACC,
 	}
-    sets.me["Black Halo"] = sets.me["Savage Blade"]
+    sets.me["Black Halo"] = set_combine(sets.me["Savage Blade"], {
+        right_ring = "Metamor. Ring +1"
+    })
     sets.me["Requiescat"] = {
         -- ammo        =   "Ginsen",
         -- --head        =   Taeon.Head.TP,
