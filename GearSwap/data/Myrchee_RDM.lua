@@ -312,6 +312,7 @@ function get_sets()
         -- ammo="Sroda Tathlum",
         head="Umuthi Hat",
         hands="Aya. Manopolas +2",
+        neck="Null Loop"
     })
     -- sets.me.melee.accdw = set_combine(sets.me.melee.normaldw,{
     --     --head		=	Carm.Head.D,
@@ -465,11 +466,20 @@ function get_sets()
       
     -- Generic Casting Set that all others take off of. Here you should add all your fast cast RDM need 50 pre JP 42 at master
     sets.precast.casting = {
-        main		=	"Crocea Mors",		--20
+        -- main		=	"Crocea Mors",		--20
 	    head		=	AF.Head,            --16
+        hands = "Telchine Gloves", --3
         left_ring	=	"Kishar Ring",          --4
         right_ring	=	"Weather. Ring",        --5
-    }											
+        left_ear = "Malignance Earring", --4
+        right_ear = EMPY.Earring, --7 at +0
+        wait = "Embla Sash", --5
+    }
+    
+    sets.precast["Dispelga"] = set_combine(sets.precast.casting,{
+        main="Daybreak",
+        sub="Ammurapi Shield",        
+    })
 
     sets.precast["Stun"] = set_combine(sets.precast.casting,{
 
@@ -806,6 +816,11 @@ function get_sets()
     })
     sets.midcast["Aspir"] = sets.midcast["Drain"]
  	
+    sets.midcast["Dispelga"] = set_combine(sets.midcast.Enfeebling.macc, {
+        main="Daybreak",
+        sub="Ammurapi Shield"
+    })
+
     sets.midcast.cure = {} -- Leave This Empty
     -- Cure Potency
     sets.midcast.cure.normal = set_combine(sets.midcast.casting,{
@@ -835,6 +850,7 @@ function get_sets()
 	sets.midcast.regen = set_combine(sets.midcast.enhancing.duration, {
 
     })
+
 
     ------------
     -- Blue Magic (enmity)

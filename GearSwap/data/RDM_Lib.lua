@@ -76,7 +76,8 @@ enfeeb_maps = {
     ['Sleep']='macc', ['Sleep II']='macc', ['Sleepga']='macc', ['Sleepga II']='macc', 
     ['Silence']='macc', 
     ['Inundation']='macc', 
-    ['Dispel']='macc', 
+    ['Dispel']='macc',
+    ['Dispelga']='dispelga',
     ['Break']='macc', 
     ['Bind']='macc', 
     ['Blind']='intpot', ['Blind II']='intpot', 
@@ -738,7 +739,13 @@ end
 function self_command(command)
     hud_command(command)
     local commandArgs = command
-     
+    -- dispelga cmd here
+    if commandArgs:lower() == 'dispelga' then
+        -- equip dispelga precast here i guess?
+        equip({sub=empty})
+        send_command('@input /ma "'..'dispelga'..'"')
+    end
+
     if #commandArgs:split(' ') >= 2 then
         commandArgs = T(commandArgs:split(' '))
         
@@ -857,7 +864,7 @@ function self_command(command)
                 --if recast > 0 
                 send_command('@input /ma "'..nukes[nuke][elements.current]..'"')     
             end
-        end
+        end        
     end
 end
 
