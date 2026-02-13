@@ -89,7 +89,7 @@
 
         -- AF
         AF.Head = "Convoker's Horn +3"
-        AF.Body = "Con. Doublet +3"
+        AF.Body = "Con. Doublet +4"
         AF.Feet = "Con. Pigaches +1"
 
         -- Relic
