@@ -259,7 +259,6 @@ end
 
 --Default To Set Up the Text Window
 function setupTextWindow()
-
     local default_settings = {}
     default_settings.pos = {}
     default_settings.pos.x = hud_x_pos
@@ -315,7 +314,6 @@ end
     This handles hiding the different sections
 ]]
 function hideTextSections()
-
     --For now when hiding a section its easier to recreate the entire window
     texts.clear(main_text_hub)
     
@@ -372,8 +370,7 @@ end
 --------------------------------------------------------------------------------------------------------------
 --------------------------------------------------------------------------------------------------------------
 
-function hud_command(command)
- 
+function hud_command(command) 
     local commandArgs = command
     
     if #commandArgs:split(' ') >= 2 then
@@ -421,9 +418,6 @@ function hud_command(command)
         end
     end
 end
-
-
-
 
 nukes = {}
 nukes.t1 = {['Earth']="Stone",      ['Water']="Water",      ['Air']="Aero",     ['Fire']="Fire",    ['Ice']="Blizzard",     ['Lightning']="Thunder", ['Light']="Thunder", ['Dark']="Blizzard"}
@@ -497,8 +491,7 @@ function buff_change(name,gain,buff_details)
     end
 end
  
-function precast(spell)
-    
+function precast(spell)    
     update_active_ja()
     local spell_recasts = windower.ffxi.get_spell_recasts()
 
@@ -676,11 +669,9 @@ function midcast(spell)
     if spellMap == 'Helix' then
         equip(sets.midcast.Helix)
     end
-
 end
 
-function aftercast(spell) 
-
+function aftercast(spell)
     -- Then initiate idle function to check which set should be equipped
     update_active_ja()
     idle()
@@ -709,7 +700,6 @@ function idle()
 end
  
 function EnspellCheck()
-
     -- Enspell matches double weather
     if Buff['En-Weather'] and get_weather_intensity() == 2 then
         equip(sets.midcast.Obi)
@@ -725,10 +715,8 @@ end
 function status_change(new,old)
     if new == 'Engaged' then  
         -- If we engage check our meleeing status
-        idle()
-         
+        idle()         
     elseif new=='Resting' then
-     
         -- We're resting
         equip(sets.me.resting)          
     else
@@ -741,7 +729,6 @@ function self_command(command)
     local commandArgs = command
     -- dispelga cmd here
     if commandArgs:lower() == 'dispelga' then
-        -- equip dispelga precast here i guess?
         equip({sub=empty})
         send_command('@input /ma "'..'dispelga'..'"')
     end
@@ -756,11 +743,9 @@ function self_command(command)
                 -- As well as equip your melee set if you're engaged
                 meleeing:toggle()
                 lockMainHand(meleeing.value)
-
             elseif commandArgs[2] == 'runspeed' then
                 runspeed:toggle()
-                updateRunspeedGear(runspeed.value) 
-
+                updateRunspeedGear(runspeed.value)
             elseif commandArgs[2] == 'idlemode' then
                 idleModes:cycle()
                 idle()
@@ -868,7 +853,7 @@ function self_command(command)
     end
 end
 
-function updateMB( mBurst )   
+function updateMB(mBurst)   
     if mBurst then
         if use_UI == true then
             validateTextInformation()
@@ -885,8 +870,7 @@ function updateMB( mBurst )
 end
 
 
-function updateRunspeedGear( value )   
-    
+function updateRunspeedGear(value)    
     if not value then
         if use_UI == true then
             validateTextInformation()
@@ -907,8 +891,7 @@ function updateRunspeedGear( value )
     end
 end
 
-function lockMainHand( meleeing )   
-    
+function lockMainHand(meleeing)    
     if meleeing then
         enable('main','sub','ranged')
         if use_UI == true then
@@ -936,7 +919,6 @@ end
 function handle_strategems(cmdParams)
     -- cmdParams[1] == 'scholar'
     -- cmdParams[2] == strategem to use
-
     if not cmdParams[2] then
         add_to_chat(123,'Error: No strategem command given.')
         return
@@ -1024,8 +1006,8 @@ local skillchains = {
     [300] = {id=300,english='Detonation',elements={'Wind'}, color=Colors[3]},
     [301] = {id=301,english='Impaction',elements={'Lightning'}, color=Colors[7]}
 }
-if player and player.index and windower.ffxi.get_mob_by_index(player.index) then
 
+if player and player.index and windower.ffxi.get_mob_by_index(player.index) then
     windower.register_event('action', function(act)
         for _, target in pairs(act.targets) do
             local battle_target = windower.ffxi.get_mob_by_target("t")
@@ -1105,7 +1087,6 @@ if player and player.index and windower.ffxi.get_mob_by_index(player.index) then
     end
 
     function auto_cp()
-
     --Now we check if we need to lock our back for CP
         if player and player.index and windower.ffxi.get_mob_by_index(player.index) then
             jobpoints = windower.ffxi.get_player().job_points[player.main_job:lower()].jp_spent -- check if we are master
@@ -1232,7 +1213,6 @@ function get_weather_intensity()
 end
 
 function downgradenuke( spell )
-
     if spell.name:match(nukes.t1[elements.current]) then   
         if spell.name == nukes.t5[elements.current] then
             newspell = nukes.t4[elements.current]
@@ -1245,5 +1225,4 @@ function downgradenuke( spell )
         end
         send_command('input /ma "'..newspell..'"')
     end
-
 end
