@@ -62,9 +62,7 @@ spell_maps = {
     ['Firestorm II']='Storm',['Hailstorm II']='Storm',['Windstorm II']='Storm',['Sandstorm II']='Storm',['Thunderstorm II']='Storm',['Rainstorm II']='Storm',['Aurorastorm II']='Storm',['Voidstorm II']='Storm',
     ['Fire Maneuver']='Maneuver',['Ice Maneuver']='Maneuver',['Wind Maneuver']='Maneuver',['Earth Maneuver']='Maneuver',['Thunder Maneuver']='Maneuver',['Water Maneuver']='Maneuver',['Light Maneuver']='Maneuver',['Dark Maneuver']='Maneuver',
     ['Enstone']='Enspell',['Enwater']='Enspell',['Enaero']='Enspell',['Enfire']='Enspell',['Enblizzard']='Enspell',['Enthunder']='Enspell',
-	['Gain-AGI']='Gain',['Gain-CHR']='Gain',['Gain-DEX']='Gain',['Gain-INT']='Gain',['Gain-MND']='Gain',['Gain-STR']='Gain',['Gain-VIT']='Gain',
-    ['Cocoon']='DefBlue',
-    ['Cursed Sphere']='EnmityBlue',['Sound Blast']='EnmityBlue',['Jettatura']='EnmityBlue',['Sheep Song']='EnmityBlue',['Blank Gaze']='EnmityBlue',['Soporific']='EnmityBlue',['Geist Wall']='EnmityBlue',['Head Butt']='EnmityBlue',
+	['Boost-AGI']='Gain',['Boost-CHR']='Gain',['Boost-DEX']='Gain',['Boost-INT']='Gain',['Boost-MND']='Gain',['Boost-STR']='Gain',['Boost-VIT']='Gain',
 }
 
 enfeeb_maps = {
@@ -73,7 +71,8 @@ enfeeb_maps = {
     ['Paralyze']='mndpot', ['Paralyze II']='mndpot', 
     ['Slow']='mndpot', ['Slow II']='mndpot', 
     ['Addle']='mndpot', ['Addle II']='mndpot',
-    ['Sleep']='macc', ['Sleep II']='macc', ['Sleepga']='macc', ['Sleepga II']='macc', 
+    ['Sleep']='macc', ['Sleep II']='macc', ['Sleepga']='macc', ['Sleepga II']='macc',
+    ['Repose']='macc',
     ['Silence']='macc', 
     ['Inundation']='macc', 
     ['Dispel']='macc',
@@ -103,7 +102,7 @@ hud_padding = 10
 
 pName = player.name
 -- Saying hello
-windower.add_to_chat(8,'----- Welcome back to your RDM.lua, '..pName..' -----')
+windower.add_to_chat(8,'----- Welcome back to your WHM.lua, '..pName..' -----')
 
 --------------------------------------------------------------------------------------------------------------
 -- HUD STUFF
@@ -516,7 +515,7 @@ function precast(spell)
     end
 
     -- Moving on to other types of magic
-    if spell.type == 'WhiteMagic' or spell.type == 'BlackMagic' or spell.type == 'Ninjutsu' or spell.type == 'BlueMagic' then
+    if spell.type == 'WhiteMagic' or spell.type == 'BlackMagic' or spell.type == 'Ninjutsu' then
      
         -- Stoneskin Precast
         if spell.name == 'Stoneskin' then
@@ -571,13 +570,7 @@ function midcast(spell)
         else
             equip(sets.midcast.cure.normal)
         end
-    -- Blue Magic (enmity)
-    -- elseif spell.name:match('EnmityBlue') then
-    elseif spell.skill == 'Blue Magic' then
-        equip(sets.midcast.enmity)
-    -- Enhancing
     elseif spell.skill == 'Enhancing Magic' then
-
         if spell.name:match('Protect') or spell.name:match('Shell') then
 	    equip(sets.midcast.enhancing.duration)		
             equip({rring="Sheltered Ring"})
