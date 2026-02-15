@@ -155,7 +155,7 @@ hub_mode_std = [[\cs(255, 115, 0)Modes: \cr
 hub_options_std = [[ \cs(255, 115, 0)Options: \cr         
 \cs(255, 255, 64)${key_bind_matchsc}\cs(200, 200, 200)Match SC Element:\cr ${player_match_sc}
 \cs(255, 255, 64)${key_bind_lock_weapon} \cs(200, 200, 200)Lock Weapon:\cr ${toggle_lock_weapon}
-\cs(255, 255, 64)${key_bind_movespeed_lock}\cs(200, 200, 200)Carm Cuisse:\cr ${toggle_movespeed_lock}
+\cs(255, 255, 64)${key_bind_movespeed_lock}\cs(200, 200, 200)Gaiters:\cr ${toggle_movespeed_lock}
 ]]
 
 hub_job_std = [[ \cs(255, 115, 0)${player_job}: \cr             
@@ -738,7 +738,7 @@ function self_command(command)
                 lockMainHand(meleeing.value)
             elseif commandArgs[2] == 'runspeed' then
                 runspeed:toggle()
-                updateRunspeedGear(runspeed.value)
+                updateRunspeedGear(runspeed.value, meleeing.value)
             elseif commandArgs[2] == 'idlemode' then
                 idleModes:cycle()
                 idle()
@@ -863,23 +863,24 @@ function updateMB(mBurst)
 end
 
 
-function updateRunspeedGear(value)    
+function updateRunspeedGear(value, meleeing) 
     if not value then
         if use_UI == true then
             validateTextInformation()
         else
             windower.add_to_chat(8,"----- Locking Off Carmine Cuisses +1 -----")   
         end
-        enable('legs')
+        enable('feet')
         idle()
+    -- elseif meleeing == false then
     else
         if use_UI == true then
             validateTextInformation()
         else
             windower.add_to_chat(8,"----- Locking On Carmine Cuisses +1 -----")
         end
-        equip({legs="Carmine Cuisses +1"})
-        disable('legs')
+        equip({feet="Herald's Gaiters"})
+        disable('feet')
         idle()
     end
 end

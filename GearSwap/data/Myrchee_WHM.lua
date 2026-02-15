@@ -81,7 +81,7 @@ nukeModes = M('normal', 'acc')
 -- Defaults are the first in each list
 
 mainWeapon = M('Mjollnir', 'Maxentius')
-subWeapon = M('Sindri', 'C. Palug Hammer', 'Daybreak')
+subWeapon = M('Sindri', 'C. Palug Hammer', 'Daybreak', 'Ammurapi Shield')
 ------------------------------------------------------------------------------------------------------
 
 ----------------------------------------------------------
@@ -197,7 +197,7 @@ function get_sets()
 
     -- Capes:
     WHMCape = {}
-    WHMCape.TP = back={ name="Alaunus's Cape", augments={'MND+20','Accuracy+20 Attack+20','"Dbl.Atk."+10','Damage taken-5%',}}
+    WHMCape.TP = { name="Alaunus's Cape", augments={'MND+20','Accuracy+20 Attack+20','"Dbl.Atk."+10','Damage taken-5%',}}
 
 	-- SETS
      
@@ -213,36 +213,24 @@ function get_sets()
     -- Leave weapons out of the idles and melee sets. You can/should add weapons to the casting sets though
     -- Your idle set
     sets.me.idle.refresh = {
-        -- ammo="Staunch Tathlum +1",
-        -- head=RELIC.Head,
-        -- body=AF.Body,
-        -- hands="Malignance Gloves",
-        -- legs="Malignance Tights",
-        -- feet="Malignance Boots",
-        -- neck="Elite Royal Collar",
-        -- waist="Flume Belt",
-        -- left_ear="Thureous Earring",
-        -- right_ear="Alabaster Earring",
-        -- left_ring="Murky Ring",
-        -- right_ring="Defending Ring",
-        -- back		=	RDMCape.TP,
+        -- (tfw no refresh)
+        ammo="Staunch Tathlum +1", --3
+        head="Bunzi's Hat",
+        body="Bunzi's Robe",
+        hands="Bunzi's Gloves",
+        legs="Bunzi's Pants",
+        feet="Bunzi's Sabots",
+        neck="Elite Royal Collar",
+        left_ear="Alabaster Earring",
+        right_ear=EMPY.Earring,
+        left_ring="Murky Ring",
+        right_ring="Defending Ring",
+        waist="Null Belt",
     }
 
     -- Your idle DT set
     sets.me.idle.dt = set_combine(sets.me.idle.refresh,{
-        -- ammo="Staunch Tathlum +1", --3
-        -- head="Nyame Helm", --7
-        -- body="Nyame Mail", --9
-        -- hands="Nyame Gauntlets", --7
-        -- legs="Nyame Flanchard", --8
-        -- feet="Nyame Sollerets", --7
-        -- neck="Elite Royal Collar", --5
-        -- waist="Flume Belt", --4
-        -- left_ear="Thureous Earring",
-        -- right_ear="Odnowa Earring +1",
-        -- left_ring="Murky Ring", --10
-        -- right_ring="Lekho's Ring",
-        -- back=RDMCape.VIT, --5
+        --
     })
 
     sets.me.idle.dynamis = set_combine(sets.me.idle.dt,{
