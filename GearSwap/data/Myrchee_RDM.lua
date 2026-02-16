@@ -357,7 +357,7 @@ function get_sets()
     sets.me["Savage Blade"] = {
         ammo="Coiste Bodhar",
         head=RELIC.Head,
-        body=RELIC.Body,
+        body="Nyame Mail",
         hands=AF.Hands,
         legs="Jhakri Slops +2",
         feet=EMPY.Feet,
@@ -406,7 +406,7 @@ function get_sets()
 
     sets.me["Sanguine Blade"] = {
         head="Pixie Hairpin +1",
-        body=EMPY.Body,
+        body="Nyame Mail",
         hands="Jhakri Cuffs +2",
         legs=EMPY.Legs,
         feet=EMPY.Feet,
@@ -421,7 +421,7 @@ function get_sets()
     sets.me["Red Lotus Blade"] = {
         -- ammo		=	"Pemphredo Tathlum",
         head=EMPY.Head,
-        body=EMPY.Body,
+        body="Nyame Mail",
         hands="Jhakri Cuffs +2",
         legs=EMPY.Legs,
         feet=EMPY.Feet,
@@ -435,7 +435,7 @@ function get_sets()
     }
     sets.me["Seraph Blade"] = {
         head=EMPY.Head,
-        body=EMPY.Body,
+        body="Nyame Mail",
         hands="Jhakri Cuffs +2",
         legs=EMPY.Legs,
         feet=EMPY.Feet,
