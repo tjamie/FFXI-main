@@ -246,7 +246,7 @@ function get_sets()
         left_ear="Thureous Earring",
         right_ear="Odnowa Earring +1",
         left_ring="Murky Ring", --10
-        right_ring="Lekho's Ring",
+        right_ring="Lehko's Ring",
         back=RDMCape.VIT, --5
     })
 

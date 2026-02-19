@@ -459,7 +459,7 @@ function init_gear_sets()
 	sets.master_accessories = {
 		neck="Shulmanu Collar",
 		left_ring="Niqmaddu Ring",
-		right_ring="Lekho's Ring",
+		right_ring="Lehko's Ring",
 		left_ear="Crep. Earring",
 		right_ear="Cessance Earring",
 		waist="Windbuffet Belt +1",
