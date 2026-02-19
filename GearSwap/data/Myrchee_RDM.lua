@@ -67,7 +67,7 @@ include('Modes.lua')
 -- to define sets for idle if you add more modes, name them: sets.me.idle.mymode and add 'mymode' in the group.
 -- Same idea for nuke modes. 
 idleModes = M('refresh', 'dt', 'dynamis')
-meleeModes = M('normal', 'hybrid', 'dt', 'dynamis', 'enspell')
+meleeModes = M('normal', 'accuracy', 'hybrid', 'dt', 'dynamis', 'enspell')
 nukeModes = M('normal', 'acc')
 
 ------------------------------------------------------------------------------------------------------
@@ -269,20 +269,7 @@ function get_sets()
 	------------------------------------------------------------------------------------------------------
 	-- Dual Wield sets
 	------------------------------------------------------------------------------------------------------
-    sets.me.melee.normaldw = {   
-        -- ammo		=	"Ginsen",
-        -- --head		=	Taeon.Head.TP,
-        -- body		=	"Ayanmo Corazza +2",
-        -- hands		=	"Aya. Manopolas +2",
-        -- left_ring	=	{name="Chirich Ring +1", bag="wardrobe2"}, -- I do this to prevent issues with lag sometimes if 2 ring are the same in same bag GS sometimes only equips 1 of them        
-        -- --legs		=	Carm.Legs.D,
-        -- --feet		=	Carm.Feet.B,
-        -- neck		=	"Anu Torque",
-        -- waist		=	"Windbuffet Belt +1",
-        -- left_ear	=	"Telos Earring",
-        -- right_ear	=	"Sherida Earring",
-        -- right_ring	=	{name="Chirich Ring +1", bag="wardrobe3"},
-        -- range="Ullr",
+    sets.me.melee.normaldw = {
         ammo = "Coiste Bodhar",
         head="Malignance Chapeau",
         body="Malignance Tabard",
@@ -314,12 +301,10 @@ function get_sets()
         hands="Aya. Manopolas +2",
         neck="Null Loop"
     })
-    -- sets.me.melee.accdw = set_combine(sets.me.melee.normaldw,{
-    --     --head		=	Carm.Head.D,
-    --     -- neck		=	"Sanctity Necklace",
-    --     -- right_ear	=	"Mache Earring +1",
-    --     -- waist		=	"Grunfeld Rope",
-    -- })
+    sets.me.melee.accuracydw = set_combine(sets.me.melee.normaldw,{
+        neck="Null Loop",
+        wait="Null Belt"
+    })
     -- sets.me.melee.dtdw = set_combine(sets.me.melee.normaldw,{
     -- --     neck		=	"Twilight Torque",
     -- --     head		=	"Aya. Zucchetto +2",
@@ -341,7 +326,7 @@ function get_sets()
     sets.me.melee.normalsw = set_combine(sets.me.melee.normaldw,{   
         -- legs		=	RELIC.Legs,
     })
-    sets.me.melee.accsw = set_combine(sets.me.melee.accdw,{
+    sets.me.melee.accsw = set_combine(sets.me.melee.accuracydw,{
 
     })
     sets.me.melee.dtsw = set_combine(sets.me.melee.dtdw,{
