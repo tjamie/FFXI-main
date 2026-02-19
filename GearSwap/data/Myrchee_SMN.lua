@@ -112,7 +112,7 @@
         -- Merlinic
         MERLINIC.Hands = {}
         MERLINIC.Hands.ATK = { name="Merlinic Dastanas", augments={'Pet: Accuracy+12 Pet: Rng. Acc.+12','Blood Pact Dmg.+8','Pet: STR+9','Pet: Mag. Acc.+3',}}
-        MERLINIC.Hands.MAB = { name="Merlinic Dastanas", augments={'Pet: Mag. Acc.+25 Pet: "Mag.Atk.Bns."+25','Pet: Haste+1','Pet: "Mag.Atk.Bns."+10',}}
+        MERLINIC.Hands.MAB = { name="Merlinic Dastanas", augments={'Pet: "Mag.Atk.Bns."+9','Blood Pact Dmg.+10','Pet: DEX+8','Pet: Mag. Acc.+8',}}
 
         -- Apogee
         APOGEE.Head = {}
@@ -659,7 +659,7 @@
             neck="Adad Amulet",
             body=AF.Body,
             hands=MERLINIC.Hands.MAB,
-            legs="Enticer's Pants",
+            legs=APOGEE.Legs.MAB,
             feet=APOGEE.Feet.MAB,
             left_ear="Lugalbanda Earring",
             right_ear=EMPY.Earring,
