@@ -303,7 +303,7 @@ function get_sets()
     })
     sets.me.melee.accuracydw = set_combine(sets.me.melee.normaldw,{
         neck="Null Loop",
-        wait="Null Belt"
+        waist="Null Belt"
     })
     -- sets.me.melee.dtdw = set_combine(sets.me.melee.normaldw,{
     -- --     neck		=	"Twilight Torque",
