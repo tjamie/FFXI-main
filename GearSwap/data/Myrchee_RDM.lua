@@ -188,7 +188,7 @@ function get_sets()
     RELIC.Feet		=	"Viti. Boots +4"
 
     --Lethargy
-    EMPY.Head		=	"Leth. Chappel +2"
+    EMPY.Head		=	"Leth. Chappel +3"
     EMPY.Body		=	"Lethargy Sayon +2"
     EMPY.Hands		=	"Leth. Ganth. +2"
     EMPY.Legs		=	"Leth. Fuseau +3"
@@ -566,9 +566,6 @@ function get_sets()
         -- left_ring	=	"Mujin Band",    
         head		=	"Ea Hat",
         hands       =   "Bunzi's Gloves",
-        --body		=	Merl.Body.MB,
-        -- neck		=	"Mizu. Kubikazari",
-        -- right_ring	=	"Locus Ring",
     })
 	
     sets.midcast.nuking.acc = {
@@ -763,8 +760,9 @@ function get_sets()
     sets.midcast.enhancing.composure = set_combine(sets.midcast.enhancing.duration, {
         head		=	EMPY.Head,
         body        =   EMPY.Body,
-        hands		=	AF.Hands,
+        hands       =   EMPY.Hands,
         legs		=	EMPY.Legs,
+        feet        =   EMPY.Feet
     })  
 
 
