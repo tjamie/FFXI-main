@@ -67,7 +67,7 @@ include('Modes.lua')
 -- to define sets for idle if you add more modes, name them: sets.me.idle.mymode and add 'mymode' in the group.
 -- Same idea for nuke modes. 
 idleModes = M('refresh', 'dt', 'dynamis')
-meleeModes = M('normal', 'accuracy', 'hybrid', 'dt', 'dynamis', 'enspell')
+meleeModes = M('normal', 'accuracy', 'hybrid', 'dt', 'dynamis', 'enspell', 'enspellacc')
 nukeModes = M('normal', 'acc')
 
 ------------------------------------------------------------------------------------------------------
@@ -81,7 +81,7 @@ nukeModes = M('normal', 'acc')
 -- Defaults are the first in each list
 
 mainWeapon = M('Crocea Mors', 'Naegling', 'Maxentius', 'Tauret', 'Qutrub Knife')
-subWeapon = M('Daybreak', 'Thibron', 'Beatific Shield +1', 'Pukulatmuj +1', 'Ceremonial Dagger')
+subWeapon = M('Daybreak', 'Thibron', 'Genmei Shield', 'Ammurapi Shield', 'Pukulatmuj +1', 'Ceremonial Dagger')
 ------------------------------------------------------------------------------------------------------
 
 ----------------------------------------------------------
@@ -293,31 +293,26 @@ function get_sets()
     sets.me.melee.dynamisdw = set_combine(sets.me.melee.normaldw,{
         neck="Dls. Torque +2",
     })
-    sets.me.melee.enspelldw = set_combine(sets.me.melee.normaldw,{
-        ammo="",
-        range="Ullr",
-        -- ammo="Sroda Tathlum",
-        head="Umuthi Hat",
-        hands="Aya. Manopolas +2",
-        neck="Null Loop"
-    })
     sets.me.melee.accuracydw = set_combine(sets.me.melee.normaldw,{
         neck="Null Loop",
         waist="Null Belt"
     })
-    -- sets.me.melee.dtdw = set_combine(sets.me.melee.normaldw,{
-    -- --     neck		=	"Twilight Torque",
-    -- --     head		=	"Aya. Zucchetto +2",
-    -- --     body		=	"Ayanmo Corazza +2",
-    -- --     hands		=	"Aya. Manopolas +2",
-    -- --     legs		=	RELIC.Legs,
-    -- --     feet		=	"Aya. Gambieras +2",
-	-- -- left_ring	=	"Ayanmo Ring",
-    -- --     right_ring	=	"Defending Ring",
-    -- })
-    -- sets.me.melee.mdtdw = set_combine(sets.me.melee.normaldw,{
-
-    -- })
+    sets.me.melee.enspelldw = set_combine(sets.me.melee.normaldw,{
+        ammo="Sroda Tathlum",
+        head="Umuthi Hat",
+        hands="Aya. Manopolas +2",
+        neck="Null Loop",
+        waist="Null Belt",
+        back="Ghostfyre Cape"
+    })
+    sets.me.melee.enspellaccdw = set_combine(sets.me.melee.normaldw,{
+        ammo="",
+        range="Ullr",
+        head="Umuthi Hat",
+        hands="Aya. Manopolas +2",
+        waist="Null Belt",
+        neck="Null Loop"
+    })
     
 	------------------------------------------------------------------------------------------------------
 	-- Single Wield sets. -- combines from DW sets
@@ -334,6 +329,12 @@ function get_sets()
     })
     sets.me.melee.mdtsw = set_combine(sets.me.melee.mdtdw,{
 
+    })
+    sets.me.melee.enspellsw = set_combine(sets.me.melee.enspelldw,{
+
+    })
+    sets.me.melee.enspellacc = set_combine(sets.me.melee.enspellaccdw,{
+        
     })
 	
 	------------------------------------------------------------------------------------------------------
