@@ -198,8 +198,8 @@ function get_sets()
     -- Capes:
     -- Sucellos's And such, add your own.
     NINCape = {}
-    NINCape.TP		=	{ name="Andartia's Mantle", augments={'DEX+20','Accuracy+20 Attack+20','DEX+10','"Dbl.Atk."+10',}}
-
+    NINCape.TP		=	{ name="Andartia's Mantle", augments={'DEX+20','Accuracy+20 Attack+20','DEX+10','"Dbl.Atk."+10','Phys. dmg. taken-10%',}}
+    NINCape.STR     =   { name="Andartia's Mantle", augments={'STR+20','Accuracy+20 Attack+20','STR+10','Weapon skill damage +10%',}}
 	-- SETS
      
     sets.me = {}        		-- leave this empty
@@ -315,7 +315,7 @@ function get_sets()
         right_ear=EMPY.Earring, --i guess? nothing better to put here for now
         left_ring="Ifrit Ring",
         right_ring="Ifrit Ring",1,
-        back		=	NINCape.TP,
+        back		=	NINCape.STR,
 	}
     sets.me["Blade: Ku"] = set_combine(sets.me["Savage Blade"], {
         --TODO get empy feet
