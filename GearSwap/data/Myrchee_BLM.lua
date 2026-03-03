@@ -332,6 +332,22 @@ function get_sets()
     sets.me["Black Halo"] = set_combine(sets.me["Savage Blade"], {
         right_ring = "Metamor. Ring +1"
     })
+    sets.me["Aeolian Edge"] = {
+        ammo        =   "Sroda Tathlum",
+        head        =   MERLINIC.Head.MAB,
+        body        =   AF.Body,
+        hands       =   "Jhakri Cuffs +2",
+        legs        =   MERLINIC.Legs.MAB,
+        feet        =   MERLINIC.Feet.MAB,
+        neck		=	"Sibyl Scarf",
+        -- waist		=	"Refoccilation Stone",
+        waist       =   "Acuity Belt +1",
+        left_ear	=	"Malignance Earring",
+        right_ear	=	"Barkarole Earring",
+        left_ring   =   "Shiva Ring", --TODO get freke ring
+        right_ring	=	"Metamor. Ring +1",
+        back		=	BLMCape.MAB,
+	}
     
 
     -- Feel free to add new weapon skills, make sure you spell it the same as in game. These are the only two I ever use though 
