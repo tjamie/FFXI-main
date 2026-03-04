@@ -591,8 +591,8 @@ function midcast(spell)
             equip(sets.midcast.regen)
         elseif spell.name:match('Aquaveil') then
             equip(sets.midcast.aquaveil)
-        elseif spell.name:match('Phalanx') then
-            --TODO make this check if target is self for phalanx set
+        elseif spell.name:match('Phalanx') and spell.target.type == 'SELF' then
+            --only use phalanx set for self, else use normal duration set
             equip(sets.midcast.phalanx)
         elseif spell.name:match('Stoneskin') then
             equip(sets.midcast.stoneskin)

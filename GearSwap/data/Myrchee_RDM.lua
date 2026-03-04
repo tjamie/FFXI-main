@@ -425,7 +425,7 @@ function get_sets()
         hands="Jhakri Cuffs +2",
         legs=EMPY.Legs,
         feet=EMPY.Feet,
-        neck="Sibyl Scarf",
+        neck="Baetyl Pendant",
         waist="Sailfi Belt +1",
         left_ear="Malignance Earring",
         right_ear="Moonshade Earring",
@@ -722,7 +722,7 @@ function get_sets()
 	
     -- Enhancing yourself 
     sets.midcast.enhancing.duration = {
-        main="Pukulatmuj +1",
+        main="Colada",
         sub="Ammurapi Shield",
         ammo="Staunch Tathlum +1",
         head={ name="Carmine Mask +1", augments={'Accuracy+20','Mag. Acc.+12','"Fast Cast"+4',}},
