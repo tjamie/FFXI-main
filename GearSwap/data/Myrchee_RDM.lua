@@ -204,6 +204,19 @@ function get_sets()
     RDMCape.DEX     =   { name="Sucellos's Cape", augments={'DEX+20','Mag. Acc+20 /Mag. Dmg.+20','DEX+10','"Dual Wield"+10',}}
     RDMCape.INT     =   { name="Sucellos's Cape", augments={'INT+20','Mag. Acc+20 /Mag. Dmg.+20','INT+10','"Mag.Atk.Bns."+10',}}
 
+    -- etc
+    Taeon = {}
+    Taeon.Head = {}
+    Taeon.Body = {}
+    Taeon.Hands = {}
+    Taeon.Legs = {}
+    Taeon.Feet = {}
+    Taeon.Head.Phalanx = { name="Taeon Chapeau", augments={'Phalanx +3',}}
+    Taeon.Body.Phalanx = { name="Taeon Tabard", augments={'Phalanx +3',}}
+    Taeon.Hands.Phalanx = { name="Taeon Gloves", augments={'Phalanx +3',}}
+    Taeon.Legs.Phalanx = { name="Taeon Tights", augments={'Phalanx +3',}}
+    Taeon.Feet.Phalanx = { name="Taeon Boots", augments={'Phalanx +3',}}
+
 	-- SETS
      
     sets.me = {}        		-- leave this empty
@@ -769,12 +782,12 @@ function get_sets()
 
     -- Phalanx
     sets.midcast.phalanx =  set_combine(sets.midcast.enhancing.duration, {
-        main = "Sakpata's Sword"
-        --head		=	Taeon.Head.Phalanx,
-        --body		=	Taeon.Body.Phalanx,
-        --hands		=	Taeon.Hands.Phalanx,
-        --legs		=	Taeon.Legs.Phalanx,
-        --feet		=	Taeon.Feet.Phalanx,
+        main = "Sakpata's Sword",
+        head		=	Taeon.Head.Phalanx,
+        body		=	Taeon.Body.Phalanx,
+        hands		=	Taeon.Hands.Phalanx,
+        legs		=	Taeon.Legs.Phalanx,
+        feet		=	Taeon.Feet.Phalanx,
     })
 
     -- Stoneskin

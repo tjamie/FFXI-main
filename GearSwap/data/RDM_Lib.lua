@@ -510,10 +510,10 @@ function precast(spell)
         return
     end   
     -- Auto downgrade Phalanx II to Pahalanx I when casting on self, saves macro space so you can set your phalanx macro to cast phalanx2 on <stpt>
-    if spell.target.type == 'SELF' and spell.name == "Phalanx II" then
-        cancel_spell()
-        send_command('input /ma "Phalanx" <me>')  
-    end
+    -- if spell.target.type == 'SELF' and spell.name == "Phalanx II" then
+    --     cancel_spell()
+    --     send_command('input /ma "Phalanx" <me>')  
+    -- end
 
     -- Moving on to other types of magic
     if spell.type == 'WhiteMagic' or spell.type == 'BlackMagic' or spell.type == 'Ninjutsu' or spell.type == 'BlueMagic' then
