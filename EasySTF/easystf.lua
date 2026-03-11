@@ -96,6 +96,7 @@ area_names = T{
     ["kazham"] = "Kazham",
     ["selbina"] = "Selbina",
     ["mhaura"] = "Mhaura",
+    ["rabao"] = "Rabao",
     ["ssandoria"] = "Southern+San+d'Oria",
     ["nsandoria"] = "Northern+San+d'Oria",
     ["psandoria"] = "Port+San+d'Oria",
