@@ -358,7 +358,8 @@ function get_sets()
         head=RELIC.Head,
         body="Nyame Mail",
         hands=AF.Hands,
-        legs="Jhakri Slops +2",
+        -- legs="Jhakri Slops +2",
+        legs="Nyame Flanchard",
         feet=EMPY.Feet,
         neck="Rep. Plat. Medal",
         waist="Sailfi Belt +1",
@@ -444,7 +445,7 @@ function get_sets()
         right_ear="Moonshade Earring",
         left_ring="Metamor. Ring +1",
         right_ring="Weather. Ring",
-        back		=	RDMCape.MACC,
+        back=RDMCape.MACC,
     }
 
     -- Feel free to add new weapon skills, make sure you spell it the same as in game. These are the only two I ever use though 
@@ -856,7 +857,8 @@ function get_sets()
     sets.midcast.enmity = set_combine(sets.me.melee.dtsw, {
         ammo = "Staunch Tathlum +1", --SIRD 11
         body = "Emet Harness", --enmity +9,
-        legs = "Carmine Cuisses +1", --SIRD 20
+        -- legs = "Carmine Cuisses +1", --SIRD 20
+        legs = "Zoar Subligar +1", --enmity +6
         neck = "Unmoving Collar +1", --enmity +10
         right_ring = "Petrov Ring", --enmity +4
         left_ear = "Friomsi Earring", --enmity +2
