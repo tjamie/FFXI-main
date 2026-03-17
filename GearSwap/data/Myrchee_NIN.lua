@@ -80,7 +80,7 @@ nukeModes = M('normal', 'acc')
 -- cast and we revert to idle or engaged sets, we'll be checking the following for weapon selection. 
 -- Defaults are the first in each list
 
-mainWeapon = M('Gokotai', 'Naegling')
+mainWeapon = M('Heishi Shorinken', 'Gokotai', 'Naegling')
 subWeapon = M('Kunimitsu', 'Ochu')
 ------------------------------------------------------------------------------------------------------
 
@@ -313,8 +313,8 @@ function get_sets()
         waist="Sailfi Belt +1",
         left_ear="Moonshade Earring", --TP Bonus+250
         right_ear=EMPY.Earring, --i guess? nothing better to put here for now
-        left_ring="Ifrit Ring",
-        right_ring="Ifrit Ring",1,
+        left_ring="Gere Ring",
+        right_ring="Ifrit Ring",
         back		=	NINCape.STR,
 	}
     sets.me["Blade: Ku"] = set_combine(sets.me["Savage Blade"], {
@@ -329,8 +329,9 @@ function get_sets()
         waist="Fotia Belt",
         left_ear="Brutal Earring",
         right_ear=EMPY.Earring, --i guess? nothing better to put here for now
-        left_ring="Epona's Ring",
-        right_ring="Lehko's Ring",
+        left_ring="Gere Ring",
+        right_ring="Ilabrat Ring",
+        -- right_ring="Lehko's Ring",
         back		=	NINCape.TP,
     })
     sets.me["Blade: Shun"] = set_combine(sets.me["Savage Blade"], {
@@ -345,8 +346,9 @@ function get_sets()
         waist="Fotia Belt",
         left_ear="Brutal Earring",
         right_ear=EMPY.Earring, --i guess? nothing better to put here for now
-        left_ring="Epona's Ring",
-        right_ring="Lehko's Ring",
+        left_ring="Gere Ring",
+        right_ring="Ilabrat Ring",
+        -- right_ring="Lehko's Ring",
         back		=	NINCape.TP,
     })
     sets.me["Blade: Ten"] = set_combine(sets.me["Savage Blade"], {
@@ -361,8 +363,8 @@ function get_sets()
         waist="Sailfi Belt +1",
         left_ear="Moonshade Earring", --TP Bonus+250
         right_ear=EMPY.Earring, --i guess? nothing better to put here for now
-        left_ring="Ifrit Ring",
-        right_ring="Ifrit Ring",1,
+        left_ring="Gere Ring",
+        right_ring="Ilabrat Ring",
         back		=	NINCape.TP,
     })
 
