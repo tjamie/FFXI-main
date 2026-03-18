@@ -216,6 +216,9 @@ function get_sets()
     Taeon.Hands.Phalanx = { name="Taeon Gloves", augments={'Phalanx +3',}}
     Taeon.Legs.Phalanx = { name="Taeon Tights", augments={'Phalanx +3',}}
     Taeon.Feet.Phalanx = { name="Taeon Boots", augments={'Phalanx +3',}}
+    Merlinic = {}
+    Merlinic.Head = {}
+    Merlinic.Head.Phalanx = { name="Merlinic Hood", augments={'AGI+9','Phalanx +5','Accuracy+9 Attack+9','Mag. Acc.+7 "Mag.Atk.Bns."+7',}}
 
 	-- SETS
      
@@ -365,8 +368,8 @@ function get_sets()
         waist="Sailfi Belt +1",
         left_ear="Moonshade Earring",
         right_ear="Sherida Earring",
-        left_ring="Ifrit Ring",
-        right_ring="Ifrit Ring",1,
+        left_ring="Sroda Ring",
+        right_ring="Ifrit Ring",
         back		=	RDMCape.MACC,
 	}
     sets.me["Black Halo"] = set_combine(sets.me["Savage Blade"], {
@@ -397,7 +400,7 @@ function get_sets()
         waist="Fotia Belt",
         left_ear="Mache Earring",
         right_ear="Sherida Earring",
-        left_ring="Ramuh Ring",
+        left_ring="Ilabrat Ring",
         right_ring="Lehko's Ring",
         back		=	RDMCape.DEX,
     }
@@ -783,8 +786,8 @@ function get_sets()
 
     -- Phalanx
     sets.midcast.phalanx =  set_combine(sets.midcast.enhancing.duration, {
-        main = "Sakpata's Sword",
-        head		=	Taeon.Head.Phalanx,
+        main        =   "Sakpata's Sword",
+        head		=	Merlinic.Head.Phalanx,
         body		=	Taeon.Body.Phalanx,
         hands		=	Taeon.Hands.Phalanx,
         legs		=	Taeon.Legs.Phalanx,
