@@ -160,6 +160,8 @@ include('RDM_Lib.lua')
 
 -- Optional. Swap to your sch macro sheet / book
 set_macros(1,11) -- Sheet, Book
+StartLockStyle=5
+send_command('input /lockstyleset '..StartLockStyle)
 
 refreshType = idleModes[1] -- leave this as is     
 
