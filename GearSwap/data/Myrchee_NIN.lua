@@ -160,6 +160,8 @@ include('NIN_Lib.lua')
 
 -- Optional. Swap to your macro sheet / book
 set_macros(1,5) -- Sheet, Book
+StartLockStyle=40
+send_command('input /lockstyleset '..StartLockStyle)
 
 refreshType = idleModes[1] -- leave this as is     
 
@@ -307,14 +309,14 @@ function get_sets()
         head="Mpaca's Cap", --also TP Bonus+200
         body="Nyame Mail",
         hands="Mpaca's Gloves",
-        legs="Hiza. Hizayoroi +2",
+        legs="Nyame Flanchard",
         feet="Mpaca's Boots",
         neck="Rep. Plat. Medal",
         waist="Sailfi Belt +1",
         left_ear="Moonshade Earring", --TP Bonus+250
         right_ear=EMPY.Earring, --i guess? nothing better to put here for now
         left_ring="Gere Ring",
-        right_ring="Ifrit Ring",
+        right_ring="Sroda Ring",
         back		=	NINCape.STR,
 	}
     sets.me["Blade: Ku"] = set_combine(sets.me["Savage Blade"], {
@@ -323,7 +325,7 @@ function get_sets()
         head="Mpaca's Cap", --also TP Bonus+200
         body="Nyame Mail",
         hands="Mpaca's Gloves",
-        legs="Hiza. Hizayoroi +2",
+        legs="Nyame Flanchard",
         feet="Mpaca's Boots",
         neck="Rep. Plat. Medal",
         waist="Fotia Belt",
@@ -357,7 +359,7 @@ function get_sets()
         head="Mpaca's Cap", --also TP Bonus+200
         body="Nyame Mail",
         hands="Mpaca's Gloves",
-        legs="Hiza. Hizayoroi +2",
+        legs="Nyame Flanchard",
         feet="Mpaca's Boots",
         neck="Rep. Plat. Medal",
         waist="Sailfi Belt +1",
@@ -367,6 +369,25 @@ function get_sets()
         right_ring="Ilabrat Ring",
         back		=	NINCape.TP,
     })
+    sets.me["Blade: Chi"] = set_combine(sets.me["Savage Blade"], {
+        --TODO get empy feet
+        ammo="Coiste Bodhar",
+        head="Mpaca's Cap", --also TP Bonus+200
+        body="Nyame Mail",
+        hands="Nyame Gauntlets",
+        legs="Nyame Flanchard",
+        feet="Nyame Sollerets",
+        neck="Rep. Plat. Medal",
+        waist="Sailfi Belt +1",
+        left_ear="Moonshade Earring",
+        right_ear=EMPY.Earring, --i guess? nothing better to put here for now
+        left_ring="Gere Ring",
+        right_ring="Sroda Ring",
+        -- right_ring="Lehko's Ring",
+        back		=	NINCape.STR,
+    })
+    sets.me["Blade: Teki"] = sets.me["Blade: Chi"]
+    sets.me["Blade: To"] = sets.me["Blade: Chi"]
 
 	
 	
