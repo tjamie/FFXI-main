@@ -618,7 +618,7 @@
             right_ear=EMPY.Earring,
             left_ring="Varar Ring +1",
             right_ring="Varar Ring +1",1,
-            waist="Incarnation Sash",
+            waist="Regal Belt",
             back=SMNCape.MACC,
         }
         
@@ -665,7 +665,7 @@
             right_ear=EMPY.Earring,
             left_ring="Varar Ring +1",
             right_ring="Varar Ring +1",1,
-            waist="Incarnation Sash",
+            waist="Regal Belt",
             back=SMNCape.ACC,
             -- main="Opashoro",
             -- sub="Elan Strap +1",
