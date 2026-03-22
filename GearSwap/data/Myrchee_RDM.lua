@@ -869,7 +869,7 @@ function get_sets()
     -- Will ideally want some some degree of SIRD if possible
     sets.midcast.enmity = set_combine(sets.me.melee.dtsw, {
         ammo = "Staunch Tathlum +1", --SIRD 11
-        body = "Emet Harness", --enmity +9,
+        body = "Emet Harness +1", --enmity +10,
         -- legs = "Carmine Cuisses +1", --SIRD 20
         legs = "Zoar Subligar +1", --enmity +6
         neck = "Unmoving Collar +1", --enmity +10
