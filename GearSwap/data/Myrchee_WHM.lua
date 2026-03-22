@@ -375,7 +375,7 @@ function get_sets()
         left_ring="Kishar Ring",        --4
         right_ring="Weather. Ring",     --5
         left_ear = "Malignance Earring", --4
-        wait = "Embla Sash", --5
+        waist = "Embla Sash", --5
     }
     
     sets.precast["Dispelga"] = set_combine(sets.precast.casting,{
