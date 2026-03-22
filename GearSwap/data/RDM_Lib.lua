@@ -614,6 +614,7 @@ function midcast(spell)
         equip(sets.midcast.Enfeebling[enfeebMap])
         if Buff['Saboteur'] then
             equip({hands=EMPY.Hands})
+        -- maybe add something here for stymie?
         end 
 
     -- Nuking

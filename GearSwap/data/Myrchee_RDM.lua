@@ -221,6 +221,11 @@ function get_sets()
     Merlinic = {}
     Merlinic.Head = {}
     Merlinic.Head.Phalanx = { name="Merlinic Hood", augments={'AGI+9','Phalanx +5','Accuracy+9 Attack+9','Mag. Acc.+7 "Mag.Atk.Bns."+7',}}
+    Merlinic.Legs = {}
+    Merlinic.Legs.Phalanx = { name="Merlinic Shalwar", augments={'Chance of successful block +1','Sklchn.dmg.+3%','Phalanx +4','Accuracy+20 Attack+20','Mag. Acc.+15 "Mag.Atk.Bns."+15',}}
+    Chironic = {}
+    Chironic.Legs = {}
+    Chironic.Legs.MACC = { name="Chironic Hose", augments={'Mag. Acc.+29','MND+14',}}
 
 	-- SETS
      
@@ -363,7 +368,6 @@ function get_sets()
         head=RELIC.Head,
         body="Nyame Mail",
         hands=AF.Hands,
-        -- legs="Jhakri Slops +2",
         legs="Nyame Flanchard",
         feet=EMPY.Feet,
         neck="Rep. Plat. Medal",
@@ -376,6 +380,9 @@ function get_sets()
 	}
     sets.me["Black Halo"] = set_combine(sets.me["Savage Blade"], {
         right_ring = "Metamor. Ring +1"
+    })
+    sets.me["Circle Blade"] = set_combine(sets.me["Savage Blade"], {
+
     })
     sets.me["Requiescat"] = {
         -- ammo        =   "Ginsen",
@@ -418,7 +425,7 @@ function get_sets()
         neck="Sibyl Scarf",
         waist="Sailfi Belt +1",
         left_ear="Malignance Earring",
-        right_ear="Moonshade Earring",
+        right_ear="Regal Earring",
         left_ring="Metamor. Ring +1",
         right_ring="Acumen Ring",
         back		=	RDMCape.MACC,
@@ -432,7 +439,7 @@ function get_sets()
         feet=EMPY.Feet,
         neck="Sibyl Scarf",
         waist="Acuity Belt +1",
-        left_ear="Malignance Earring",
+        left_ear="Regal Earring",
         right_ear="Moonshade Earring",
         left_ring="Metamor. Ring +1",
         right_ring="Weather. Ring",
@@ -446,7 +453,7 @@ function get_sets()
         feet=EMPY.Feet,
         neck="Baetyl Pendant",
         waist="Sailfi Belt +1",
-        left_ear="Malignance Earring",
+        left_ear="Regal Earring",
         right_ear="Moonshade Earring",
         left_ring="Metamor. Ring +1",
         right_ring="Weather. Ring",
@@ -551,7 +558,7 @@ function get_sets()
         ammo        =   "Dosis Tathlum",
         neck		=	"Dls. Torque +2",
         waist		=	"Eschan Stone",
-        left_ear	=	"Friomisi Earring",
+        left_ear	=	"Regal Earring",
         right_ear	=	"Malignance Earring",
         back		=	RDMCape.MACC,
         -- right_ring	=	"Freke Ring",
@@ -572,7 +579,7 @@ function get_sets()
         neck		=	"Sibyl Scarf",
         -- waist		=	"Refoccilation Stone",
         waist       =   "Acuity Belt +1",
-        left_ear	=	"Friomisi Earring",
+        left_ear	=	"Regal Earring",
         right_ear	=	"Malignance Earring",
         left_ring   =   "Acumen Ring",
         right_ring	=	"Metamor. Ring +1",
@@ -601,7 +608,7 @@ function get_sets()
         neck		=	"Dls. Torque +2",
         -- waist		=	"Refoccilation Stone",
         waist       =   "Acuity Belt +1",
-        left_ear	=	"Friomisi Earring",
+        left_ear	=	"Regal Earring",
         right_ear	=	"Malignance Earring",
         left_ring   =   "Acumen Ring",
         right_ring	=	"Metamor. Ring +1",
@@ -721,20 +728,21 @@ function get_sets()
         back		=	RDMCape.MACC
     }
 	-- Type F-potency from "Enfeebling potency" gear only
-    sets.midcast.Enfeebling.skillmndpot = {
+    sets.midcast.Enfeebling.potency = {
         main={ name="Crocea Mors", augments={'Path: C',}},
         sub="Ammurapi Shield",
         range="Ullr",
         head=RELIC.Head,
-        body=AF.Body,
+        -- body=AF.Body,
+        body=EMPY.Body,
         hands=EMPY.Hands,
-        legs=EMPY.Legs,
+        legs=Chironic.Legs.MACC,
         feet=RELIC.Feet,
         neck={ name="Dls. Torque +2", augments={'Path: A',}},
         waist="Obstin. Sash",
         left_ear="Malignance Earring",
         right_ear=EMPY.Earring,
-        left_ring="Kishar Ring",
+        left_ring="Metamor. Ring +1",
         right_ring="Stikini Ring",
         back		=	RDMCape.MACC
     }
@@ -792,7 +800,7 @@ function get_sets()
         head		=	Merlinic.Head.Phalanx,
         body		=	Taeon.Body.Phalanx,
         hands		=	Taeon.Hands.Phalanx,
-        legs		=	Taeon.Legs.Phalanx,
+        legs        =   Merlinic.Legs.Phalanx,
         feet		=	Taeon.Feet.Phalanx,
     })
 
