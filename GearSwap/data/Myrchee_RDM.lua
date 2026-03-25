@@ -731,7 +731,8 @@ function get_sets()
     sets.midcast.Enfeebling.potency = {
         main={ name="Crocea Mors", augments={'Path: C',}},
         sub="Ammurapi Shield",
-        range="Ullr",
+        -- range="Ullr",
+        ammo="Regal Gem",
         head=RELIC.Head,
         -- body=AF.Body,
         body=EMPY.Body,
