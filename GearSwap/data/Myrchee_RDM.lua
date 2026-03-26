@@ -647,7 +647,8 @@ function get_sets()
         neck={ name="Dls. Torque +2", augments={'Path: A',}},
         waist="Obstin. Sash",
         left_ear="Malignance Earring",
-        right_ear=EMPY.Earring,
+        -- right_ear=EMPY.Earring,
+        right_ear="Snotra Earring",
         left_ring="Kishar Ring",
         right_ring="Stikini Ring",
         back		=	RDMCape.MACC
@@ -668,7 +669,7 @@ function get_sets()
         neck={ name="Dls. Torque +2", augments={'Path: A',}},
         waist="Obstin. Sash",
         left_ear="Malignance Earring",
-        right_ear=EMPY.Earring,
+        right_ear="Snotra Earring",
         left_ring="Kishar Ring",
         right_ring="Stikini Ring",
         back		=	RDMCape.MACC
@@ -686,7 +687,7 @@ function get_sets()
         neck={ name="Dls. Torque +2", augments={'Path: A',}},
         waist="Obstin. Sash",
         left_ear="Malignance Earring",
-        right_ear=EMPY.Earring,
+        right_ear="Snotra Earring",
         left_ring="Kishar Ring",
         right_ring="Stikini Ring",
         back		=	RDMCape.MACC
@@ -704,7 +705,7 @@ function get_sets()
         neck={ name="Dls. Torque +2", augments={'Path: A',}},
         waist="Obstin. Sash",
         left_ear="Malignance Earring",
-        right_ear=EMPY.Earring,
+        right_ear="Snotra Earring",
         left_ring="Kishar Ring",
         right_ring="Stikini Ring",
         back		=	RDMCape.MACC
@@ -722,7 +723,7 @@ function get_sets()
         neck={ name="Dls. Torque +2", augments={'Path: A',}},
         waist="Obstin. Sash",
         left_ear="Malignance Earring",
-        right_ear=EMPY.Earring,
+        right_ear="Snotra Earring",
         left_ring="Kishar Ring",
         right_ring="Stikini Ring",
         back		=	RDMCape.MACC
@@ -742,7 +743,7 @@ function get_sets()
         neck={ name="Dls. Torque +2", augments={'Path: A',}},
         waist="Obstin. Sash",
         left_ear="Malignance Earring",
-        right_ear=EMPY.Earring,
+        right_ear="Snotra Earring",
         left_ring="Metamor. Ring +1",
         right_ring="Stikini Ring",
         back		=	RDMCape.MACC
