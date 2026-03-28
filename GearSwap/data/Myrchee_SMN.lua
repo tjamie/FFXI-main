@@ -357,9 +357,9 @@ function get_sets()
         feet="Nyame Sollerets",
         neck="Null Loop",
         waist="Null Belt",
-        left_ear="Sroda Earring",
+        left_ear="Malignance Earring",
         right_ear="Moonshade Earring",
-        left_ring="Ifrit Ring",
+        left_ring="Weather. Ring",
         right_ring="Metamor. Ring +1",
         back=SMNCape.MND
 	}
