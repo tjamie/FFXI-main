@@ -185,7 +185,7 @@ function get_sets()
     --
     RELIC.Head		=	""
     RELIC.Body		=	""
-    RELIC.Hands 	=	""
+    RELIC.Hands 	=	"Mochizuki Tekko +2"
     RELIC.Legs		=	""
     RELIC.Feet		=	""
 
@@ -194,7 +194,7 @@ function get_sets()
     EMPY.Body		=	""
     EMPY.Hands		=	""
     EMPY.Legs		=	""
-    EMPY.Feet		=	""
+    EMPY.Feet		=	"Hattori Kyahan +2"
     EMPY.Earring    =   "Hattori Earring +2"
 
     -- Capes:
@@ -310,7 +310,7 @@ function get_sets()
         body="Nyame Mail",
         hands="Mpaca's Gloves",
         legs="Nyame Flanchard",
-        feet="Mpaca's Boots",
+        feet=EMPY.Feet,
         neck="Rep. Plat. Medal",
         waist="Sailfi Belt +1",
         left_ear="Moonshade Earring", --TP Bonus+250
@@ -320,13 +320,12 @@ function get_sets()
         back		=	NINCape.STR,
 	}
     sets.me["Blade: Ku"] = set_combine(sets.me["Savage Blade"], {
-        --TODO get empy feet
         ammo="Coiste Bodhar",
         head="Mpaca's Cap", --also TP Bonus+200
         body="Nyame Mail",
         hands="Mpaca's Gloves",
         legs="Nyame Flanchard",
-        feet="Mpaca's Boots",
+        feet=EMPY.Feet,
         neck="Rep. Plat. Medal",
         waist="Fotia Belt",
         left_ear="Brutal Earring",
@@ -337,13 +336,12 @@ function get_sets()
         back		=	NINCape.TP,
     })
     sets.me["Blade: Shun"] = set_combine(sets.me["Savage Blade"], {
-        --TODO get empy feet
         ammo="Coiste Bodhar",
         head="Mpaca's Cap", --also TP Bonus+200
         body="Malignance Tabard",
         hands="Malignance Gloves",
         legs="Mpaca's Hose",
-        feet="Mpaca's Boots",
+        feet=EMPY.Feet,
         neck="Rep. Plat. Medal",
         waist="Fotia Belt",
         left_ear="Brutal Earring",
@@ -354,23 +352,21 @@ function get_sets()
         back		=	NINCape.TP,
     })
     sets.me["Blade: Ten"] = set_combine(sets.me["Savage Blade"], {
-        --TODO get empy feet
         ammo="Coiste Bodhar",
         head="Mpaca's Cap", --also TP Bonus+200
         body="Nyame Mail",
         hands="Mpaca's Gloves",
         legs="Nyame Flanchard",
-        feet="Mpaca's Boots",
+        feet=EMPY.Feet,
         neck="Rep. Plat. Medal",
         waist="Sailfi Belt +1",
         left_ear="Moonshade Earring", --TP Bonus+250
         right_ear=EMPY.Earring, --i guess? nothing better to put here for now
         left_ring="Gere Ring",
         right_ring="Ilabrat Ring",
-        back		=	NINCape.TP,
+        back		=	NINCape.STR,
     })
     sets.me["Blade: Chi"] = set_combine(sets.me["Savage Blade"], {
-        --TODO get empy feet
         ammo="Coiste Bodhar",
         head="Mpaca's Cap", --also TP Bonus+200
         body="Nyame Mail",
@@ -388,7 +384,7 @@ function get_sets()
     })
     sets.me["Blade: Teki"] = sets.me["Blade: Chi"]
     sets.me["Blade: To"] = sets.me["Blade: Chi"]
-
+    sets.me["Blade: Retsu"] = sets.me["Blade: Ten"]
 	
 	
     ---------------
@@ -404,8 +400,10 @@ function get_sets()
     -- Precast
     ----------
       
-    -- Generic Casting Set that all others take off of. Here you should add all your fast cast RDM need 50 pre JP 42 at master
+    -- Generic fast cast
     sets.precast.casting = {
+        legs = "Gyve Trousers",                 --4
+        neck = "Baetyl Pendant",                --4
         left_ring	=	"Kishar Ring",          --4
         right_ring	=	"Weather. Ring",        --5
     }
@@ -461,8 +459,8 @@ function get_sets()
 
     -- Whatever you want to equip mid-cast as a catch all for all spells, and we'll overwrite later for individual spells
     sets.midcast.casting = {
-        ammo        =   "Dosis Tathlum",
-        back		=	NINCape.TP,
+        hands = RELIC.Hands,
+        back = NINCape.TP,
     }
 
     sets.midcast.nuking.normal = {
@@ -503,6 +501,13 @@ function get_sets()
 	sets.midcast["Stun"] = set_combine(sets.midcast.Enfeebling.macc, {
 
 	})
+
+    sets.midcast["Utsusemi: Ichi"] = set_combine(sets.midcast.casting, {
+        feet = EMPY.Feet
+	})
+    sets.midcast["Utsusemi: Ni"] = sets.midcast["Utsusemi: Ichi"]
+    sets.midcast["Utsusemi: San"] = sets.midcast["Utsusemi: Ichi"]
+
 	--Type B-potency from: Mnd & "Enfeeb Potency" gear
     sets.midcast.Enfeebling.mndpot = {
     }
