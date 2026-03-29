@@ -195,7 +195,7 @@ function get_sets()
     EMPY.Hands		=	"Leth. Ganth. +2"
     EMPY.Legs		=	"Leth. Fuseau +3"
     EMPY.Feet		=	"Leth. Houseaux +3"
-    EMPY.Earring    =   "Lethargy Earring"
+    EMPY.Earring    =   "Leth. Earring +1"
 
     -- Capes:
     -- Sucellos's And such, add your own.
