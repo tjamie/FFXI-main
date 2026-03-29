@@ -11,6 +11,11 @@
         gs c scholar cost               Penury                  Parsimony
         gs c scholar speed              Celerity                Alacrity
         gs c scholar aoe                Accession               Manifestation
+        gs c scholar power              Rapture                 Ebullience
+        gs c scholar duration           Perpetuance
+        gs c scholar accuracy           Altruism                Focalization
+        gs c scholar enmity             Tranquility             Equanimity
+        gs c scholar skillchain                                 Immanence
         gs c scholar addendum           Addendum: White         Addendum: Black
     
         Toggle Function: 
@@ -25,8 +30,8 @@
         
         gs c nuke cycle                 Cycles element type for nuking
         gs c nuke cycledown             Cycles element type for nuking in reverse order    
-	gs c nuke enspellup             Cycles element type for enspell
-	gs c nuke enspelldown		Cycles element type for enspell in reverse order 
+	    gs c nuke enspellup             Cycles element type for enspell
+	    gs c nuke enspelldown		Cycles element type for enspell in reverse order 
 
         gs c nuke t1                    Cast tier 1 nuke of saved element 
         gs c nuke t2                    Cast tier 2 nuke of saved element 
@@ -34,8 +39,7 @@
         gs c nuke t4                    Cast tier 4 nuke of saved element 
         gs c nuke t5                    Cast tier 5 nuke of saved element 
         gs c nuke helix                 Cast helix2 nuke of saved element 
-        gs c nuke storm                 Cast Storm buff of saved element  if /sch
-	gs c nuke enspell		Cast enspell of saved enspell element		
+        gs c nuke storm                 Cast Storm buff of saved element  if /sch	
 
         HUD Functions:
         gs c hud hide                   Toggles the Hud entirely on or off
@@ -130,7 +134,7 @@ keybinds_on['key_bind_casting'] = '(ALT-F10)'
 keybinds_on['key_bind_mainweapon'] = '(ALT-F8)'
 keybinds_on['key_bind_subweapon'] = '(CTRL-F8)'
 keybinds_on['key_bind_element_cycle'] = '(CTRL-INS + DEL)'
-keybinds_on['key_bind_sc_level'] = '(ALT-PhUp)'
+keybinds_on['key_bind_sc_level'] = '(ALT-PGUp)'
 keybinds_on['key_bind_regen'] = '(CTRL-HOME)'
 keybinds_on['key_bind_lock_weapon'] = '(ALT-F9)'
 keybinds_on['key_bind_movespeed_lock'] = '(CTRL-PgUp)'
@@ -216,13 +220,13 @@ function get_sets()
     Merlinic = {}
     Merlinic.Head = {}
     Merlinic.Head.Phalanx = { name="Merlinic Hood", augments={'AGI+9','Phalanx +5','Accuracy+9 Attack+9','Mag. Acc.+7 "Mag.Atk.Bns."+7',}}
-    MERLINIC.Head.MAB   =   { name="Merlinic Hood", augments={'Mag. Acc.+25 "Mag.Atk.Bns."+25','"Fast Cast"+4','Mag. Acc.+5','"Mag.Atk.Bns."+4',}}
+    Merlinic.Head.MAB   =   { name="Merlinic Hood", augments={'Mag. Acc.+25 "Mag.Atk.Bns."+25','"Fast Cast"+4','Mag. Acc.+5','"Mag.Atk.Bns."+4',}}
     Merlinic.Legs = {}
     Merlinic.Legs.Phalanx = { name="Merlinic Shalwar", augments={'Chance of successful block +1','Sklchn.dmg.+3%','Phalanx +4','Accuracy+20 Attack+20','Mag. Acc.+15 "Mag.Atk.Bns."+15',}}
-    MERLINIC.Legs.MAB   =   { name="Merlinic Shalwar", augments={'Mag. Acc.+24 "Mag.Atk.Bns."+24','Magic burst dmg.+3%','CHR+8','"Mag.Atk.Bns."+15',}}
-    MERLINIC.Feet = {}
-    MERLINIC.Feet.MAB   =   { name="Merlinic Crackows", augments={'Mag. Acc.+25 "Mag.Atk.Bns."+25','"Fast Cast"+2','CHR+10','Mag. Acc.+6','"Mag.Atk.Bns."+14',}}
-    MERLINIC.Feet.FC    =   MERLINIC.Feet.MAB
+    Merlinic.Legs.MAB   =   { name="Merlinic Shalwar", augments={'Mag. Acc.+24 "Mag.Atk.Bns."+24','Magic burst dmg.+3%','CHR+8','"Mag.Atk.Bns."+15',}}
+    Merlinic.Feet = {}
+    Merlinic.Feet.MAB   =   { name="Merlinic Crackows", augments={'Mag. Acc.+25 "Mag.Atk.Bns."+25','"Fast Cast"+2','CHR+10','Mag. Acc.+6','"Mag.Atk.Bns."+14',}}
+    Merlinic.Feet.FC    =   Merlinic.Feet.MAB
 
 	-- SETS
      
@@ -298,14 +302,14 @@ function get_sets()
         body="Nyame Mail",
         hands="Nyame Gauntlets",
         legs="Nyame Flanchard",
-        feet="Nyame Sollerets"
+        feet="Nyame Sollerets",
         neck="Null Loop",
         waist="Null Belt",
         left_ear="Cessance Earring",
         right_ear="Suppanomimi",
         left_ring="Petrov Ring",
         right_ring="Lehko's Ring",
-        back		=	RDMCape.TP,
+        -- back=""
     }
     sets.me.melee.hybriddw = set_combine(sets.me.melee.normaldw, {
         left_ring="Murky Ring"
@@ -511,11 +515,11 @@ function get_sets()
         sub		    =	"Ammurapi Shield",
         -- ammo		=	"Pemphredo Tathlum",
         ammo        =   "Dosis Tathlum",
-        head        =   MERLINIC.Head.MAB,
+        head        =   Merlinic.Head.MAB,
         body        =   "Agwu's Robe",
         hands       =   "Jhakri Cuffs +2",
-        legs        =   MERLINIC.Legs.MAB,
-        feet        =   MERLINIC.Feet.MAB,
+        legs        =   Merlinic.Legs.MAB,
+        feet        =   Merlinic.Feet.MAB,
         neck		=	"Sibyl Scarf",
         -- waist		=	"Refoccilation Stone",
         waist       =   "Acuity Belt +1",
@@ -540,11 +544,11 @@ function get_sets()
         sub		    =	"Ammurapi Shield",
         -- ammo		=	"Pemphredo Tathlum",
         ammo        =   "Dosis Tathlum",
-        head        =   MERLINIC.Head.MAB,
+        head        =   Merlinic.Head.MAB,
         body        =   "Agwu's Robe",
         hands       =   "Jhakri Cuffs +2",
-        legs        =   MERLINIC.Legs.MAB,
-        feet        =   MERLINIC.Feet.MAB,
+        legs        =   Merlinic.Legs.MAB,
+        feet        =   Merlinic.Feet.MAB,
         neck		=	"Sibyl Scarf",
         -- waist		=	"Refoccilation Stone",
         waist       =   "Acuity Belt +1",
@@ -572,7 +576,7 @@ function get_sets()
         main = "Maxentius",
         sub = "Ammurapi Shield",
         head = AF.Head,
-        bod y =AF.Body,
+        body =AF.Body,
         hands = EMPY.Hands,
         legs = AF.Legs,
         feet = AF.Feet,
@@ -592,7 +596,7 @@ function get_sets()
         main = "Maxentius",
         sub = "Ammurapi Shield",
         head = AF.Head,
-        bod y =AF.Body,
+        body =AF.Body,
         hands = EMPY.Hands,
         legs = AF.Legs,
         feet = AF.Feet,
@@ -609,7 +613,7 @@ function get_sets()
         main = "Maxentius",
         sub = "Ammurapi Shield",
         head = AF.Head,
-        bod y =AF.Body,
+        body =AF.Body,
         hands = EMPY.Hands,
         legs = AF.Legs,
         feet = AF.Feet,
@@ -626,7 +630,7 @@ function get_sets()
         main = "Maxentius",
         sub = "Ammurapi Shield",
         head = AF.Head,
-        bod y =AF.Body,
+        body =AF.Body,
         hands = EMPY.Hands,
         legs = AF.Legs,
         feet = AF.Feet,
@@ -643,7 +647,7 @@ function get_sets()
         main = "Maxentius",
         sub = "Ammurapi Shield",
         head = AF.Head,
-        bod y =AF.Body,
+        body =AF.Body,
         hands = EMPY.Hands,
         legs = AF.Legs,
         feet = AF.Feet,

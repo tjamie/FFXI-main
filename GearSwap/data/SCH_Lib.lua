@@ -152,8 +152,8 @@ hub_mode_std = [[\cs(255, 115, 0)Modes: \cr
 \cs(255, 64, 64)${key_bind_regen} \cs(200, 200, 200)Regen:\cr \cs(125,125,255)${player_current_regen|Hybrid}
 ]]
 
-hub_options_std = [[ \cs(255, 115, 0)Options: \cr         
-\cs(255, 64, 64)${key_bind_mburst} \cs(200, 200, 200)Magic Burst:\cr ${player_current_mb}
+-- first line was: \cs(255, 64, 64)${key_bind_mburst} \cs(200, 200, 200)Magic Burst:\cr ${player_current_mb}
+hub_options_std = [[ \cs(255, 115, 0)Options: \cr
 \cs(255, 255, 64)${key_bind_matchsc}\cs(200, 200, 200)Match SC Element:\cr ${player_match_sc}
 \cs(255, 255, 64)${key_bind_lock_weapon} \cs(200, 200, 200)Lock Weapon:\cr ${toggle_lock_weapon}
 \cs(255, 255, 64)${key_bind_movespeed_lock}\cs(200, 200, 200)Gaiters:\cr ${toggle_movespeed_lock}
@@ -199,7 +199,7 @@ keybinds_on['key_bind_mburst'] = '       '
 keybinds_off['key_bind_regen'] = '       '
 keybinds_off['key_bind_mainweapon'] = '       '
 keybinds_off['key_bind_subweapon'] = '       '
-keybinds_on['key_bind_movespeed_lock'] = '        '
+keybinds_off['key_bind_movespeed_lock'] = '        '
 keybinds_off['key_bind_element_cycle'] = '       '
 keybinds_off['key_bind_sc_level'] = '       '
 keybinds_off['key_bind_lock_weapon'] = '       '
@@ -647,7 +647,6 @@ function midcast(spell)
     -- Enfeebling
     elseif spell.skill == 'Enfeebling Magic' then
         equip(sets.midcast.Enfeebling[enfeebMap])
-        end 
 
     -- Nuking
     elseif spell.type == 'BlackMagic' then
