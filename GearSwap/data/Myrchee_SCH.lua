@@ -110,6 +110,7 @@ windower.send_command('bind !f9 gs c toggle melee') 		-- Alt-F9 Toggle Melee mod
 windower.send_command('bind !f8 gs c toggle mainweapon')	-- Alt-F8 Toggle Main Weapon
 windower.send_command('bind ^f8 gs c toggle subweapon')		-- CTRL-F8 Toggle sub Weapon.
 windower.send_command('bind !` input /ma Stun <t>') 		-- Alt-` Quick Stun Shortcut.
+windower.send_command('bind !PAGEUP gs c sc tier')		    -- alt PgUp to change SC tier between Level 1 or Level 2 SC
 windower.send_command('bind ^home gs c toggle regenmode')	-- ctrl Home Cycle regen mode
 windower.send_command('bind ^PAGEUP gs c toggle runspeed')  -- ctrl PgUP Toggle run speed
 windower.send_command('bind ^f10 gs c toggle mb')           -- F10 toggles Magic Burst Mode on / off.
@@ -129,8 +130,10 @@ keybinds_on['key_bind_casting'] = '(ALT-F10)'
 keybinds_on['key_bind_mainweapon'] = '(ALT-F8)'
 keybinds_on['key_bind_subweapon'] = '(CTRL-F8)'
 keybinds_on['key_bind_element_cycle'] = '(CTRL-INS + DEL)'
+keybinds_on['key_bind_sc_level'] = '(ALT-PhUp)'
 keybinds_on['key_bind_regen'] = '(CTRL-HOME)'
 keybinds_on['key_bind_lock_weapon'] = '(ALT-F9)'
+keybinds_on['key_bind_movespeed_lock'] = '(CTRL-PgUp)'
 keybinds_on['key_bind_matchsc'] = '(F10)'
 
 -- Remember to unbind your keybinds on job change.
@@ -147,6 +150,7 @@ function user_unload()
     send_command('unbind !`')
     send_command('unbind ^home')
     send_command('unbind ^PAGEUP')
+    send_command('unbind !PAGEUP')
     send_command('unbind !f10')
     send_command('unbind ^f12')
     send_command('unbind ^f11')
