@@ -172,12 +172,11 @@ hub_mode_std = [[\cs(255, 115, 0)Modes: \cr
 hub_options_std = [[ \cs(255, 115, 0)Options: \cr         
 \cs(255, 255, 64)${key_bind_matchsc}\cs(200, 200, 200)Match SC Element:\cr ${player_match_sc}
 \cs(255, 255, 64)${key_bind_lock_weapon} \cs(200, 200, 200)Lock Weapon:\cr ${toggle_lock_weapon}
-\cs(255, 255, 64)${key_bind_movespeed_lock}\cs(200, 200, 200)Carm Cuisse:\cr ${toggle_movespeed_lock}
+\cs(255, 255, 64)${key_bind_movespeed_lock}\cs(200, 200, 200)Gaiters:\cr ${toggle_movespeed_lock}
 ]]
 
 hub_job_std = [[ \cs(255, 115, 0)${player_job}: \cr             
 \cs(255, 255, 64)${key_bind_element_cycle} \cs(200, 200, 200)Nuking:\cr ${element_color|\\cs(0, 204, 204)}${toggle_element_cycle|Ice} \cr
-\cs(255, 255, 64)${key_bind_enspell_cycle} \cs(200, 200, 200)Enspell:\cr ${enspell_color|\\cs(0, 204, 204)}${toggle_enspell_cycle|Ice} \cr
 ]]
 
 hub_battle_std = [[ \cs(255, 115, 0)Battle: \cr             
@@ -214,14 +213,13 @@ keybinds_off['key_bind_mburst'] = '       '
 keybinds_on['key_bind_mburst'] = '       '
 keybinds_off['key_bind_mainweapon'] = '       '
 keybinds_off['key_bind_subweapon'] = '       '
-keybinds_on['key_bind_movespeed_lock'] = '        '
+keybinds_off['key_bind_movespeed_lock'] = '        '
 
 keybinds_off['key_bind_element_cycle'] = '       '
 keybinds_off['key_bind_sc_level'] = '       '
 keybinds_off['key_bind_lock_weapon'] = '       '
 keybinds_off['key_bind_movespeed_lock'] = '        '
 keybinds_off['key_bind_matchsc'] = '        '
-keybinds_off['key_bind_enspell_cycle'] = '       '
 
 function validateTextInformation()
 
@@ -232,7 +230,6 @@ function validateTextInformation()
     main_text_hub.player_current_subweapon = subWeapon.current
     main_text_hub.player_current_casting = nukeModes.current
     main_text_hub.toggle_element_cycle = elements.current
-    main_text_hub.toggle_enspell_cycle = enspellElements.current
     main_text_hub.player_job = player.job
 
     if last_skillchain ~= nil then
@@ -269,7 +266,6 @@ function validateTextInformation()
         texts.update(main_text_hub, keybinds_off)
     end
     main_text_hub.element_color = Colors[elements.current]
-    main_text_hub.enspell_color = Colors[enspellElements.current]
     main_text_hub.sc_element_color = scColor
 end
 
@@ -446,7 +442,6 @@ nukes.storm = {['Earth']="Sandstorm", ['Water']="Rainstorm",  ['Air']="Windstorm
 nukes.enspell = {['Earth']="Enstone", ['Water']="Enwater",  ['Air']="Enaero", ['Fire']="Enfire", ['Ice']="Enblizzard", ['Lightning']="Enthunder", ['Light']="Enthunder", ['Dark']="Enblizzard"}
 
 elements =  M('Ice', 'Air', 'Earth', 'Lightning', 'Water', 'Fire')
-enspellElements =  M('Ice', 'Air', 'Earth', 'Lightning', 'Water', 'Fire')
 
 oldElement = elements.current
 
@@ -471,7 +466,6 @@ Buff =
         ['Saboteur'] = false, 
         ['En-Weather'] = false,
         ['En-Day'] = false,
-        ['Enspell'] = false,
     }
     
 -- Get a spell mapping for the spell.
@@ -486,9 +480,7 @@ end
 function update_active_ja(name, gain)
     Buff['Composure'] = buffactive['Composure'] or false
     Buff['Saboteur'] = buffactive['Saboteur'] or false
-    Buff['En-Weather'] = buffactive[nukes.enspell[world.weather_element]] or false
     Buff['En-Day'] = buffactive[nukes.enspell[world.day_element]] or false
-    Buff['Enspell'] = buffactive[nukes.enspell['Earth']] or buffactive[nukes.enspell['Water']] or buffactive[nukes.enspell['Air']] or buffactive[nukes.enspell['Fire']] or buffactive[nukes.enspell['Ice']] or buffactive[nukes.enspell['Lightning']] or buffactive[nukes.enspell['Light']] or buffactive[nukes.enspell['Dark']] or false
 end
 
 function buff_refresh(name,buff_details)
@@ -743,19 +735,6 @@ function idle()
     end
     equip({main = mainWeapon.current, sub = subWeapon.current})
 end
- 
-function EnspellCheck()
-    -- Enspell matches double weather
-    if Buff['En-Weather'] and get_weather_intensity() == 2 then
-        equip(sets.midcast.Obi)
-    -- Enspell matches day AND weather
-    elseif Buff['En-Weather'] and Buff['En-Day'] then
-        equip(sets.midcast.Obi)
-    -- Enspell is there but doesnt match a double weather
-    elseif Buff['Enspell'] then
-        equip(sets.midcast.Orpheus)
-    end 
-end
 
  function pet_change(pet,gain)
     if (not (gain and pet_midaction())) then
@@ -965,18 +944,7 @@ function self_command(command)
                     validateTextInformation()
                 else
                     windower.add_to_chat(211,'Enspell now set to element type: '..tostring(elements.current))
-                end  
-            elseif (nuke == 'enspellup' or nuke == 'enspelldown') then
-                if nuke == 'enspellup' then
-                    enspellElements:cycle()
-                elseif nuke == 'enspelldown' then 
-                    enspellElements:cycleback()
-                end     
-                if use_UI == true then                    
-                    validateTextInformation()
-                else
-                    windower.add_to_chat(211,'Enspell now set to element type: '..tostring(elements.current))
-                end 
+                end
             elseif (nuke == 'air' or nuke == 'ice' or nuke == 'fire' or nuke == 'water' or nuke == 'lightning' or nuke == 'earth' or nuke == 'light' or nuke == 'dark') then
                 local newType = commandArgs[2]
                 elements:set(newType)
@@ -987,9 +955,7 @@ function self_command(command)
                 end 
             elseif not nukes[nuke] then
                 windower.add_to_chat(123,'Unknown element type: '..tostring(commandArgs[2]))
-                return              
-            elseif nuke == 'enspell' then
-                send_command('@input /ma "'..nukes[nuke][enspellElements.current]..'"')     
+                return 
             else        
                 -- Leave out target; let Shortcuts auto-determine it.
                 --recast = windower.ffxi.get_spell_recasts(nukes[nuke][elements.current])
@@ -1021,19 +987,19 @@ function updateRunspeedGear(value)
         if use_UI == true then
             validateTextInformation()
         else
-            windower.add_to_chat(8,"----- Locking Off Carmine Cuisses +1 -----")   
+            windower.add_to_chat(8,"----- Removing Gaiters -----")   
         end
-        enable('legs')
+        enable('feet')
         idle()
     else
         if use_UI == true then
             validateTextInformation()
         else
-            windower.add_to_chat(8,"----- Locking On Carmine Cuisses +1 -----")
+            windower.add_to_chat(8,"----- Locking On Gaiters -----")
         end
-        equip({legs="Carmine Cuisses +1"})
-        disable('legs')
-        idle()
+        equip({feet="Crier's Gaiters"})
+        disable('feet')
+        -- idle()
     end
 end
 

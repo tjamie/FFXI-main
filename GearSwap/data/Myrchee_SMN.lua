@@ -118,9 +118,8 @@ hud_font = 'Impact'
 	windower.send_command('bind !f9 gs c toggle melee') 		-- Alt-F9 Toggle Melee mode on / off, locking of weapons
 	windower.send_command('bind !f8 gs c toggle mainweapon')	-- Alt-F8 Toggle Main Weapon
 	windower.send_command('bind ^f8 gs c toggle subweapon')		-- CTRL-F8 Toggle sub Weapon.
-	windower.send_command('bind !` input /ma Stun <t>') 		-- Alt-` Quick Stun Shortcut.
-	windower.send_command('bind ^home gs c nuke enspellup')		-- ctrl Home Cycle Enspell Up
-	windower.send_command('bind ^PAGEUP gs c nuke enspelldown')  -- ctrl PgUP Cycle Enspell Down
+	windower.send_command('bind !` input /ma Stun <t>') 	
+    windower.send_command('bind ^PAGEUP gs c toggle runspeed')  -- ctrl PgUP Toggle run speed
 	windower.send_command('bind ^f10 gs c toggle mb')           -- F10 toggles Magic Burst Mode on / off.
 	windower.send_command('bind !f10 gs c toggle nukemode')		-- Alt-F10 to change Nuking Mode
 	windower.send_command('bind F10 gs c toggle matchsc')		-- CTRL-F10 to change Match SC Mode      	
@@ -138,8 +137,8 @@ keybinds_on['key_bind_casting'] = '(ALT-F10)'
 keybinds_on['key_bind_mainweapon'] = '(ALT-F8)'
 keybinds_on['key_bind_subweapon'] = '(CTRL-F8)'
 keybinds_on['key_bind_element_cycle'] = '(CTRL-INS + DEL)'
-keybinds_on['key_bind_enspell_cycle'] = '(CTRL-HOME + PgUP)'
 keybinds_on['key_bind_lock_weapon'] = '(ALT-F9)'
+keybinds_on['key_bind_movespeed_lock'] = '(CTRL-PgUp)'
 keybinds_on['key_bind_matchsc'] = '(F10)'
 
 -- Remember to unbind your keybinds on job change.
