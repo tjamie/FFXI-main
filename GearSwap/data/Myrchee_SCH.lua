@@ -83,8 +83,8 @@ nukeModes = M('normal', 'acc')
 -- cast and we revert to idle or engaged sets, we'll be checking the following for weapon selection. 
 -- Defaults are the first in each list
 
-mainWeapon = M()
-subWeapon = M()
+mainWeapon = M("Mpaca's Staff")
+subWeapon = M("Enki Strap")
 ------------------------------------------------------------------------------------------------------
 
 ----------------------------------------------------------
