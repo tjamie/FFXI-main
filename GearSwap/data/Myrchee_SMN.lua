@@ -218,6 +218,8 @@ function get_sets()
     -- Apogee
     APOGEE.Head = {}
     APOGEE.Head.MAB = { name="Apogee Crown +1", augments={'MP+80','Pet: "Mag.Atk.Bns."+35','Blood Pact Dmg.+8',}}
+    APOGEE.Body = {}
+    APOGEE.Body.MAB = { name="Apo. Dalmatica +1", augments={'MP+80','Pet: "Mag.Atk.Bns."+35','Blood Pact Dmg.+8',}}
     APOGEE.Legs = {}
     APOGEE.Legs.ATK = { name="Apogee Slacks +1", augments={'Pet: STR+20','Blood Pact Dmg.+14','Pet: "Dbl. Atk."+4',}}
     APOGEE.Legs.MAB = { name="Apogee Slacks +1", augments={'MP+80','Pet: "Mag.Atk.Bns."+35','Blood Pact Dmg.+8',}}
@@ -238,7 +240,7 @@ function get_sets()
     sets.me.idle.refresh = {
         ammo="Sancus Sachet +1",
         head=EMPY.Head,
-        body="Shomonjijoe +1",
+        body=APOGEE.Body.MAB,
         hands="Bunzi's Gloves",
         legs="Assid. Pants +1",
         feet=APOGEE.Feet.ATK,
@@ -826,7 +828,7 @@ function get_sets()
         -- ammo="Epitaph", see above regarding this piece
         head=APOGEE.Head.MAB,
         neck="Smn. Collar +2",
-        body=AF.Body,
+        body=APOGEE.Body.MAB,
         hands=MERLINIC.Hands.MAB,
         legs="Enticer's Pants",
         feet=APOGEE.Feet.MAB,
