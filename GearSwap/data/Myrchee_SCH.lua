@@ -69,7 +69,7 @@ include('Modes.lua')
 -- to define sets for idle if you add more modes, name them: sets.me.idle.mymode and add 'mymode' in the group.
 -- Same idea for nuke modes. 
 idleModes = M('refresh', 'dt', 'dynamis')
-meleeModes = M('normal', 'accuracy', 'hybrid', 'dt', 'dynamis')
+meleeModes = M('normal', 'accuracy', 'hybrid', 'dt')
 regenModes = M('hybrid', 'duration', 'potency')
 nukeModes = M('normal', 'acc')
 
@@ -276,8 +276,8 @@ function get_sets()
         back=SCHCape.INT --10(pdt)
     })
 
-    sets.me.idle.dynamis = set_combine(sets.me.idle.dt,{
-        -- neck="Dls. Torque +2",
+    sets.me.idle.dynamis = set_combine(sets.me.idle.refresh,{
+        neck="Argute Stole +1",
     })
 
     -- Your idle Sublimation set combine from refresh or DT depening on mode.
