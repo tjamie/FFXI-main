@@ -401,9 +401,11 @@ function get_sets()
     }
     sets.me["Chant du Cygne"] = {
         head="Malignance Chapeau",
-        body="Malignance Tabard",
+        -- body="Malignance Tabard",
+        body="Nyame Mail",
         hands="Malignance Gloves",
         legs="Aya. Cosciales +2",
+        -- legs="Nyame Flanchard",
         feet="Malignance Boots",
         neck="Rep. Plat. Medal",
         waist="Fotia Belt",
