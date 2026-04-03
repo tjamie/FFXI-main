@@ -83,8 +83,8 @@ nukeModes = M('normal', 'acc')
 -- cast and we revert to idle or engaged sets, we'll be checking the following for weapon selection. 
 -- Defaults are the first in each list
 
-mainWeapon = M("Mpaca's Staff")
-subWeapon = M("Enki Strap")
+mainWeapon = M("Mpaca's Staff", "Maxentius")
+subWeapon = M("Enki Strap", "Ternion Dagger +1")
 ------------------------------------------------------------------------------------------------------
 
 ----------------------------------------------------------
@@ -199,10 +199,10 @@ function get_sets()
     RELIC.Feet		=	""
 
     --Empyrean
-    EMPY.Head		=	""
-    EMPY.Body		=	""
-    EMPY.Hands		=	""
-    EMPY.Legs		=	""
+    EMPY.Head		=	"Arbatel Bonnet +2"
+    EMPY.Body		=	"Arbatel Gown +2"
+    EMPY.Hands		=	"Arbatel Bracers +2"
+    EMPY.Legs		=	"Arbatel Pants +2"
     EMPY.Feet		=	""
     EMPY.Earring    =   ""
 
@@ -210,6 +210,7 @@ function get_sets()
     -- Sucellos's And such, add your own.
     SCHCape = {}
     SCHCape.INT = { name="Lugh's Cape", augments={'INT+20','Mag. Acc+20 /Mag. Dmg.+20','INT+10','"Mag.Atk.Bns."+10','Phys. dmg. taken-10%',}}
+    SCHCape.TP = { name="Lugh's Cape", augments={'DEX+20','Accuracy+20 Attack+20','Accuracy+10','"Dbl.Atk."+10','Phys. dmg. taken-10%',}}
 
     -- etc
     Chironic = {}
@@ -244,7 +245,7 @@ function get_sets()
     sets.me.idle.refresh = {
         ammo="Staunch Tathlum +1",
         head="Nyame Helm",
-        body=AF.Body,                   --3
+        body=EMPY.Body,                   --3 at +2, 4 at +3
         hands="Nyame Gauntlets",
         legs="Assid. pants +1",         --1
         feet="Nyame Sollerets",
@@ -309,7 +310,7 @@ function get_sets()
         right_ear="Suppanomimi",
         left_ring="Petrov Ring",
         right_ring="Lehko's Ring",
-        -- back=""
+        back=SCHCape.TP,
     }
     sets.me.melee.hybriddw = set_combine(sets.me.melee.normaldw, {
         left_ring="Murky Ring"
@@ -363,8 +364,8 @@ function get_sets()
         waist="Prosilio Belt",
         left_ear="Regal Earring",
         right_ear="Moonshade Earring",
-        left_ring="Ifrit Ring",
-        right_ring="Metamor. Ring +1",
+        left_ring="Metamor. Ring +1",
+        right_ring="Ifrit Ring",
         -- back=SMNCape.MND
 	}
     sets.me["Myrkr"] = {
@@ -377,19 +378,19 @@ function get_sets()
     -- Gear that needs to be worn to **actively** enhance a current player buff.
     -- Fill up following with your avaible pieces.
     sets.buff['Rapture'] = {
-        -- head="Arbatel bonnet +1"
+        head = EMPY.Head
     }
     sets.buff['Perpetuance'] = {
-        -- hands="Arbatel Bracers +1"
+        hands = EMPY.Hands
     }
     sets.buff['Immanence'] = {
-        -- hands="Arbatel Bracers +1"
+        hands = EMPY.Hands
     }
     sets.buff['Penury'] = {
-        -- legs="Arbatel Pants +1"
+        legs = EMPY.Legs
     }
     sets.buff['Parsimony'] = {
-        -- legs="Arbatel Pants +1"
+        legs = EMPY.Legs
     }
     sets.buff['Celerity'] = {
         -- feet="Peda. Loafers +3"
@@ -500,6 +501,12 @@ function get_sets()
         head = "Pixie Hairpin +1",
     }
 
+    sets.midcast.LightHelix = {
+        main = "Daybreak",
+        sub = "Ammurapi Shield",
+        right_ring = "Weather. Ring",
+    }
+
     -- Make sure you have a non weather obi in this set. Helix get bonus naturally no need Obi.	
     sets.midcast.Helix = {
 	    -- waist		=	"Refoccilation Stone",
@@ -515,9 +522,9 @@ function get_sets()
         sub		    =	"Ammurapi Shield",
         -- ammo		=	"Pemphredo Tathlum",
         ammo        =   "Dosis Tathlum",
-        head        =   Merlinic.Head.MAB,
-        body        =   "Agwu's Robe",
-        hands       =   "Jhakri Cuffs +2",
+        head        =   EMPY.Head,
+        body        =   EMPY.Body,
+        hands       =   EMPY.Hands,
         legs        =   Merlinic.Legs.MAB,
         feet        =   Merlinic.Feet.MAB,
         neck		=	"Sibyl Scarf",
@@ -525,8 +532,8 @@ function get_sets()
         waist       =   "Acuity Belt +1",
         left_ear	=	"Malignance Earring",
         right_ear	=	"Regal Earring",
-        left_ring   =   "Acumen Ring",
-        right_ring	=	"Metamor. Ring +1",
+        left_ring	=	"Metamor. Ring +1",
+        right_ring  =   "Acumen Ring",
         back		=	SCHCape.INT,
     }
     -- used with toggle, default: F10
@@ -536,6 +543,7 @@ function get_sets()
         ammo        =   "Sroda Tathlum",
         -- left_ring	=	"Mujin Band",    
         head		=	"Agwu's Cap",
+        body        =   "Agwu's Robe",
         neck        =   "Argute Stole +1"
     })
 	
@@ -544,9 +552,9 @@ function get_sets()
         sub		    =	"Ammurapi Shield",
         -- ammo		=	"Pemphredo Tathlum",
         ammo        =   "Dosis Tathlum",
-        head        =   Merlinic.Head.MAB,
-        body        =   "Agwu's Robe",
-        hands       =   "Jhakri Cuffs +2",
+        head        =   EMPY.Head,
+        body        =   EMPY.Body,
+        hands       =   EMPY.Hands,
         legs        =   Merlinic.Legs.MAB,
         feet        =   Merlinic.Feet.MAB,
         neck		=	"Sibyl Scarf",
@@ -554,8 +562,8 @@ function get_sets()
         waist       =   "Acuity Belt +1",
         left_ear	=	"Malignance Earring",
         right_ear	=	"Regal Earring",
-        left_ring   =   "Acumen Ring",
-        right_ring	=	"Metamor. Ring +1",
+        right_ring  =  "Acumen Ring",
+        left_ring	=	"Metamor. Ring +1",
         back		=	SCHCape.INT,
     }
 
@@ -578,7 +586,7 @@ function get_sets()
         head = AF.Head,
         body =AF.Body,
         hands = EMPY.Hands,
-        legs = AF.Legs,
+        legs = EMPY.Legs,
         feet = AF.Feet,
         neck = "Argute Stole +1",
         waist = "Obstin. Sash",
@@ -598,7 +606,7 @@ function get_sets()
         head = AF.Head,
         body =AF.Body,
         hands = EMPY.Hands,
-        legs = AF.Legs,
+        legs = EMPY.Legs,
         feet = AF.Feet,
         neck = "Argute Stole +1",
         waist = "Obstin. Sash",
@@ -613,9 +621,9 @@ function get_sets()
         main = "Maxentius",
         sub = "Ammurapi Shield",
         head = AF.Head,
-        body =AF.Body,
+        body = AF.Body,
         hands = EMPY.Hands,
-        legs = AF.Legs,
+        legs = EMPY.Legs,
         feet = AF.Feet,
         neck = "Argute Stole +1",
         waist = "Obstin. Sash",
@@ -632,7 +640,7 @@ function get_sets()
         head = AF.Head,
         body =AF.Body,
         hands = EMPY.Hands,
-        legs = AF.Legs,
+        legs = EMPY.Legs,
         feet = AF.Feet,
         neck = "Argute Stole +1",
         waist = "Obstin. Sash",
@@ -649,7 +657,7 @@ function get_sets()
         head = AF.Head,
         body =AF.Body,
         hands = EMPY.Hands,
-        legs = AF.Legs,
+        legs = EMPY.Legs,
         feet = AF.Feet,
         neck = "Argute Stole +1",
         waist = "Obstin. Sash",
@@ -666,7 +674,7 @@ function get_sets()
         head = AF.Head,
         body =AF.Body,
         hands = EMPY.Hands,
-        legs = AF.Legs,
+        legs = EMPY.Legs,
         feet = AF.Feet,
         neck = "Argute Stole +1",
         waist = "Obstin. Sash",
@@ -764,6 +772,9 @@ function get_sets()
     ------------	
 	sets.midcast.regen = {}
     sets.midcast.regen.hybrid = set_combine(sets.midcast.enhancing.duration, {
+        main = "Bolelabunga",
+        sub = "Ammurapi Shield",
+        head = EMPY.Head,
         body = "Telchine Chas.",
         back = SCHCape.INT,
     })
