@@ -424,7 +424,8 @@ nukes.t5 = {['Earth']="Stone V",    ['Water']="Water V",    ['Air']="Aero V",   
 nukes.helix = {['Earth']="Geohelix",  ['Water']="Hydrohelix", ['Air']="Anemohelix",['Fire']="Pyrohelix", ['Ice']="Cryohelix", ['Lightning']="Ionohelix",    ['Light']="Luminohelix", ['Dark']="Noctohelix"}
 nukes.storm = {['Earth']="Sandstorm", ['Water']="Rainstorm",  ['Air']="Windstorm", ['Fire']="Firestorm", ['Ice']="Hailstorm", ['Lightning']="Thunderstorm", ['Light']="Aurorastorm", ['Dark']="Voidstorm"}
 
-elements =  M('Ice', 'Air', 'Earth', 'Lightning', 'Water', 'Fire')
+-- elements =  M('Ice', 'Air', 'Earth', 'Lightning', 'Water', 'Fire')
+elements =  M('Ice', 'Air', 'Earth', 'Lightning', 'Water', 'Fire', 'Light', 'Dark')
 
 tier1sc =   {}
 tier1sc['Ice'] = 'Induration'
