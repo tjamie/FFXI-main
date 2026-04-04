@@ -422,7 +422,7 @@ nukes.t3 = {['Earth']="Stone III",  ['Water']="Water III",  ['Air']="Aero III", 
 nukes.t4 = {['Earth']="Stone IV",   ['Water']="Water IV",   ['Air']="Aero IV",  ['Fire']="Fire IV", ['Ice']="Blizzard IV",  ['Lightning']="Thunder IV", ['Light']="Thunder IV", ['Dark']="Blizzard IV"}
 nukes.t5 = {['Earth']="Stone V",    ['Water']="Water V",    ['Air']="Aero V",   ['Fire']="Fire V",  ['Ice']="Blizzard V",   ['Lightning']="Thunder V", ['Light']="Thunder V", ['Dark']="Blizzard V"}
 nukes.helix = {['Earth']="Geohelix",  ['Water']="Hydrohelix", ['Air']="Anemohelix",['Fire']="Pyrohelix", ['Ice']="Cryohelix", ['Lightning']="Ionohelix",    ['Light']="Luminohelix", ['Dark']="Noctohelix"}
-nukes.storm = {['Earth']="Sandstorm", ['Water']="Rainstorm",  ['Air']="Windstorm", ['Fire']="Firestorm", ['Ice']="Hailstorm", ['Lightning']="Thunderstorm", ['Light']="Aurorastorm", ['Dark']="Voidstorm"}
+nukes.storm = {['Earth']="Sandstorm II", ['Water']="Rainstorm II",  ['Air']="Windstorm II", ['Fire']="Firestorm II", ['Ice']="Hailstorm II", ['Lightning']="Thunderstorm II", ['Light']="Aurorastorm II", ['Dark']="Voidstorm II"}
 
 -- elements =  M('Ice', 'Air', 'Earth', 'Lightning', 'Water', 'Fire')
 elements =  M('Ice', 'Air', 'Earth', 'Lightning', 'Water', 'Fire', 'Light', 'Dark')
