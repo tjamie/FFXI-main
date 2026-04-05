@@ -790,7 +790,8 @@ function get_sets()
         left_ear="Sroda Earring",
         right_ear="Lugalbanda Earring",
         left_ring="Varar Ring +1",
-        right_ring="Varar Ring +1",1,
+        -- right_ring="Varar Ring +1",1,
+        right_ring="C. Palug Ring",
         back=SMNCape.ACC,
     }
 
@@ -826,7 +827,8 @@ function get_sets()
         sub="Elan Strap",
         ammo="Sancus Sachet +1",
         -- ammo="Epitaph", see above regarding this piece
-        head=APOGEE.Head.MAB,
+        -- head=APOGEE.Head.MAB,
+        head="C. Palug Crown",
         neck="Smn. Collar +2",
         body=APOGEE.Body.MAB,
         hands=MERLINIC.Hands.MAB,
@@ -870,7 +872,8 @@ function get_sets()
         sub="Elan Strap",
         ammo="Sancus Sachet +1",
         -- ammo="Epitaph", see above regarding this piece
-        head=APOGEE.Head.MAB,
+        -- head=APOGEE.Head.MAB,
+        head="C. Palug Crown",
         neck="Smn. Collar +2",
         body=AF.Body,
         hands=MERLINIC.Hands.MAB,
