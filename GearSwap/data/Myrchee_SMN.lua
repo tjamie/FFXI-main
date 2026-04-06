@@ -167,7 +167,7 @@ include('SMN_Lib.lua')
 
 -- Optional. Swap to your sch macro sheet / book
 set_macros(1,17) -- Sheet, Book
-StartLockStyle=29
+StartLockStyle=30
 send_command('wait 2; input /lockstyleset '..StartLockStyle)
 
 refreshType = idleModes[1] -- leave this as is     
@@ -297,7 +297,8 @@ function get_sets()
         right_ear=EMPY.Earring,
         left_ring="Petrov Ring",
         right_ring="Lehko's Ring",
-        back=SMNCape.ACC,
+        -- back=SMNCape.ACC,
+        back="Null Shawl",
     }
     sets.me.melee.hybriddw = set_combine(sets.me.melee.normaldw, {
         left_ring="Murky Ring"
