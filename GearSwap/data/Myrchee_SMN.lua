@@ -212,8 +212,8 @@ function get_sets()
 
     -- Merlinic
     MERLINIC.Hands = {}
-    MERLINIC.Hands.ATK = { name="Merlinic Dastanas", augments={'Pet: Accuracy+12 Pet: Rng. Acc.+12','Blood Pact Dmg.+8','Pet: STR+9','Pet: Mag. Acc.+3',}}
-    MERLINIC.Hands.MAB = { name="Merlinic Dastanas", augments={'Pet: "Mag.Atk.Bns."+9','Blood Pact Dmg.+10','Pet: DEX+8','Pet: Mag. Acc.+8',}}
+    MERLINIC.Hands.ATK = { name="Merlinic Dastanas", augments={'Pet: Accuracy+14 Pet: Rng. Acc.+14','Blood Pact Dmg.+10','Pet: STR+8','Pet: Mag. Acc.+15','Pet: "Mag.Atk.Bns."+3',}}
+    MERLINIC.Hands.MAB = { name="Merlinic Dastanas", augments={'Pet: Mag. Acc.+21','Blood Pact Dmg.+8','Pet: "Mag.Atk.Bns."+15',}}
 
     -- Apogee
     APOGEE.Head = {}
@@ -225,7 +225,7 @@ function get_sets()
     APOGEE.Legs.MAB = { name="Apogee Slacks +1", augments={'MP+80','Pet: "Mag.Atk.Bns."+35','Blood Pact Dmg.+8',}}
     APOGEE.Feet = {}
     APOGEE.Feet.ATK = { name="Apogee Pumps +1", augments={'MP+80','Pet: Attack+35','Blood Pact Dmg.+8',}}
-    APOGEE.Feet.MAB = { name="Apogee Pumps", augments={'MP+60','Pet: "Mag.Atk.Bns."+30','Blood Pact Dmg.+7',}}
+    APOGEE.Feet.MAB = { name="Apogee Pumps +1", augments={'MP+80','Pet: "Mag.Atk.Bns."+35','Blood Pact Dmg.+8',}}
 
 	-- SETS
      
