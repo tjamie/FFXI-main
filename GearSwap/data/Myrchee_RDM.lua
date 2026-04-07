@@ -177,7 +177,7 @@ function get_sets()
 	-- Fill this with your own JSE. 
     --Atrophy
     AF.Head		=	"Atrophy Chapeau +3"
-    AF.Body		=	"Atrophy Tabard +3"
+    AF.Body		=	"Atrophy Tabard +4"
     AF.Hands	=	"Atro. Gloves +4"
     AF.Legs		=	"Atrophy Tights +3"
     AF.Feet		=	"Atrophy Boots +3"
