@@ -203,7 +203,7 @@ function get_sets()
     EMPY.Body		=	"Arbatel Gown +2"
     EMPY.Hands		=	"Arbatel Bracers +2"
     EMPY.Legs		=	"Arbatel Pants +2"
-    EMPY.Feet		=	""
+    EMPY.Feet		=	"Arbatel Loafers +2"
     EMPY.Earring    =   ""
 
     -- Capes:
@@ -399,7 +399,7 @@ function get_sets()
         -- feet="Peda. Loafers +3"
     }
     sets.buff['Klimaform'] = {
-        -- feet="Arbatel Loafers +1"
+        feet = EMPY.Feet
     }
     -- Ebulience set empy now as we get better damage out of a good Merlinic head
     -- orig author left it there still if it becomes needed so the SCH.lua file won't need modification
@@ -526,7 +526,7 @@ function get_sets()
         body        =   EMPY.Body,
         hands       =   EMPY.Hands,
         legs        =   Merlinic.Legs.MAB,
-        feet        =   Merlinic.Feet.MAB,
+        feet        =   EMPY.Feet,
         neck		=	"Sibyl Scarf",
         -- waist		=	"Refoccilation Stone",
         waist       =   "Acuity Belt +1",
@@ -556,7 +556,7 @@ function get_sets()
         body        =   EMPY.Body,
         hands       =   EMPY.Hands,
         legs        =   Merlinic.Legs.MAB,
-        feet        =   Merlinic.Feet.MAB,
+        feet        =   EMPY.Feet,
         neck		=	"Sibyl Scarf",
         -- waist		=	"Refoccilation Stone",
         waist       =   "Acuity Belt +1",

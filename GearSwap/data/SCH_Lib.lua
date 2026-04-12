@@ -651,6 +651,7 @@ function midcast(spell)
 
     -- Nuking
     elseif spell.type == 'BlackMagic' then
+        -- TODO add logic in here to determine if a helix is being cast and add sets accordingly
         if mBurst.value == true then
             equip(sets.midcast.MB[nukeModes.current])
         else
