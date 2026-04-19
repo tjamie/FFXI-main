@@ -237,7 +237,7 @@ function get_sets()
     })
 
     sets.me.idle.dynamis = set_combine(sets.me.idle.dt,{
-        -- neck="Dls. Torque +2",
+        neck="Ninja Nodowa +1",
     })
 
     -- sets.me.idle.mdt = set_combine(sets.me.idle.refresh,{
@@ -277,7 +277,7 @@ function get_sets()
 
     -- })
     sets.me.melee.dynamisdw = set_combine(sets.me.melee.normaldw,{
-        -- neck="Dls. Torque +2",
+        neck="Ninja Nodowa +1",
     })
     sets.me.melee.accuracydw = set_combine(sets.me.melee.normaldw,{
         neck="Null Loop",
