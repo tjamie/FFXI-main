@@ -192,7 +192,7 @@ function get_sets()
     AF.Feet		=	"Acad. Loafers +3"
 
     --Relic
-    RELIC.Head		=	""
+    RELIC.Head		=	"Peda. Mortar. +4"
     RELIC.Body		=	""
     RELIC.Hands 	=	""
     RELIC.Legs		=	""
@@ -436,6 +436,7 @@ function get_sets()
     }
 
     sets.precast.grimoire = set_combine(sets.precast.casting,{
+        head = RELIC.Head, --13
         feet = AF.Feet, --12
     })
     
@@ -522,7 +523,7 @@ function get_sets()
         sub		    =	"Ammurapi Shield",
         -- ammo		=	"Pemphredo Tathlum",
         ammo        =   "Dosis Tathlum",
-        head        =   EMPY.Head,
+        head        =   RELIC.Head,
         body        =   EMPY.Body,
         hands       =   EMPY.Hands,
         legs        =   Merlinic.Legs.MAB,
@@ -542,7 +543,7 @@ function get_sets()
     sets.midcast.MB.normal = set_combine(sets.midcast.nuking.normal, {
         ammo        =   "Sroda Tathlum",
         -- left_ring	=	"Mujin Band",    
-        head		=	"Agwu's Cap",
+        -- head		=	"Agwu's Cap",
         body        =   "Agwu's Robe",
         neck        =   "Argute Stole +1"
     })
@@ -552,7 +553,7 @@ function get_sets()
         sub		    =	"Ammurapi Shield",
         -- ammo		=	"Pemphredo Tathlum",
         ammo        =   "Dosis Tathlum",
-        head        =   EMPY.Head,
+        head        =   RELIC.Head,
         body        =   EMPY.Body,
         hands       =   EMPY.Hands,
         legs        =   Merlinic.Legs.MAB,
