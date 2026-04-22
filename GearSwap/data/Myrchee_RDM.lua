@@ -221,6 +221,8 @@ function get_sets()
     Merlinic = {}
     Merlinic.Head = {}
     Merlinic.Head.Phalanx = { name="Merlinic Hood", augments={'AGI+9','Phalanx +5','Accuracy+9 Attack+9','Mag. Acc.+7 "Mag.Atk.Bns."+7',}}
+    Merlinic.Hands = {}    
+    Merlinic.Hands.Phalanx = { name="Merlinic Dastanas", augments={'"Mag.Atk.Bns."+4','Pet: DEX+1','Phalanx +4','Accuracy+5 Attack+5','Mag. Acc.+11 "Mag.Atk.Bns."+11',}}
     Merlinic.Legs = {}
     Merlinic.Legs.Phalanx = { name="Merlinic Shalwar", augments={'Chance of successful block +1','Sklchn.dmg.+3%','Phalanx +4','Accuracy+20 Attack+20','Mag. Acc.+15 "Mag.Atk.Bns."+15',}}
     Chironic = {}
@@ -543,13 +545,13 @@ function get_sets()
 	-----------------------------------------------------------------------------------------------
     -- Make sure you have a non weather obi in this set. Helix get bonus naturally no need Obi.	
     sets.midcast.DarkHelix = {
-	head		=	"Pixie Hairpin +1",
-	waist		=	"Refoccilation Stone",
+        head		=	"Pixie Hairpin +1",
+        waist		=	"Refoccilation Stone",
         left_ring	=	"Archon Ring",
     }
     -- Make sure you have a non weather obi in this set. Helix get bonus naturally no need Obi.	
-    sets.midcast.Helix = {
-	waist		=	"Refoccilation Stone",
+        sets.midcast.Helix = {
+        waist		=	"Refoccilation Stone",
     }	
 
     -- Whatever you want to equip mid-cast as a catch all for all spells, and we'll overwrite later for individual spells
@@ -803,7 +805,7 @@ function get_sets()
         main        =   "Sakpata's Sword",
         head		=	Merlinic.Head.Phalanx,
         body		=	Taeon.Body.Phalanx,
-        hands		=	Taeon.Hands.Phalanx,
+        hands		=	Merlinic.Hands.Phalanx,
         legs        =   Merlinic.Legs.Phalanx,
         feet		=	Taeon.Feet.Phalanx,
     })
