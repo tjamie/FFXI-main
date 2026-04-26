@@ -193,7 +193,7 @@ function get_sets()
 
     --Relic
     RELIC.Head		=	"Peda. Mortar. +4"
-    RELIC.Body		=	""
+    RELIC.Body		=	"Peda. Gown +3"
     RELIC.Hands 	=	""
     RELIC.Legs		=	""
     RELIC.Feet		=	""
@@ -211,6 +211,7 @@ function get_sets()
     SCHCape = {}
     SCHCape.INT = { name="Lugh's Cape", augments={'INT+20','Mag. Acc+20 /Mag. Dmg.+20','INT+10','"Mag.Atk.Bns."+10','Phys. dmg. taken-10%',}}
     SCHCape.TP = { name="Lugh's Cape", augments={'DEX+20','Accuracy+20 Attack+20','Accuracy+10','"Dbl.Atk."+10','Phys. dmg. taken-10%',}}
+    SCHCape.FC = { name="Lugh's Cape", augments={'"Fast Cast"+10',}}
 
     -- etc
     Chironic = {}
@@ -283,7 +284,7 @@ function get_sets()
     -- Your idle Sublimation set combine from refresh or DT depening on mode.
     sets.me.idle.sublimation = set_combine(sets.me.idle.refresh,{
         head=AF.Head,
-        -- body=RELIC.Body,
+        body=RELIC.Body,
         waist="Embla Sash",
     })  
 
@@ -310,7 +311,7 @@ function get_sets()
         right_ear="Suppanomimi",
         left_ring="Petrov Ring",
         right_ring="Lehko's Ring",
-        back=SCHCape.TP,
+        back="Null Shawl",
     }
     sets.me.melee.hybriddw = set_combine(sets.me.melee.normaldw, {
         left_ring="Murky Ring"
@@ -368,6 +369,23 @@ function get_sets()
         right_ring="Ifrit Ring",
         -- back=SMNCape.MND
 	}
+
+    sets.me["Realmrazer"] = {
+        ammo="Oshasha's Treatise",
+        head="Nyame Helm",
+        body="Nyame Mail",
+        hands="Nyame Gauntlets",
+        legs="Nyame Flanchard",
+        feet="Nyame Sollerets",
+        neck="Rep. Plat. Medal",
+        waist="Fotia Belt",
+        left_ear="Regal Earring",
+        right_ear="Malignance Earring",
+        left_ring="Metamor. Ring +1",
+        right_ring="Lehko's Ring",
+        -- back=SMNCape.MND
+	}
+
     sets.me["Myrkr"] = {
         right_ear="Moonshade Earring",
 	}
@@ -423,16 +441,18 @@ function get_sets()
       
     -- Generic fast cast
     sets.precast.casting = {
+        main = "Mpaca's Staff",             --5
 	    head = AF.Head,                     --8
         body = "Agwu's Robe",               --8
         hands = AF.Hands,                   --9
         legs = "Agwu's Slops",              --7
-        feet = AF.Feet,                     --(12 with grimoire active)
+        feet = Merlinic.Feet.FC,            --7 (with augments)
         left_ring = "Kishar Ring",          --4
         right_ring = "Weather. Ring",       --5
         left_ear = "Malignance Earring",    --4
         waist = "Embla Sash",               --5
-        -- Total: 50 (62)
+        back = SCHCape.FC                   --10
+        -- Total: 72
     }
 
     sets.precast.grimoire = set_combine(sets.precast.casting,{
@@ -474,7 +494,7 @@ function get_sets()
         -- legs="Pedagogy Pants +1"
     }
     sets.precast["Enlightenment"] = {
-        -- body="Peda. Gown +3"
+        body = RELIC.Body
     }
     sets.precast["Sublimation"] = {
         head = AF.Head,
@@ -690,7 +710,8 @@ function get_sets()
     sets.midcast.enhancing.duration = {
         main = "Maxentius",
         sub = "Ammurapi Shield",
-        body = "Telchine Chas.",
+        -- body = "Telchine Chas.",
+        body = RELIC.Body,
         hands = "Telchine Gloves",
         legs = "Telchine Braconi",
         feet = "Telchine pigaches",
