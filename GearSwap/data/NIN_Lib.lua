@@ -156,12 +156,11 @@ hub_mode_std = [[\cs(255, 115, 0)Modes: \cr
 hub_options_std = [[ \cs(255, 115, 0)Options: \cr         
 \cs(255, 255, 64)${key_bind_matchsc}\cs(200, 200, 200)Match SC Element:\cr ${player_match_sc}
 \cs(255, 255, 64)${key_bind_lock_weapon} \cs(200, 200, 200)Lock Weapon:\cr ${toggle_lock_weapon}
-\cs(255, 255, 64)${key_bind_movespeed_lock}\cs(200, 200, 200)Carm Cuisse:\cr ${toggle_movespeed_lock}
+\cs(255, 255, 64)${key_bind_movespeed_lock}\cs(200, 200, 200)Sanic:\cr \cs(100, 180, 255) ${toggle_movespeed_lock}
 ]]
 
 hub_job_std = [[ \cs(255, 115, 0)${player_job}: \cr             
 \cs(255, 255, 64)${key_bind_element_cycle} \cs(200, 200, 200)Nuking:\cr ${element_color|\\cs(0, 204, 204)}${toggle_element_cycle|Ice} \cr
-\cs(255, 255, 64)${key_bind_enspell_cycle} \cs(200, 200, 200)Enspell:\cr ${enspell_color|\\cs(0, 204, 204)}${toggle_enspell_cycle|Ice} \cr
 ]]
 
 hub_battle_std = [[ \cs(255, 115, 0)Battle: \cr             
@@ -173,7 +172,7 @@ hub_battle_std = [[ \cs(255, 115, 0)Battle: \cr
 -- LITE Mode
 hub_mode_lte = [[ \cs(255, 115, 0) == Modes: \cr              \cs(255, 255, 64)${key_bind_idle} \cs(200, 200, 200)Idle:\cr \cs(125,125,255)${player_current_idle|Refresh}              \cs(255, 255, 64)${key_bind_melee} \cs(200, 200, 200)Melee:\cr \cs(125,125,255)${player_current_melee|Refresh}              \cs(255, 255, 64)${key_bind_mainweapon} \cs(200, 200, 200)Main Weapon:\cr \cs(125,125,255)${player_current_mainweapon|Crocea Mors}              \cs(255, 255, 64)${key_bind_subweapon} \cs(200, 200, 200)Sub Weapon:\cr \cs(125,125,255)${player_current_subweapon|Ammurapi Shield}            \cs(255, 255, 64)${key_bind_casting} \cs(200, 200, 200)Nuking:\cr \cs(125,125,255)${player_current_casting|Normal} ]]
 
-hub_options_lte = [[ \cs(255, 115, 0)== Options: \cr              \cs(255, 255, 64)${key_bind_matchsc}\cs(200, 200, 200)Match SC Element:\cr ${player_match_sc}            \cs(255, 255, 64)${key_bind_lock_weapon} \cs(200, 200, 200)Lock Weapon:\cr ${toggle_lock_weapon}            \cs(255, 255, 64)${key_bind_movespeed_lock}\cs(200, 200, 200)Carm Cuisse:\cr ${toggle_movespeed_lock} ]]
+hub_options_lte = [[ \cs(255, 115, 0)== Options: \cr              \cs(255, 255, 64)${key_bind_matchsc}\cs(200, 200, 200)Match SC Element:\cr ${player_match_sc}            \cs(255, 255, 64)${key_bind_lock_weapon} \cs(200, 200, 200)Lock Weapon:\cr ${toggle_lock_weapon}            \cs(255, 255, 64)${key_bind_movespeed_lock}\cs(200, 200, 200)Sanic:\cr ${toggle_movespeed_lock} ]]
 
 hub_job_lte = [[ \cs(255, 115, 0) == ${player_job}: \cr             \cs(255, 255, 64)${key_bind_element_cycle} \cs(200, 200, 200)Nuking:\cr ${element_color|\\cs(0, 204, 204)}${toggle_element_cycle|Ice} \cr             \cs(255, 255, 64)${key_bind_enspell_cycle} \cs(200, 200, 200)Enspell:\cr ${enspell_color|\\cs(0, 204, 204)}${toggle_enspell_cycle|Ice} \cr ]]
 
@@ -198,14 +197,13 @@ keybinds_off['key_bind_mburst'] = '       '
 keybinds_on['key_bind_mburst'] = '       '
 keybinds_off['key_bind_mainweapon'] = '       '
 keybinds_off['key_bind_subweapon'] = '       '
-keybinds_on['key_bind_movespeed_lock'] = '        '
 
 keybinds_off['key_bind_element_cycle'] = '       '
 keybinds_off['key_bind_sc_level'] = '       '
 keybinds_off['key_bind_lock_weapon'] = '       '
 keybinds_off['key_bind_movespeed_lock'] = '        '
+keybinds_off['key_bind_movespeed_lock'] = '        '
 keybinds_off['key_bind_matchsc'] = '        '
-keybinds_off['key_bind_enspell_cycle'] = '       '
 
 function validateTextInformation()
 
@@ -242,9 +240,13 @@ function validateTextInformation()
     end
 
     if runspeed.value then
-        main_text_hub.toggle_movespeed_lock =  const_on
+        if runspeed.value == "OFF" then
+            main_text_hub.toggle_movespeed_lock = const_off
+        else
+            main_text_hub.toggle_movespeed_lock = runspeed.value
+        end
     else
-        main_text_hub.toggle_movespeed_lock =  const_off
+        main_text_hub.toggle_movespeed_lock = const_off
     end
     
     if keybinds.value then
@@ -320,7 +322,6 @@ function hideTextSections()
     --Below we check to make sure this is true by default these are false
     if not textHideMode.value then
         texts.append(main_text_hub, hub_mode)
-
     end
     if not textHideOptions.value then
         texts.append(main_text_hub, hub_options)
@@ -437,7 +438,8 @@ oldElement = elements.current
 scTier2 = M(false)
 meleeing = M(true)
 mBurst = M(false)
-runspeed = M(false)
+-- runspeed = M(false)
+runspeed = M('OFF', 'Kyahan', 'Danzo')
 keybinds = M(false)
 mBurstOldValue = mBurst.value
 
@@ -744,7 +746,13 @@ function self_command(command)
                 meleeing:toggle()
                 lockMainHand(meleeing.value)
             elseif commandArgs[2] == 'runspeed' then
-                runspeed:toggle()
+                if runspeed.current == "OFF" then
+                    runspeed:set("Kyahan")
+                elseif runspeed.current == "Kyahan" then
+                    runspeed:set("Danzo")
+                else
+                    runspeed:set("OFF")
+                end
                 updateRunspeedGear(runspeed.value)
             elseif commandArgs[2] == 'idlemode' then
                 idleModes:cycle()
@@ -871,22 +879,27 @@ end
 
 
 function updateRunspeedGear(value)    
-    if not value then
+    if not value or value == "OFF" then
         if use_UI == true then
             validateTextInformation()
         else
-            windower.add_to_chat(8,"----- Locking Off Carmine Cuisses +1 -----")   
+            windower.add_to_chat(8,"----- Locking Off Sanic Feet -----")   
         end
-        enable('legs')
+        enable('feet')
         idle()
     else
         if use_UI == true then
             validateTextInformation()
         else
-            windower.add_to_chat(8,"----- Locking On Carmine Cuisses +1 -----")
+            windower.add_to_chat(8,"----- Locking On Sanic Feet -----")
         end
-        equip({legs="Carmine Cuisses +1"})
-        disable('legs')
+        enable('feet')
+        if value == "Kyahan" then
+            equip({feet = AF.Feet})
+        elseif value == "Danzo" then
+            equip({feet = "Danzo Sune-Ate"})
+        end
+        disable('feet')
         idle()
     end
 end
@@ -1033,29 +1046,29 @@ if player and player.index and windower.ffxi.get_mob_by_index(player.index) then
     end
     moving = false
 
-    windower.raw_register_event('prerender',function()
-        mov.counter = mov.counter + 1;
-        if mov.counter>30 then
-            local pl = windower.ffxi.get_mob_by_index(player.index)
-            if pl and pl.x and mov.x then
-                local movement = math.sqrt( (pl.x-mov.x)^2 + (pl.y-mov.y)^2 + (pl.z-mov.z)^2 ) > 0.1
-                if movement and not moving then
-                    send_command('gs c toggle runspeed')
-                    moving = true
-                elseif not movement and moving then
-                    send_command('gs c toggle runspeed')
-                    moving = false
-                end
-            end
+    -- windower.raw_register_event('prerender',function()
+    --     mov.counter = mov.counter + 1;
+    --     if mov.counter>30 then
+    --         local pl = windower.ffxi.get_mob_by_index(player.index)
+    --         if pl and pl.x and mov.x then
+    --             local movement = math.sqrt( (pl.x-mov.x)^2 + (pl.y-mov.y)^2 + (pl.z-mov.z)^2 ) > 0.1
+    --             if movement and not moving then
+    --                 send_command('gs c toggle runspeed')
+    --                 moving = true
+    --             elseif not movement and moving then
+    --                 send_command('gs c toggle runspeed')
+    --                 moving = false
+    --             end
+    --         end
 
-            if pl and pl.x then
-                mov.x = pl.x
-                mov.y = pl.y
-                mov.z = pl.z
-            end
-            mov.counter = 0
-        end
-    end)
+    --         if pl and pl.x then
+    --             mov.x = pl.x
+    --             mov.y = pl.y
+    --             mov.z = pl.z
+    --         end
+    --         mov.counter = 0
+    --     end
+    -- end)
 
     windower.register_event('prerender', function()
         --Items we want to check every second
