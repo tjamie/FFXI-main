@@ -327,7 +327,7 @@ function get_sets()
         head="Umuthi Hat",
         hands="Aya. Manopolas +2",
         neck="Null Loop",
-        waist="Null Belt",
+        waist="Orpheus's Sash",
         back="Ghostfyre Cape"
     })
     sets.me.melee.enspellaccdw = set_combine(sets.me.melee.normaldw,{
@@ -427,7 +427,7 @@ function get_sets()
         legs=EMPY.Legs,
         feet=EMPY.Feet,
         neck="Sibyl Scarf",
-        waist="Sailfi Belt +1",
+        waist="Orpheus's Sash",
         left_ear="Malignance Earring",
         right_ear="Regal Earring",
         left_ring="Metamor. Ring +1",
@@ -456,7 +456,7 @@ function get_sets()
         legs=EMPY.Legs,
         feet=EMPY.Feet,
         neck="Baetyl Pendant",
-        waist="Sailfi Belt +1",
+        waist="Orpheus's Sash",
         left_ear="Regal Earring",
         right_ear="Moonshade Earring",
         left_ring="Metamor. Ring +1",
