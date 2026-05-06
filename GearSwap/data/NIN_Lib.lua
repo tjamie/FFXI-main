@@ -619,7 +619,7 @@ function midcast(spell)
         end 
 
     -- Nuking
-    elseif spell.type == 'BlackMagic' then
+    elseif spell.type == 'BlackMagic' or spellMap == 'ElementalNinjutsu' then
         if mBurst.value == true then
             equip(sets.midcast.MB[nukeModes.current])
         else

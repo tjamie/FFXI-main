@@ -226,7 +226,7 @@ function get_sets()
         legs="Malignance Tights", --7
         feet="Malignance Boots", --4
         neck="Elite Royal Collar", --5
-        wait="Null Belt", --(meva)
+        waist="Null Belt", --(meva)
         left_ring="Murky Ring", --10
         right_ring="Defending Ring", --10
         left_ear="Alabaster Earring", 
@@ -279,7 +279,7 @@ function get_sets()
     })
     sets.me.melee.accuracydw = set_combine(sets.me.melee.normaldw,{
         neck="Null Loop",
-        wait="Null Belt"
+        waist="Null Belt"
     })
     
 	------------------------------------------------------------------------------------------------------
@@ -372,7 +372,7 @@ function get_sets()
         legs="Nyame Flanchard",
         feet="Nyame Sollerets",
         neck="Rep. Plat. Medal",
-        waist="Sailfi Belt +1",
+        waist="Orpheus's Sash",
         left_ear="Moonshade Earring",
         right_ear=EMPY.Earring, --i guess? nothing better to put here for now
         left_ring="Gere Ring",
@@ -400,10 +400,13 @@ function get_sets()
       
     -- Generic fast cast
     sets.precast.casting = {
-        legs = "Gyve Trousers",                 --4
         neck = "Baetyl Pendant",                --4
         left_ring	=	"Kishar Ring",          --4
         right_ring	=	"Weather. Ring",        --5
+        head        =   "Herculean Helm",       --7
+        body        =   "Taeon Tabard",         --4
+        hands       =   "Leyline Gloves",       --6(ish)
+        legs        =   "Gyve Trousers",        --4
     }
 
     sets.precast["Stun"] = set_combine(sets.precast.casting,{
@@ -470,7 +473,7 @@ function get_sets()
         feet        =   "Nyame Sollerets",
         neck		=	"Sibyl Scarf",
         -- waist		=	"Refoccilation Stone",
-        waist       =   "Null Belt",
+        waist       =   "Orpheus's Sash",
         left_ear	=	"Friomisi Earring",
         -- right_ear	=	"Malignance Earring",
         left_ring   =   "Dingir Ring",
