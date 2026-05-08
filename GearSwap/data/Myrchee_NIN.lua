@@ -183,7 +183,7 @@ function get_sets()
     --
     RELIC.Head		=	""
     RELIC.Body		=	""
-    RELIC.Hands 	=	"Mochizuki Tekko +2"
+    RELIC.Hands 	=	"Mochizuki Tekko +3"
     RELIC.Legs		=	""
     RELIC.Feet		=	""
 
