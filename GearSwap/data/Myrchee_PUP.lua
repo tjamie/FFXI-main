@@ -10,6 +10,11 @@
 -- Initialization function for this job file.
 -- IMPORTANT: Make sure to also get the Mote-Include.lua file (and its supplementary files) to go with this.
 -- Select default macro book on initial load or subjob change.
+
+-- note etc
+-- "Offense Mode" applies when pet is engaged and master isn't
+
+
 function select_default_macro_book()
     -- Default macro set/book
     set_macro_page(1, 1)
@@ -35,7 +40,7 @@ function user_setup()
         These are for when you are fighting with or without Pet
         When you are IDLE and Pet is ENGAGED that is handled by the Idle Sets
     ]]
-    state.OffenseMode:options("Malignance", "Mpaca", "PetEnmity", "PetTP", "PetDA")
+    state.OffenseMode:options("Malignance", "Mpaca", "PetEnmity", "PetTP", "PetDA", "PetDT")
 
     --[[
         Ctrl-F9 - Cycle Hybrid Mode (the defensive half of all 'hybrid' melee modes).
@@ -67,7 +72,7 @@ function user_setup()
         
         Will automatically set IdleMode to Idle when Pet becomes Engaged and you are Idle
     ]]
-    state.IdleMode:options("Malignance", "Mpaca", "PetTP", "PetEnmity")
+    state.IdleMode:options("Malignance", "Mpaca", "PetTP", "PetEnmity", "PetDT")
 
     --Various Cycles for the different types of PetModes
     state.PetStyleCycleTank = M {"NORMAL", "DD", "MAGIC", "SPAM"}
@@ -590,6 +595,23 @@ function init_gear_sets()
 	   	-- feet="Heyoka Leggings",
 	})
 
+    sets.engaged.PetDT = set_combine(sets.engaged.PetEnmity, {
+        head = TAEON.Head,
+        body = TAEON.Body,
+        hands = TAEON.Hands,
+        legs = TAEON.Legs,
+        feet = TAEON.Feet,
+        neck = "Shulmanu Collar",
+        waist = "Isa Belt",
+        left_ear = "Sroda Earring",
+        right_ear = "Enmerkar Earring",
+        left_ring = "C. Palug Ring",
+        right_ring = "Varar Ring +1",
+        back = PUPCape.PetDT
+    })
+
+    sets.engaged.PetDT.Master = set_combine(sets.engaged.PetDT, sets.master_accessories)
+	sets.engaged.PetDT.Pet = set_combine(sets.engaged.PetDT, sets.pet_accessories)
     -------------------------------------
     --[[
         Offense Mode = Rao
@@ -728,6 +750,8 @@ function init_gear_sets()
 	
 	sets.idle.PetEnmity = sets.engaged.PetEnmity
 	
+    sets.idle.PetDT = sets.engaged.PetDT
+
 	sets.idle.PetTP = sets.engaged.PetTP
 	
 	sets.idle.Rao  = sets.engaged.Rao
