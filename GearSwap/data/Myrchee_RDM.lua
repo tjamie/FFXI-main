@@ -185,7 +185,7 @@ function get_sets()
     --Vitiation
     RELIC.Head		=	"Viti. Chapeau +4"
     RELIC.Body		=	"Viti. Tabard +3"
-    RELIC.Hands 	=	""
+    RELIC.Hands 	=	"Viti. Gloves +3"
     RELIC.Legs		=	""
     RELIC.Feet		=	"Viti. Boots +4"
 
@@ -788,7 +788,12 @@ function get_sets()
         left_ring="Murky Ring",
         right_ring="Stikini Ring",
         back={ name="Ghostfyre Cape", augments={'Enfb.mag. skill +3','Enha.mag. skill +7','Mag. Acc.+4','Enh. Mag. eff. dur. +20',}},      
-    }) 
+    })
+
+    -- Gain etc
+    sets.midcast.enhancing.gain = set_combine(sets.midcast.enhancing.potency, {
+        hands = RELIC.Hands,
+    })
 
     -- This is used when casting under Composure but enhancing someone else other than yourself. 
     sets.midcast.enhancing.composure = set_combine(sets.midcast.enhancing.duration, {

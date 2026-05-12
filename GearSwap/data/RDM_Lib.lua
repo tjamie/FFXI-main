@@ -596,8 +596,10 @@ function midcast(spell)
             equip(sets.midcast.phalanx)
         elseif spell.name:match('Stoneskin') then
             equip(sets.midcast.stoneskin)
-        elseif spell.name:match('Temper') or spellMap == "Enspell" or spellMap == "Gain" then
+        elseif spell.name:match('Temper') or spellMap == "Enspell" then
             equip(sets.midcast.enhancing.potency)
+        elseif spellMap == "Gain" then
+            equip(sets.midcast.enhancing.gain)
         else
             equip(sets.midcast.enhancing.duration) -- fall back to duration if not specified above 
         end
