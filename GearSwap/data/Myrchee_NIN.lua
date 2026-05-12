@@ -181,7 +181,7 @@ function get_sets()
     AF.Feet		=	"Hachiya Kyahan +2"
 
     --
-    RELIC.Head		=	""
+    RELIC.Head		=	"Mochi. Hatsuburi +3"
     RELIC.Body		=	""
     RELIC.Hands 	=	"Mochizuki Tekko +3"
     RELIC.Legs		=	""
@@ -321,7 +321,7 @@ function get_sets()
         ammo="Coiste Bodhar",
         head="Mpaca's Cap", --also TP Bonus+200
         body="Nyame Mail",
-        hands="Mpaca's Gloves",
+        hands=RELIC.Hands,
         legs="Nyame Flanchard",
         feet=EMPY.Feet,
         neck="Rep. Plat. Medal",
@@ -366,7 +366,7 @@ function get_sets()
     })
     sets.me["Blade: Chi"] = set_combine(sets.me["Savage Blade"], {
         ammo="Coiste Bodhar",
-        head="Mpaca's Cap", --also TP Bonus+200
+        head=RELIC.Head,
         body="Nyame Mail",
         hands="Nyame Gauntlets",
         legs="Nyame Flanchard",
@@ -466,7 +466,7 @@ function get_sets()
 
     sets.midcast.nuking.normal = {
         ammo        =   "Dosis Tathlum",
-        head        =   "Nyame Helm",
+        head        =   RELIC.Head,
         body        =   "Nyame Mail",
         hands       =   "Nyame Gauntlets",
         legs        =   "Nyame Flanchard",
