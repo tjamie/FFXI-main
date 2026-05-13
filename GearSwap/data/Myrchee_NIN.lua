@@ -67,7 +67,7 @@ include('Modes.lua')
 -- to define sets for idle if you add more modes, name them: sets.me.idle.mymode and add 'mymode' in the group.
 -- Same idea for nuke modes. 
 idleModes = M('dt', 'dynamis')
-meleeModes = M('normal', 'accuracy', 'hybrid', 'dynamis')
+meleeModes = M('normal', 'accuracy', 'hybrid', 'dw', 'dynamis')
 nukeModes = M('normal', 'acc')
 
 ------------------------------------------------------------------------------------------------------
@@ -175,7 +175,7 @@ function get_sets()
 	-- Fill this with your own JSE. 
     --
     AF.Head		=	""
-    AF.Body		=	"Hachiya Chain. +2"
+    AF.Body		=	"Hachiya Chain. +3"
     AF.Hands	=	""
     AF.Legs		=	""
     AF.Feet		=	"Hachiya Kyahan +2"
@@ -190,7 +190,7 @@ function get_sets()
     --
     EMPY.Head		=	""
     EMPY.Body		=	""
-    EMPY.Hands		=	""
+    EMPY.Hands		=	"Hattori Tekko +2"
     EMPY.Legs		=	""
     EMPY.Feet		=	"Hattori Kyahan +2"
     EMPY.Earring    =   "Hattori Earring +2"
@@ -274,6 +274,9 @@ function get_sets()
     -- sets.me.melee.dtdw = set_combine(sets.me.idle.dt,{
 
     -- })
+    sets.me.melee.dwdw = set_combine(sets.me.melee.normaldw, {
+        body=AF.Body,
+    })
     sets.me.melee.dynamisdw = set_combine(sets.me.melee.normaldw,{
         neck="Ninja Nodowa +1",
     })
@@ -296,6 +299,9 @@ function get_sets()
 
     })
     sets.me.melee.mdtsw = set_combine(sets.me.melee.mdtdw,{
+
+    })
+    sets.me.melee.dwsw = set_combine(sets.me.melee.dwdw,{
 
     })
 	
@@ -484,6 +490,7 @@ function get_sets()
     -- Pieces to swap from freen nuke to Magic Burst
     -- TODO Was working here -- 01/29/2026
     sets.midcast.MB.normal = set_combine(sets.midcast.nuking.normal, {
+        hands       =   EMPY.Hands
     })
 	
     sets.midcast.nuking.acc = set_combine(sets.midcast.nuking.normal, {
