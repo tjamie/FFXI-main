@@ -191,7 +191,7 @@ function get_sets()
 
     --Lethargy
     EMPY.Head		=	"Leth. Chappel +3"
-    EMPY.Body		=	"Lethargy Sayon +2"
+    EMPY.Body		=	"Lethargy Sayon +3"
     EMPY.Hands		=	"Leth. Ganth. +2"
     EMPY.Legs		=	"Leth. Fuseau +3"
     EMPY.Feet		=	"Leth. Houseaux +3"
@@ -245,7 +245,7 @@ function get_sets()
     sets.me.idle.refresh = {
         ammo="Staunch Tathlum +1",
         head=RELIC.Head,
-        body=AF.Body,
+        body=EMPY.Body,
         hands="Malignance Gloves",
         legs="Malignance Tights",
         feet="Malignance Boots",
@@ -325,6 +325,7 @@ function get_sets()
     sets.me.melee.enspelldw = set_combine(sets.me.melee.normaldw,{
         ammo="Sroda Tathlum",
         head="Umuthi Hat",
+        body=EMPY.Body,
         hands="Aya. Manopolas +2",
         neck="Null Loop",
         waist="Orpheus's Sash",
@@ -334,6 +335,7 @@ function get_sets()
         ammo="",
         range="Ullr",
         head="Umuthi Hat",
+        body=EMPY.Body,
         hands="Aya. Manopolas +2",
         waist="Null Belt",
         neck="Null Loop"
