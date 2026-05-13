@@ -886,7 +886,7 @@ function updateRunspeedGear(value)
         else
             windower.add_to_chat(8,"----- Locking On Herald's Gaiters -----")
         end
-        equip({feet="Herald's Gaiters"})
+        equip({feet="Crier's Gaiters"})
         disable('feet')
         idle()
     end
