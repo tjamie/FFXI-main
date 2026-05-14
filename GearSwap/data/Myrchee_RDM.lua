@@ -192,7 +192,7 @@ function get_sets()
     --Lethargy
     EMPY.Head		=	"Leth. Chappel +3"
     EMPY.Body		=	"Lethargy Sayon +3"
-    EMPY.Hands		=	"Leth. Ganth. +2"
+    EMPY.Hands		=	"Leth. Ganth. +3"
     EMPY.Legs		=	"Leth. Fuseau +3"
     EMPY.Feet		=	"Leth. Houseaux +3"
     EMPY.Earring    =   "Leth. Earring +1"
@@ -653,7 +653,6 @@ function get_sets()
         neck={ name="Dls. Torque +2", augments={'Path: A',}},
         waist="Obstin. Sash",
         left_ear="Malignance Earring",
-        -- right_ear=EMPY.Earring,
         right_ear="Snotra Earring",
         left_ring="Kishar Ring",
         right_ring="Stikini Ring",
