@@ -84,7 +84,7 @@ nukeModes = M('normal', 'acc')
 -- Defaults are the first in each list
 
 mainWeapon = M("Mpaca's Staff", "Maxentius")
-subWeapon = M("Enki Strap", "Ternion Dagger +1")
+subWeapon = M("Enki Strap", "Ternion Dagger +1", "Genmei Shield")
 ------------------------------------------------------------------------------------------------------
 
 ----------------------------------------------------------
