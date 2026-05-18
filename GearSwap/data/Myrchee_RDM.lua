@@ -179,7 +179,7 @@ function get_sets()
     AF.Head		=	"Atrophy Chapeau +3"
     AF.Body		=	"Atrophy Tabard +4"
     AF.Hands	=	"Atro. Gloves +4"
-    AF.Legs		=	"Atrophy Tights +3"
+    AF.Legs		=	"Atrophy Tights +4"
     AF.Feet		=	"Atrophy Boots +3"
 
     --Vitiation
@@ -379,11 +379,11 @@ function get_sets()
         left_ear="Moonshade Earring",
         right_ear="Sherida Earring",
         left_ring="Sroda Ring",
-        right_ring="Ifrit Ring",
+        right_ring="Epaminondas's Ring",
         back		=	RDMCape.MACC,
 	}
     sets.me["Black Halo"] = set_combine(sets.me["Savage Blade"], {
-        right_ring = "Metamor. Ring +1"
+        -- right_ring = "Metamor. Ring +1"
     })
     sets.me["Circle Blade"] = set_combine(sets.me["Savage Blade"], {
 
@@ -423,6 +423,7 @@ function get_sets()
     sets.me["Evisceration"] = sets.me["Chant du Cygne"]
 
     sets.me["Sanguine Blade"] = {
+        ammo="Sroda Tathlum",
         head="Pixie Hairpin +1",
         body="Nyame Mail",
         hands="Jhakri Cuffs +2",
@@ -432,12 +433,13 @@ function get_sets()
         waist="Orpheus's Sash",
         left_ear="Malignance Earring",
         right_ear="Regal Earring",
-        left_ring="Metamor. Ring +1",
-        right_ring="Acumen Ring",
+        left_ring="Epaminondas's Ring",
+        right_ring="Metamor. Ring +1",
+        -- right_ring="Acumen Ring",
         back		=	RDMCape.MACC,
     }
     sets.me["Red Lotus Blade"] = {
-        -- ammo		=	"Pemphredo Tathlum",
+        ammo="Sroda Tathlum",
         head=EMPY.Head,
         body="Nyame Mail",
         hands="Jhakri Cuffs +2",
@@ -448,10 +450,11 @@ function get_sets()
         left_ear="Regal Earring",
         right_ear="Moonshade Earring",
         left_ring="Metamor. Ring +1",
-        right_ring="Weather. Ring",
+        right_ring="Epaminondas's Ring",
         back		=	RDMCape.MACC,
     }
     sets.me["Seraph Blade"] = {
+        ammo="Sroda Tathlum",
         head=EMPY.Head,
         body="Nyame Mail",
         hands="Jhakri Cuffs +2",
@@ -461,7 +464,7 @@ function get_sets()
         waist="Orpheus's Sash",
         left_ear="Regal Earring",
         right_ear="Moonshade Earring",
-        left_ring="Metamor. Ring +1",
+        left_ring="Epaminondas's Ring",
         right_ring="Weather. Ring",
         back=RDMCape.MACC,
     }
