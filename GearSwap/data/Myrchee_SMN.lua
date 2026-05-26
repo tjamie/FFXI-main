@@ -238,7 +238,7 @@ function get_sets()
     -- Leave weapons out of the idles and melee sets. You can/should add weapons to the casting sets though
     -- Your refresh/perpetuation set
     sets.me.idle.refresh = {
-        ammo="Sancus Sachet +1",
+        ammo="Epitaph",
         head=EMPY.Head,
         body=APOGEE.Body.MAB,
         hands="Bunzi's Gloves",
@@ -285,7 +285,7 @@ function get_sets()
 	-- Dual Wield sets
 	------------------------------------------------------------------------------------------------------
     sets.me.melee.normaldw = {
-        ammo="Sancus Sachet +1",
+        ammo="Epitaph",
         head=EMPY.Head,
         body="Nyame Mail",
         hands="Bunzi's Gloves",
@@ -778,7 +778,7 @@ function get_sets()
     sets.pet_midcast.Physical_BP = {
         main="Gridarvor",
         sub="Elan Strap",
-        ammo="Sancus Sachet +1", --TODO rank up epitaph to replace this
+        ammo="Epitaph",
         -- ammo="Epitaph",
         head=HELIOS.Head.ATK,
         body=AF.Body,
@@ -826,7 +826,7 @@ function get_sets()
         --TODO make a MAB espiritus. Or get lucky with perfect augments.
         main={ name="Grioavolr", augments={'Blood Pact Dmg.+3','Pet: INT+9','Pet: Mag. Acc.+16','Pet: "Mag.Atk.Bns."+25','DMG:+12',}},
         sub="Elan Strap",
-        ammo="Sancus Sachet +1",
+        ammo="Epitaph",
         -- ammo="Epitaph", see above regarding this piece
         -- head=APOGEE.Head.MAB,
         head="C. Palug Crown",
@@ -871,7 +871,7 @@ function get_sets()
     sets.pet_midcast.FlamingCrush = {
         main={ name="Grioavolr", augments={'Blood Pact Dmg.+3','Pet: INT+9','Pet: Mag. Acc.+16','Pet: "Mag.Atk.Bns."+25','DMG:+12',}},
         sub="Elan Strap",
-        ammo="Sancus Sachet +1",
+        ammo="Epitaph",
         -- ammo="Epitaph", see above regarding this piece
         -- head=APOGEE.Head.MAB,
         head="C. Palug Crown",
@@ -897,7 +897,7 @@ function get_sets()
     sets.pet_midcast.MagicAcc_BP = {
         main={ name="Grioavolr", augments={'Blood Pact Dmg.+3','Pet: INT+9','Pet: Mag. Acc.+16','Pet: "Mag.Atk.Bns."+25','DMG:+12',}},
         sub="Elan Strap",
-        ammo="Sancus Sachet +1",
+        ammo="Epitaph",
         -- ammo="Epitaph", see above regarding this piece
         head="Bunzi's Hat",
         neck="Adad Amulet",
