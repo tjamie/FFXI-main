@@ -883,6 +883,7 @@ function get_sets()
     ------------
     -- Will ideally want some some degree of SIRD if possible
     sets.midcast.enmity = set_combine(sets.me.melee.dtsw, {
+        main = "Mafic Cudgel", -- enmity +6
         ammo = "Staunch Tathlum +1", --SIRD 11
         head = "Rabid Visor", -- enmity +6
         body = "Emet Harness +1", --enmity +10,
@@ -894,6 +895,7 @@ function get_sets()
         right_ear = "Magnetic Earring", --SIRD 8
         back = RDMCape.VIT, --enmity +10
     })
+    -- Total: +54
 	
     ------------
     -- Aftercast
