@@ -325,8 +325,7 @@ function get_sets()
         waist="Sailfi Belt +1",
         left_ear="Moonshade Earring",
         right_ear="Sherida Earring",
-        left_ring="Ifrit Ring",
-        right_ring="Ifrit Ring",1,
+        left_ring="Ifrit Ring",,
         back		=	BLMCape.MACC,
 	}
     sets.me["Black Halo"] = set_combine(sets.me["Savage Blade"], {
