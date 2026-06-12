@@ -900,7 +900,7 @@ function get_sets()
         ammo="Epitaph",
         -- ammo="Epitaph", see above regarding this piece
         head="Bunzi's Hat",
-        neck="Adad Amulet",
+        neck="Smn. Collar +2",
         body=AF.Body,
         hands="Bunzi's Gloves",
         legs="Bunzi's Pants",
