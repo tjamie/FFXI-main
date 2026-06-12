@@ -159,7 +159,7 @@ end
 include('DRK_Lib.lua')
 
 -- Optional. Swap to your sch macro sheet / book
-set_macros(1,11) -- Sheet, Book
+set_macros(1,10) -- Sheet, Book
 
 refreshType = idleModes[1] -- leave this as is     
 
@@ -193,7 +193,7 @@ function get_sets()
     EMPY.Hands		=	""
     EMPY.Legs		=	""
     EMPY.Feet		=	""
-    EMPY.Earring    =   ""
+    EMPY.Earring    =   "Heath. Earring +1"
 
     -- Capes:
     -- Sucellos's And such, add your own.
@@ -306,53 +306,49 @@ function get_sets()
 	------------------------------------------------------------------------------------------------------
     sets.me["Savage Blade"] = {
         ammo="Knobkierrie",
-        head=RELIC.Head,
+        head="Nyame Helm",
         body="Nyame Mail",
-        hands=AF.Hands,
-        legs="Jhakri Slops +2",
-        feet=EMPY.Feet,
-        neck="Rep. Plat. Medal",
+        hands="Nyame Gauntlets",
+        legs="Nyame Flanchard",
+        feet="Nyame Sollerets",
+        neck="Abyssal Beads +1",
         waist="Sailfi Belt +1",
         left_ear="Moonshade Earring",
-        right_ear="Sherida Earring",
+        right_ear=EMPY.Earring,
         left_ring="Niqmaddu Ring",
-        right_ring="Ifrit Ring",
-        back		=	DRKCape.MACC,
+        right_ring="Sroda Ring",
+        back=DRKCape.TP,
 	}
-
-    sets.me["Black Halo"] = set_combine(sets.me["Savage Blade"], {
-        right_ring = "Metamor. Ring +1"
-    })
 
     sets.me["Catastrophe"] = {
         ammo="Knobkierrie",
-        head="Ratri Sallet",
+        head="Nyame Helm",
         body="Nyame Mail",
-        hands="Ratri Gadlings",
-        legs="Ratri Cuisses",
-        feet="Sulev. Leggings +2",
+        hands="Nyame Gauntlets",
+        legs="Nyame Flanchard",
+        feet="Nyame Sollerets",
         neck="Abyssal Beads +1",
         waist="Sailfi Belt +1",
         left_ear="Thrud Earring",
-        right_ear="Malignance Earring",
+        right_ear=EMPY.Earring,
         left_ring="Niqmaddu Ring",
-        right_ring="Ifrit Ring",
+        right_ring="Sroda Ring",
         back=DRKCape.TP,
     }
 
     sets.me["Quietus"] = {
         ammo="Knobkierrie",
-        head="Ratri Sallet",
+        head="Nyame Helm",
         body="Nyame Mail",
-        hands="Ratri Gadlings",
-        legs="Ratri Cuisses",
-        feet="Sulev. Leggings +2",
+        hands="Nyame Gauntlets",
+        legs="Nyame Flanchard",
+        feet="Nyame Sollerets",
         neck="Abyssal Beads +1",
         waist="Sailfi Belt +1",
         left_ear="Thrud Earring",
         right_ear="Moonshade Earring",
         left_ring="Niqmaddu Ring",
-        right_ring="Ifrit Ring",
+        right_ring="Sroda Ring",
         back=DRKCape.TP,
     }
 
@@ -360,11 +356,11 @@ function get_sets()
 
     sets.me["Entropy"] = {
         ammo="Coiste Bodhar",
-        head="Ratri Sallet",
-        body="Nyame Mail",
-        hands="Ratri Gadlings",
-        legs="Ratri Cuisses",
-        feet="Sulev. Leggings +2",
+        head="Hjarrandi Helm",
+        body="Sakpata's Plate",
+        hands="Sakpata's Gauntlets",
+        legs="Sakpata's Cuisses",
+        feet="Sakpata's Leggings",
         neck="Abyssal Beads +1",
         waist="Fotia Belt",
         left_ear="Thrud Earring",
@@ -375,28 +371,28 @@ function get_sets()
     }
 
     sets.me["Resolution"] = {
-        ammo="Knobkierrie",
+        ammo="Coiste Bodhar",
         head="Hjarrandi Helm",
-        body="Nyame Mail",
+        body="Sakpata's Plate",
         hands="Sakpata's Gauntlets",
         legs="Sakpata's Cuisses",
-        feet="Sulev. Leggings +2",
+        feet="Sakpata's Leggings",
         neck="Abyssal Beads +1",
         waist="Fotia Belt",
         left_ear="Thrud Earring",
         right_ear="Moonshade Earring",
         left_ring="Niqmaddu Ring",
-        right_ring="Ifrit Ring",
+        right_ring="Sroda Ring",
         back=DRKCape.TP,
     }
 
     sets.me["Scourge"] = {
         ammo="Knobkierrie",
-        head="Ratri Sallet",
+        head="Nyame Helm",
         body="Nyame Mail",
-        hands="Ratri Gadlings",
-        legs="Ratri Cuisses",
-        feet="Sulev. Leggings +2",
+        hands="Nyame Gauntlets",
+        legs="Nyame Flanchard",
+        feet="Nyame Sollerets",
         neck="Abyssal Beads +1",
         waist="Sailfi Belt +1",
         left_ear="Thrud Earring",
