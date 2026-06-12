@@ -862,6 +862,11 @@ function self_command(command)
     if #commandArgs:split(' ') >= 2 then
         commandArgs = T(commandArgs:split(' '))
         
+        if commandArgs[1]:lower() == 'equipbp' then
+            local concat_ability = table.concat(commandArgs, " ", 2)
+            equipBPGear(concat_ability)
+        end
+
         if commandArgs[1] == 'toggle' then
             if commandArgs[2] == 'melee' then
                 -- //gs c toggle melee will toggle melee mode on and off.
