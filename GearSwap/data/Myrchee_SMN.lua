@@ -71,7 +71,7 @@ meleeModes = M('normal', 'accuracy')
 nukeModes = M('normal', 'acc')
 
 -- TODO set hotkeys/UI elements for these as needed
-LagMode = false -- Default LagMode. If you have a lot of lag issues, change to "true".
+-- LagMode = false -- Default LagMode. If you have a lot of lag issues, change to "true".
 AccMode = false
 ImpactDebuff = false
 Empy = false
@@ -122,7 +122,8 @@ hud_font = 'Impact'
     windower.send_command('bind ^PAGEUP gs c toggle runspeed')  -- ctrl PgUP Toggle run speed
 	windower.send_command('bind ^f10 gs c toggle mb')           -- F10 toggles Magic Burst Mode on / off.
 	windower.send_command('bind !f10 gs c toggle nukemode')		-- Alt-F10 to change Nuking Mode
-	windower.send_command('bind F10 gs c toggle matchsc')		-- CTRL-F10 to change Match SC Mode      	
+	windower.send_command('bind F10 gs c toggle matchsc')		-- F10 to change Match SC Mode   
+    windower.send_command('bind !PAGEUP gs c toggle lagmode')   -- alt PgUp toggle lag mode
 	windower.send_command('bind !end gs c hud lite')            -- Alt-End to toggle light hud version       
 	windower.send_command('bind ^end gs c hud keybinds')        -- CTRL-End to toggle Keybinds  
 
@@ -139,6 +140,7 @@ keybinds_on['key_bind_subweapon'] = '(CTRL-F8)'
 keybinds_on['key_bind_element_cycle'] = '(CTRL-INS + DEL)'
 keybinds_on['key_bind_lock_weapon'] = '(ALT-F9)'
 keybinds_on['key_bind_movespeed_lock'] = '(CTRL-PgUp)'
+keybinds_on['key_bind_lagmode'] = '(ALT-PgUp)'
 keybinds_on['key_bind_matchsc'] = '(F10)'
 
 -- Remember to unbind your keybinds on job change.
@@ -155,6 +157,7 @@ function user_unload()
     send_command('unbind !`')
     send_command('unbind ^home')
     send_command('unbind ^PAGEUP')
+    send_command('unbind !PAGEUP')
     send_command('unbind !f10')
     send_command('unbind ^f12')
     send_command('unbind ^f11')

@@ -147,6 +147,7 @@ useLightMode = M(false)
 hud_bottom = false
 useLightMode = M(false)
 matchsc = M(false)
+lagMode = M(false)
 
 const_on = "\\cs(32, 255, 32)ON\\cr"
 const_off = "\\cs(255, 32, 32)OFF\\cr"
@@ -173,6 +174,7 @@ hub_options_std = [[ \cs(255, 115, 0)Options: \cr
 \cs(255, 255, 64)${key_bind_matchsc}\cs(200, 200, 200)Match SC Element:\cr ${player_match_sc}
 \cs(255, 255, 64)${key_bind_lock_weapon} \cs(200, 200, 200)Lock Weapon:\cr ${toggle_lock_weapon}
 \cs(255, 255, 64)${key_bind_movespeed_lock}\cs(200, 200, 200)Gaiters:\cr ${toggle_movespeed_lock}
+\cs(255, 255, 64)${key_bind_lagmode}\cs(200, 200, 200)Lag Mode:\cr ${toggle_lagmode}
 ]]
 
 hub_job_std = [[ \cs(255, 115, 0)${player_job}: \cr             
@@ -214,7 +216,7 @@ keybinds_on['key_bind_mburst'] = '       '
 keybinds_off['key_bind_mainweapon'] = '       '
 keybinds_off['key_bind_subweapon'] = '       '
 keybinds_off['key_bind_movespeed_lock'] = '        '
-
+keybinds_off['key_bind_lagmode'] = '        '
 keybinds_off['key_bind_element_cycle'] = '       '
 keybinds_off['key_bind_sc_level'] = '       '
 keybinds_off['key_bind_lock_weapon'] = '       '
@@ -260,6 +262,12 @@ function validateTextInformation()
         main_text_hub.toggle_movespeed_lock =  const_off
     end
     
+    if lagMode.value then
+        main_text_hub.toggle_lagmode = const_on
+    else
+        main_text_hub.toggle_lagmode = const_off
+    end
+
     if keybinds.value then
         texts.update(main_text_hub, keybinds_on)
     else 
@@ -590,7 +598,8 @@ function midcast(spell)
             equip(equipSet)
         end
         -- If lag compensation mode is on, set up a timer to equip the BP gear.
-        if LagMode then
+        if lagMode.value == true then
+            windower.add_to_chat(2, 'lagmode enabled')
             send_command('wait 0.5;gs c EquipBP '..spell.name)
         end
     elseif spell.name=="Elemental Siphon" then
@@ -743,7 +752,7 @@ end
 end
 
 function pet_midcast(spell)
-    if not LagMode then
+    if not lagMode then
         equipBPGear(spell.name)
     end
 end
@@ -877,6 +886,8 @@ function self_command(command)
             elseif commandArgs[2] == 'runspeed' then
                 runspeed:toggle()
                 updateRunspeedGear(runspeed.value)
+            elseif commandArgs[2] == 'lagmode' then
+                lagMode:toggle()
             elseif commandArgs[2] == 'idlemode' then
                 idleModes:cycle()
                 idle()
