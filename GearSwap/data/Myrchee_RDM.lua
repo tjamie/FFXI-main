@@ -221,7 +221,9 @@ function get_sets()
     Merlinic = {}
     Merlinic.Head = {}
     Merlinic.Head.Phalanx = { name="Merlinic Hood", augments={'AGI+9','Phalanx +5','Accuracy+9 Attack+9','Mag. Acc.+7 "Mag.Atk.Bns."+7',}}
-    Merlinic.Hands = {}    
+    Merlinic.Body = {}
+    Merlinic.Body.Phalanx = { name="Merlinic Jubbah", augments={'CHR+1','"Fast Cast"+1','Phalanx +4',}}
+    Merlinic.Hands = {}
     Merlinic.Hands.Phalanx = { name="Merlinic Dastanas", augments={'"Mag.Atk.Bns."+4','Pet: DEX+1','Phalanx +4','Accuracy+5 Attack+5','Mag. Acc.+11 "Mag.Atk.Bns."+11',}}
     Merlinic.Legs = {}
     Merlinic.Legs.Phalanx = { name="Merlinic Shalwar", augments={'Chance of successful block +1','Sklchn.dmg.+3%','Phalanx +4','Accuracy+20 Attack+20','Mag. Acc.+15 "Mag.Atk.Bns."+15',}}
@@ -813,7 +815,7 @@ function get_sets()
     sets.midcast.phalanx =  set_combine(sets.midcast.enhancing.duration, {
         main        =   "Sakpata's Sword",
         head		=	Merlinic.Head.Phalanx,
-        body		=	Taeon.Body.Phalanx,
+        body        =   Merlinic.Body.Phalanx,
         hands		=	Merlinic.Hands.Phalanx,
         legs        =   Merlinic.Legs.Phalanx,
         feet		=	Taeon.Feet.Phalanx,
