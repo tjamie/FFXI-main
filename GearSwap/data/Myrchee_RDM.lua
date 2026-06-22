@@ -813,12 +813,12 @@ function get_sets()
 
     -- Phalanx
     sets.midcast.phalanx =  set_combine(sets.midcast.enhancing.duration, {
-        main        =   "Sakpata's Sword",
-        head		=	Merlinic.Head.Phalanx,
-        body        =   Merlinic.Body.Phalanx,
-        hands		=	Merlinic.Hands.Phalanx,
-        legs        =   Merlinic.Legs.Phalanx,
-        feet		=	Taeon.Feet.Phalanx,
+        main        =   "Sakpata's Sword", --5
+        head		=	Merlinic.Head.Phalanx, --5
+        body        =   Merlinic.Body.Phalanx, --4
+        hands		=	Merlinic.Hands.Phalanx, --4
+        legs        =   Merlinic.Legs.Phalanx, --4
+        feet		=	Taeon.Feet.Phalanx, --3
     })
 
     -- Stoneskin
