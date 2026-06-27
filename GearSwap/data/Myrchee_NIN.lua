@@ -81,7 +81,7 @@ nukeModes = M('normal', 'acc')
 -- Defaults are the first in each list
 
 mainWeapon = M('Heishi Shorinken', 'Gokotai', 'Naegling')
-subWeapon = M('Kunimitsu', 'Ochu', 'Uzura +1')
+subWeapon = M('Kunimitsu', 'Ochu', 'Uzura +1', "Gleti's Knife")
 ------------------------------------------------------------------------------------------------------
 
 ----------------------------------------------------------
@@ -175,7 +175,7 @@ function get_sets()
 	-- Fill this with your own JSE. 
     --
     AF.Head		=	""
-    AF.Body		=	"Hachiya Chain. +3"
+    AF.Body		=	"Hachiya Chain. +4"
     AF.Hands	=	""
     AF.Legs		=	""
     AF.Feet		=	"Hachiya Kyahan +2"
