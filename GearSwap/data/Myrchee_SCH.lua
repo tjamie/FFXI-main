@@ -83,7 +83,7 @@ nukeModes = M('normal', 'acc')
 -- cast and we revert to idle or engaged sets, we'll be checking the following for weapon selection. 
 -- Defaults are the first in each list
 
-mainWeapon = M("Mpaca's Staff", "Maxentius")
+mainWeapon = M("Mpaca's Staff", "Musa", "Maxentius")
 subWeapon = M("Enki Strap", "Ternion Dagger +1", "Genmei Shield")
 ------------------------------------------------------------------------------------------------------
 
@@ -189,7 +189,7 @@ function get_sets()
     AF.Body		=	"Acad. Gown +3"
     AF.Hands	=	"Acad. Bracers +3"
     AF.Legs		=	"Acad. Pants +3"
-    AF.Feet		=	"Acad. Loafers +3"
+    AF.Feet		=	"Acad. Loafers +4"
 
     --Relic
     RELIC.Head		=	"Peda. Mortar. +4"
@@ -441,7 +441,7 @@ function get_sets()
       
     -- Generic fast cast
     sets.precast.casting = {
-        main = "Mpaca's Staff",             --5
+        main = "Musa",                      --10 (at R25)
 	    head = AF.Head,                     --8
         body = "Agwu's Robe",               --8
         hands = AF.Hands,                   --9
@@ -452,7 +452,7 @@ function get_sets()
         left_ear = "Malignance Earring",    --4
         waist = "Embla Sash",               --5
         back = SCHCape.FC                   --10
-        -- Total: 72
+        -- Total: 77
     }
 
     sets.precast.grimoire = set_combine(sets.precast.casting,{
@@ -708,8 +708,8 @@ function get_sets()
 	
     -- Enhancing yourself 
     sets.midcast.enhancing.duration = {
-        main = "Maxentius",
-        sub = "Ammurapi Shield",
+        main = "Musa",
+        sub = "Enki Strap",
         -- body = "Telchine Chas.",
         body = RELIC.Body,
         hands = "Telchine Gloves",
@@ -794,8 +794,8 @@ function get_sets()
     ------------	
 	sets.midcast.regen = {}
     sets.midcast.regen.hybrid = set_combine(sets.midcast.enhancing.duration, {
-        main = "Bolelabunga",
-        sub = "Ammurapi Shield",
+        main = "Musa",
+        sub = "Enki Strap",
         head = EMPY.Head,
         body = "Telchine Chas.",
         back = SCHCape.INT,
