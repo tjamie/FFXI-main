@@ -175,7 +175,7 @@ function get_sets()
 	-- Fill this with your own JSE. 
     --
     AF.Head		=	""
-    AF.Body		=	"Hachiya Chain. +4"
+    AF.Body		=	"Hachi. Chain. +4"
     AF.Hands	=	""
     AF.Legs		=	""
     AF.Feet		=	"Hachiya Kyahan +2"
@@ -384,6 +384,21 @@ function get_sets()
         left_ring="Gere Ring",
         right_ring="Sroda Ring",
         -- right_ring="Lehko's Ring",
+        back		=	NINCape.STR,
+    })
+    sets.me["Blade: Ei"] = set_combine(sets.me["Blade: Chi"], {
+        ammo="Coiste Bodhar",
+        head=RELIC.Head,
+        body="Nyame Mail",
+        hands="Nyame Gauntlets",
+        legs="Nyame Flanchard",
+        feet="Nyame Sollerets",
+        neck="Baetyl Pendant",
+        waist="Orpheus's Sash",
+        left_ear="Moonshade Earring",
+        right_ear="Friomisi Earring",
+        left_ring="Epaminondas's Ring",
+        right_ring="Metamor. Ring +1", -- TODO replace this with archon ring
         back		=	NINCape.STR,
     })
     sets.me["Blade: Teki"] = sets.me["Blade: Chi"]
