@@ -67,7 +67,7 @@ include('Modes.lua')
 -- to define sets for idle if you add more modes, name them: sets.me.idle.mymode and add 'mymode' in the group.
 -- Same idea for nuke modes. 
 idleModes = M('dt', 'dynamis')
-meleeModes = M('normal', 'accuracy', 'hybrid', 'dw', 'dynamis')
+meleeModes = M('normal', 'accuracy', 'hybrid', 'dw', 'crit', 'dynamis')
 nukeModes = M('normal', 'acc')
 
 ------------------------------------------------------------------------------------------------------
@@ -261,8 +261,10 @@ function get_sets()
         legs="Malignance Tights",
         feet="Malignance Boots",
         neck="Ninja Nodowa +1",
-        waist="Windbuffet Belt +1",
-        left_ear="Cessance Earring",
+        -- waist="Windbuffet Belt +1",
+        waist="Sailfi Belt +1",
+        -- left_ear="Cessance Earring",
+        left_ear="Suppanomimi",
         right_ear=EMPY.Earring,
         left_ring="Petrov Ring",
         right_ring="Lehko's Ring",
@@ -276,6 +278,19 @@ function get_sets()
     -- })
     sets.me.melee.dwdw = set_combine(sets.me.melee.normaldw, {
         body=AF.Body,
+    })
+    sets.me.melee.critdw = set_combine(sets.me.dwdw, {
+        head="Mpaca's Cap", --4 + TA3
+        hands="Mpaca's Gloves", --5 + TA3
+        body=AF.Body, --8 + DW10
+        legs="Mpaca's Hose", --6 + TA4
+        feet="Mpaca's Feet", --3 + TA3
+        left_ear="Odr Earring", --5
+        left_ring="Gere Ring", --TA5
+        right_ring="Lehko's Ring", --10
+        -- total crit rate = 41
+        -- +5 from merits = 46
+        -- +5 from gleti's knife = 51
     })
     sets.me.melee.dynamisdw = set_combine(sets.me.melee.normaldw,{
         neck="Ninja Nodowa +1",
@@ -302,6 +317,9 @@ function get_sets()
 
     })
     sets.me.melee.dwsw = set_combine(sets.me.melee.dwdw,{
+
+    })
+    sets.me.melee.critsw = set_combine(sets.me.melee.critdw,{
 
     })
 	
