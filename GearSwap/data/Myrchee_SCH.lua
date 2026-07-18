@@ -386,6 +386,10 @@ function get_sets()
         -- back=SMNCape.MND
 	}
 
+    sets.me["Spirit Taker"] = sets.me["Black Halo"]
+    sets.me["Retribution"] = sets.me["Black Halo"]
+    sets.me["Shell Crusher"] = sets.me["Black Halo"]
+
     sets.me["Myrkr"] = {
         right_ear="Moonshade Earring",
 	}
