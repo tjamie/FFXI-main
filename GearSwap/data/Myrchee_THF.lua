@@ -24,7 +24,7 @@ nukeModes = M('normal', 'acc') -- not used but i can't be arsed to edit right no
 -- cast and we revert to idle or engaged sets, we'll be checking the following for weapon selection. 
 -- Defaults are the first in each list
 
-mainWeapon = M('Tauret', 'Naegling', 'Malevolence')
+mainWeapon = M('Aeneas', 'Tauret', 'Naegling', 'Malevolence')
 subWeapon = M("Gleti's Knife", 'Ternion Dagger +1', 'Sandung', 'Malevolence')
 ------------------------------------------------------------------------------------------------------
 
