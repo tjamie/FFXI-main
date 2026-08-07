@@ -74,6 +74,7 @@ enfeeb_maps = {
     ['Slow']='mndpot', ['Slow II']='mndpot', 
     ['Addle']='mndpot', ['Addle II']='mndpot',
     ['Sleep']='macc', ['Sleep II']='macc', ['Sleepga']='macc', ['Sleepga II']='macc', 
+    -- ['Sleep']='macc', ['Sleep II']='potency', ['Sleepga']='macc', ['Sleepga II']='macc', 
     ['Silence']='macc', 
     ['Inundation']='macc', 
     ['Dispel']='macc',
