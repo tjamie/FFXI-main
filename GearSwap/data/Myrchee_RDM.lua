@@ -80,7 +80,7 @@ nukeModes = M('normal', 'acc')
 -- cast and we revert to idle or engaged sets, we'll be checking the following for weapon selection. 
 -- Defaults are the first in each list
 
-mainWeapon = M('Crocea Mors', 'Naegling', 'Maxentius', 'Tauret', 'Qutrub Knife')
+mainWeapon = M('Crocea Mors', 'Excalibur', 'Naegling', 'Maxentius', 'Tauret', 'Qutrub Knife')
 subWeapon = M('Daybreak', 'Thibron', 'Genmei Shield', 'Ammurapi Shield', 'Pukulatmuj +1', 'Ceremonial Dagger')
 ------------------------------------------------------------------------------------------------------
 
@@ -472,6 +472,9 @@ function get_sets()
         right_ring="Weather. Ring",
         back=RDMCape.MACC,
     }
+    sets.me["Knights of Round"] = set_combine(sets.me["Savage Blade"], {
+        -- left_ear= TODO replace this; KoR damage doesn't scale with TP
+    })
 
     -- Feel free to add new weapon skills, make sure you spell it the same as in game. These are the only two I ever use though 
 	
