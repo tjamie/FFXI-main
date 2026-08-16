@@ -67,7 +67,7 @@ include('Modes.lua')
 -- to define sets for idle if you add more modes, name them: sets.me.idle.mymode and add 'mymode' in the group.
 -- Same idea for nuke modes. 
 idleModes = M('refresh', 'dt', 'dynamis')
-meleeModes = M('normal', 'accuracy', 'hybrid', 'dt', 'dynamis', 'enspell', 'enspellacc')
+meleeModes = M('normal', 'accuracy', 'hybrid', 'dt', 'dynamis', 'dw', 'enspell', 'enspellacc')
 nukeModes = M('normal', 'acc')
 
 ------------------------------------------------------------------------------------------------------
@@ -80,8 +80,8 @@ nukeModes = M('normal', 'acc')
 -- cast and we revert to idle or engaged sets, we'll be checking the following for weapon selection. 
 -- Defaults are the first in each list
 
-mainWeapon = M('Crocea Mors', 'Excalibur', 'Naegling', 'Maxentius', 'Tauret', 'Qutrub Knife')
-subWeapon = M('Daybreak', 'Thibron', 'Genmei Shield', 'Ammurapi Shield', 'Pukulatmuj +1', 'Ceremonial Dagger')
+mainWeapon = M('Crocea Mors', 'Excalibur', 'Naegling', 'Maxentius', 'Tauret') --1 dmg Qutrub knife
+subWeapon = M('Daybreak', "Sakpata's Sword", 'Thibron', 'Genmei Shield', 'Ammurapi Shield', 'Pukulatmuj +1', 'Ternion Dagger +1') --1 dmg ceremonial dagger
 ------------------------------------------------------------------------------------------------------
 
 ----------------------------------------------------------
@@ -203,6 +203,7 @@ function get_sets()
     RDMCape.TP		=	{ name="Sucellos's Cape", augments={'DEX+20','Mag. Acc+20 /Mag. Dmg.+20','DEX+10','"Dual Wield"+10','Phys. dmg. taken-10%'}}
     RDMCape.MACC	=	{ name="Sucellos's Cape", augments={'MND+20','Mag. Acc+20 /Mag. Dmg.+20','MND+10','Weapon skill damage +10%',}}
     RDMCape.VIT     =   { name="Sucellos's Cape", augments={'VIT+20','Eva.+20 /Mag. Eva.+20','VIT+10','Enmity+10','Damage taken-5%',}}
+    RDMCape.STR     =   { name="Sucellos's Cape", augments={'STR+20','Accuracy+20 Attack+20','STR+10','Weapon skill damage +10%',}}
     RDMCape.DEX     =   { name="Sucellos's Cape", augments={'DEX+20','Mag. Acc+20 /Mag. Dmg.+20','DEX+10','"Dual Wield"+10',}}
     RDMCape.INT     =   { name="Sucellos's Cape", augments={'INT+20','Mag. Acc+20 /Mag. Dmg.+20','INT+10','"Mag.Atk.Bns."+10',}}
 
@@ -300,21 +301,21 @@ function get_sets()
 	------------------------------------------------------------------------------------------------------
     sets.me.melee.normaldw = {
         ammo = "Coiste Bodhar",
-        head="Malignance Chapeau",
-        body="Malignance Tabard",
-        hands="Malignance Gloves",
-        legs="Malignance Tights",
-        feet="Malignance Boots",
-        neck="Anu Torque",
-        waist="Windbuffet Belt +1",
-        left_ear="Suppanomimi",
-        right_ear="Sherida Earring",
-        left_ring="Petrov Ring",
-        right_ring="Lehko's Ring",
-        back		=	RDMCape.TP,
+        head = "Malignance Chapeau",
+        body = "Malignance Tabard",
+        hands = "Malignance Gloves",
+        legs = "Malignance Tights",
+        feet = "Malignance Boots",
+        neck = "Anu Torque",
+        waist = "Windbuffet Belt +1",
+        left_ear = "Suppanomimi",
+        right_ear = "Sherida Earring",
+        left_ring = "Petrov Ring",
+        right_ring = "Lehko's Ring",
+        back = RDMCape.TP,
     }
     sets.me.melee.hybriddw = set_combine(sets.me.melee.normaldw, {
-        left_ring="Murky Ring"
+        left_ring = "Murky Ring"
     })
     sets.me.melee.dtdw = set_combine(sets.me.idle.dt,{
 
@@ -323,26 +324,39 @@ function get_sets()
         neck="Dls. Torque +2",
     })
     sets.me.melee.accuracydw = set_combine(sets.me.melee.normaldw,{
-        neck="Null Loop",
-        waist="Null Belt"
+        neck = "Null Loop",
+        waist = "Null Belt"
     })
     sets.me.melee.enspelldw = set_combine(sets.me.melee.normaldw,{
-        ammo="Sroda Tathlum",
-        head="Umuthi Hat",
-        body=EMPY.Body,
-        hands="Aya. Manopolas +2",
-        neck="Null Loop",
-        waist="Orpheus's Sash",
-        back="Ghostfyre Cape"
+        ammo = "Sroda Tathlum",
+        head = "Umuthi Hat",
+        body =EMPY.Body,
+        hands = "Aya. Manopolas +2",
+        neck = "Null Loop",
+        waist = "Orpheus's Sash",
+        back = "Ghostfyre Cape"
     })
     sets.me.melee.enspellaccdw = set_combine(sets.me.melee.normaldw,{
-        ammo="",
-        range="Ullr",
-        head="Umuthi Hat",
-        body=EMPY.Body,
-        hands="Aya. Manopolas +2",
-        waist="Null Belt",
-        neck="Null Loop"
+        ammo = "",
+        range = "Ullr",
+        head = "Umuthi Hat",
+        body = EMPY.Body,
+        hands = "Aya. Manopolas +2",
+        waist = "Null Belt",
+        neck = "Null Loop"
+    })
+    sets.me.melee.thdw = set_combine(sets.me.melee.normaldw, {
+        ammo = "Per. Lucky Egg",
+        waist = "Chaac Belt",
+        feet = { name="Merlinic Crackows", augments={'"Snapshot"+4','Accuracy+4','"Treasure Hunter"+2','Accuracy+8 Attack+8',}}
+    })
+    sets.me.melee.dwdw = set_combine(sets.me.melee.normaldw, {
+        -- Assumes 30% magic haste
+        legs = "Carmine Cuisses +1", --6
+        left_ring = "Murky Ring", --survivability because i don't want to make multiple DW sets
+        left_ear = "Suppanomimi", --5
+        waist = "Reiki Yotai", --7
+        back = RDMCape.TP, --10
     })
     
 	------------------------------------------------------------------------------------------------------
@@ -384,7 +398,7 @@ function get_sets()
         right_ear="Sherida Earring",
         left_ring="Sroda Ring",
         right_ring="Epaminondas's Ring",
-        back		=	RDMCape.MACC,
+        back = RDMCape.STR,
 	}
     sets.me["Black Halo"] = set_combine(sets.me["Savage Blade"], {
         -- right_ring = "Metamor. Ring +1"
@@ -473,7 +487,7 @@ function get_sets()
         back=RDMCape.MACC,
     }
     sets.me["Knights of Round"] = set_combine(sets.me["Savage Blade"], {
-        -- left_ear= TODO replace this; KoR damage doesn't scale with TP
+        left_ear="Ishvara Earring"
     })
 
     -- Feel free to add new weapon skills, make sure you spell it the same as in game. These are the only two I ever use though 
