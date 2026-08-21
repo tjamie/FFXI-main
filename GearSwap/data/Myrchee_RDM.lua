@@ -792,25 +792,25 @@ function get_sets()
         waist="Embla Sash",
         left_ear="Mimir Earring",
         right_ear=EMPY.Earring,
-        left_ring="Murky Ring",
+        left_ring="Stikini Ring",3,
         right_ring="Stikini Ring",
         back={ name="Ghostfyre Cape", augments={'Enfb.mag. skill +3','Enha.mag. skill +7','Mag. Acc.+4','Enh. Mag. eff. dur. +20',}},        
     }
     -- For Potency spells like Temper and Enspells
     sets.midcast.enhancing.potency = set_combine(sets.midcast.enhancing.duration, {
         main="Pukulatmuj +1",
-        sub="Ammurapi Shield",
+        sub="Forfend +1",
         ammo="Staunch Tathlum +1",
         head={ name="Carmine Mask +1", augments={'Accuracy+20','Mag. Acc.+12','"Fast Cast"+4',}},
         body=RELIC.Body,
-        hands=AF.Hands,
-        legs={ name="Carmine Cuisses +1", augments={'Accuracy+20','Attack+12','"Dual Wield"+6',}},
+        hands=RELIC.Hands,
+        legs=AF.Legs,
         feet=EMPY.Feet,
         neck="Dls. Torque +2",
         waist="Embla Sash",
         left_ear="Mimir Earring",
         right_ear=EMPY.Earring,
-        left_ring="Murky Ring",
+        left_ring="Stikini Ring",3,
         right_ring="Stikini Ring",
         back={ name="Ghostfyre Cape", augments={'Enfb.mag. skill +3','Enha.mag. skill +7','Mag. Acc.+4','Enh. Mag. eff. dur. +20',}},      
     })
@@ -895,7 +895,9 @@ function get_sets()
     -- Regen
     ------------	
 	sets.midcast.regen = set_combine(sets.midcast.enhancing.duration, {
-
+        main = "Bolelabunga",
+        body = "Telchine Chas.",
+        -- TODO augment Bunzi Sabots, max +10 potency
     })
 
 
