@@ -66,7 +66,7 @@ include('Modes.lua')
 -- You can add or remove modes in the table below, they will get picked up in the cycle automatically. 
 -- to define sets for idle if you add more modes, name them: sets.me.idle.mymode and add 'mymode' in the group.
 -- Same idea for nuke modes. 
-idleModes = M('refresh', 'dt', 'dynamis')
+idleModes = M('refresh', 'dt', 'dtmeva', 'dynamis')
 meleeModes = M('normal', 'accuracy', 'hybrid', 'dt', 'dynamis', 'dw', 'enspell', 'enspellacc')
 nukeModes = M('normal', 'acc')
 
@@ -255,7 +255,7 @@ function get_sets()
         legs="Malignance Tights",
         feet="Malignance Boots",
         neck="Elite Royal Collar",
-        waist="Flume Belt",
+        waist="Flume Belt +1",
         left_ear="Thureous Earring",
         right_ear="Alabaster Earring",
         left_ring="Murky Ring",
@@ -264,7 +264,7 @@ function get_sets()
     }
 
     -- Your idle DT set
-    sets.me.idle.dt = set_combine(sets.me.idle.refresh,{
+    sets.me.idle.dtmeva = set_combine(sets.me.idle.refresh,{
         ammo="Staunch Tathlum +1", --3
         head="Nyame Helm", --7
         body="Nyame Mail", --9
@@ -272,11 +272,27 @@ function get_sets()
         legs="Nyame Flanchard", --8
         feet="Nyame Sollerets", --7
         neck="Elite Royal Collar", --5
-        waist="Flume Belt", --4
+        waist="Flume Belt +1", --4
         left_ear="Thureous Earring",
         right_ear="Odnowa Earring +1",
         left_ring="Murky Ring", --10
         right_ring="Lehko's Ring",
+        back=RDMCape.VIT, --5
+    })
+
+    sets.me.idle.dt = set_combine(sets.me.idle.dtmeva, {
+        ammo="Staunch Tathlum +1", --3
+        head="Nyame Helm", --7
+        body="Adamantite Armor", --20
+        hands="Nyame Gauntlets", --7
+        legs="Nyame Flanchard", --8
+        feet="Nyame Sollerets", --7
+        neck="Loricate Torque +1", --6
+        waist="Flume Belt +1", --4
+        left_ear="Tuisto Earring",
+        right_ear="Odnowa Earring +1",
+        left_ring="Murky Ring", --10
+        right_ring="Ilabrat Ring",
         back=RDMCape.VIT, --5
     })
 
@@ -318,7 +334,7 @@ function get_sets()
         left_ring = "Murky Ring"
     })
     sets.me.melee.dtdw = set_combine(sets.me.idle.dt,{
-
+        right_ring="Lehko's Ring",
     })
     sets.me.melee.dynamisdw = set_combine(sets.me.melee.normaldw,{
         neck="Dls. Torque +2",
