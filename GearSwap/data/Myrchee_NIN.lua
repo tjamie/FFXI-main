@@ -67,7 +67,7 @@ include('Modes.lua')
 -- to define sets for idle if you add more modes, name them: sets.me.idle.mymode and add 'mymode' in the group.
 -- Same idea for nuke modes. 
 idleModes = M('dt', 'dynamis')
-meleeModes = M('normal', 'accuracy', 'hybrid', 'dw', 'crit', 'dynamis')
+meleeModes = M('normal', 'accuracy', 'hybrid', 'dw', 'crit', 'th', 'dynamis')
 nukeModes = M('normal', 'acc')
 
 ------------------------------------------------------------------------------------------------------
@@ -291,6 +291,11 @@ function get_sets()
         -- total crit rate = 41
         -- +5 from merits = 46
         -- +5 from gleti's knife = 51
+    })
+    sets.me.melee.thdw = set_combine(sets.me.melee.dwdw, {
+        ammo="Per. Lucky Egg",
+        waist="Chaac Belt",
+        feet="Volte Boots"
     })
     sets.me.melee.dynamisdw = set_combine(sets.me.melee.normaldw,{
         neck="Ninja Nodowa +1",
