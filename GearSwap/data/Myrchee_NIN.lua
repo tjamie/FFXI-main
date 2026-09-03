@@ -294,6 +294,7 @@ function get_sets()
     })
     sets.me.melee.thdw = set_combine(sets.me.melee.dwdw, {
         ammo="Per. Lucky Egg",
+        head={ name="Herculean Helm", augments={'"Resist Silence"+1','Pet: STR+5','"Treasure Hunter"+1','Mag. Acc.+15 "Mag.Atk.Bns."+15',}},
         waist="Chaac Belt",
         feet="Volte Boots"
     })
