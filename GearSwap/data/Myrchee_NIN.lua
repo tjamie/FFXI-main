@@ -429,6 +429,7 @@ function get_sets()
     sets.me["Blade: To"] = sets.me["Blade: Chi"]
     sets.me["Blade: Retsu"] = sets.me["Blade: Ten"]
     sets.me["Blade: Kamu"] = sets.me["Blade: Ten"]
+    sets.me["Aeolian Edge"] = sets.me["Blade: Ei"]
 	
 	
     ---------------
