@@ -66,8 +66,8 @@ include('Modes.lua')
 -- You can add or remove modes in the table below, they will get picked up in the cycle automatically. 
 -- to define sets for idle if you add more modes, name them: sets.me.idle.mymode and add 'mymode' in the group.
 -- Same idea for nuke modes. 
-idleModes = M('refresh', 'dt', 'dtmeva', 'dynamis')
-meleeModes = M('normal', 'accuracy', 'hybrid', 'dt', 'dynamis', 'dw', 'enspell', 'enspellacc')
+idleModes = M('refresh', 'dt', 'dtmeva')
+meleeModes = M('normal', 'accuracy', 'hybrid', 'dt', 'dw', 'enspell', 'enspellacc')
 nukeModes = M('normal', 'acc')
 
 ------------------------------------------------------------------------------------------------------
