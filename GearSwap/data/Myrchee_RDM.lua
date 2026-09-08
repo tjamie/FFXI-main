@@ -276,7 +276,7 @@ function get_sets()
         left_ear="Thureous Earring",
         right_ear="Odnowa Earring +1",
         left_ring="Murky Ring", --10
-        right_ring="Lehko's Ring",
+        right_ring="Gelatinous Ring +1",
         back=RDMCape.VIT, --5
     })
 
@@ -292,7 +292,7 @@ function get_sets()
         left_ear="Tuisto Earring",
         right_ear="Odnowa Earring +1",
         left_ring="Murky Ring", --10
-        right_ring="Ilabrat Ring",
+        right_ring="Gelatinous Ring +1",
         back=RDMCape.VIT, --5
     })
 
@@ -935,8 +935,10 @@ function get_sets()
         left_ear = "Friomsi Earring", --enmity +2
         right_ear = "Magnetic Earring", --SIRD 8
         back = RDMCape.VIT, --enmity +10
+        -- Hands: merlinic dastanas have +5 base
     })
     -- Total: +59
+    sets.midcast["Diaga"] = sets.midcast.enmity
 	
     ------------
     -- Aftercast
