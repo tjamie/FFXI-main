@@ -181,7 +181,7 @@ function get_sets()
     AF.Feet		=	"Hachiya Kyahan +2"
 
     --
-    RELIC.Head		=	"Mochi. Hatsuburi +3"
+    RELIC.Head		=	"Mochi. Hatsu. +4"
     RELIC.Body		=	""
     RELIC.Hands 	=	"Mochizuki Tekko +4"
     RELIC.Legs		=	""
@@ -280,6 +280,7 @@ function get_sets()
         body=AF.Body,
     })
     sets.me.melee.critdw = set_combine(sets.me.dwdw, {
+        ammo="Seki Shuriken",
         head="Mpaca's Cap", --4 + TA3
         hands="Mpaca's Gloves", --5 + TA3
         body=AF.Body, --8 + DW10
