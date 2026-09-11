@@ -279,8 +279,7 @@ function get_sets()
     sets.me.melee.dwdw = set_combine(sets.me.melee.normaldw, {
         body=AF.Body,
     })
-    sets.me.melee.critdw = set_combine(sets.me.dwdw, {
-        ammo="Seki Shuriken",
+    sets.me.melee.critdw = set_combine(sets.me.melee.normaldw, {
         head="Mpaca's Cap", --4 + TA3
         hands="Mpaca's Gloves", --5 + TA3
         body=AF.Body, --8 + DW10
