@@ -103,7 +103,7 @@ hud_padding = 10
 
 pName = player.name
 -- Saying hello
-windower.add_to_chat(8,'----- Welcome back to your NIN.lua, '..pName..' -----')
+windower.add_to_chat(8,'----- Welcome back to your THF.lua, '..pName..' -----')
 
 --------------------------------------------------------------------------------------------------------------
 -- HUD STUFF
@@ -131,6 +131,7 @@ useLightMode = M(false)
 hud_bottom = false
 useLightMode = M(false)
 matchsc = M(false)
+aeolian_TH = M(false)
 
 const_on = "\\cs(32, 255, 32)ON\\cr"
 const_off = "\\cs(255, 32, 32)OFF\\cr"
@@ -160,7 +161,7 @@ hub_options_std = [[ \cs(255, 115, 0)Options: \cr
 ]]
 
 hub_job_std = [[ \cs(255, 115, 0)${player_job}: \cr             
-\cs(255, 255, 64)${key_bind_element_cycle} \cs(200, 200, 200)Nuking:\cr ${element_color|\\cs(0, 204, 204)}${toggle_element_cycle|Ice} \cr
+\cs(255, 255, 64)${key_bind_aeolianmode} \cs(200, 200, 200)Aeolian TH:\cr ${toggle_aeolian_th} \cr
 ]]
 
 hub_battle_std = [[ \cs(255, 115, 0)Battle: \cr             
@@ -205,6 +206,8 @@ keybinds_off['key_bind_movespeed_lock'] = '        '
 keybinds_off['key_bind_movespeed_lock'] = '        '
 keybinds_off['key_bind_matchsc'] = '        '
 
+keybinds_off['key_bind_aeolianmode'] = '        '
+
 function validateTextInformation()
 
     --Mode Information
@@ -216,6 +219,7 @@ function validateTextInformation()
     main_text_hub.toggle_element_cycle = elements.current
     main_text_hub.toggle_enspell_cycle = enspellElements.current
     main_text_hub.player_job = player.job
+    main_text_hub.toggle_aeolian_th = aeolian_TH.current
 
     if last_skillchain ~= nil then
         main_text_hub.last_sc = last_skillchain.english
@@ -237,6 +241,11 @@ function validateTextInformation()
         main_text_hub.toggle_lock_weapon = const_off
     else
         main_text_hub.toggle_lock_weapon = const_on
+    end
+    if aeolian_TH.value then
+        main_text_hub.toggle_aeolian_th = const_on
+    else
+        main_text_hub.toggle_aeolian_th = const_off
     end
 
     if runspeed.value then
@@ -646,7 +655,13 @@ function midcast(spell)
     end
     -- Weapon skills
     -- sets.me["Insert Weaponskill"] are basically how I define any non-magic spells sets, aka, WS, JA, Idles, etc.
-    if sets.me[spell.name] then
+    if spell.name == 'Aeolian Edge' then
+        if aeolian_TH.value then
+            equip(sets.me.ws.aeolian.th)
+        else
+            equip(sets.me.ws.aeolian.mab)
+        end
+    elseif sets.me[spell.name] then
         equip(sets.me[spell.name])
 
         -- Sanguine BBlade belt optim
@@ -799,6 +814,13 @@ function self_command(command)
                     validateTextInformation()
                 else
                     windower.add_to_chat(8,"----- Matching SC Mode is now: "..tostring(matchsc.current)) 
+                end
+            elseif commandArgs[2] == 'aeolianmode' then
+                aeolian_TH:toggle()
+                if use_UI == true then                    
+                    validateTextInformation()
+                else
+                    windower.add_to_chat(8,"----- Aeolian TH Mode is now: "..tostring(aeolian_TH.current)) 
                 end
             end
         end

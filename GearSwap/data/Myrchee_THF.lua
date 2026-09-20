@@ -6,6 +6,9 @@ res = require('resources')
 texts = require('texts')
 include('Modes.lua')
 
+settings = require('settings.lua')
+equipment = require('equipment.lua')
+
 -- Define your modes: 
 -- You can add or remove modes in the table below, they will get picked up in the cycle automatically. 
 -- to define sets for idle if you add more modes, name them: sets.me.idle.mymode and add 'mymode' in the group.
@@ -36,14 +39,13 @@ CP_CAPE = "Mecisto. Mantle" -- Put your CP cape here
 ----------------------------------------------------------
 
 -- Setting this to true will stop the text spam, and instead display modes in a UI.
--- Currently in construction.
 use_UI = true
-hud_x_pos = 2200    --important to update these if you have a smaller screen
-hud_y_pos = 500     --important to update these if you have a smaller screen
-hud_draggable = true
-hud_font_size = 8
-hud_transparency = 180 -- a value of 0 (invisible) to 255 (no transparency at all)
-hud_font = 'Impact'
+hud_x_pos = settings.hud_x_pos
+hud_y_pos = settings.hud_y_pos
+hud_draggable = settings.hud_draggable
+hud_font_size = settings.hud_font_size
+hud_transparency = settings.hud_transparency
+hud_font = settings.hud_font
 
 
 -- Setup your Key Bindings here:
@@ -58,9 +60,10 @@ hud_font = 'Impact'
     windower.send_command('bind ^PAGEUP gs c toggle runspeed')  -- ctrl PgUP Toggle run speed
 	windower.send_command('bind ^f10 gs c toggle mb')           -- F10 toggles Magic Burst Mode on / off.
 	windower.send_command('bind !f10 gs c toggle nukemode')		-- Alt-F10 to change Nuking Mode
-	windower.send_command('bind F10 gs c toggle matchsc')		-- CTRL-F10 to change Match SC Mode      	
+	windower.send_command('bind F10 gs c toggle matchsc')		-- CTRL-F10 to change Match SC Mode
+    windower.send_command('bind ^home gs c toggle aeolianmode') -- aeolian TH mode
 	windower.send_command('bind !end gs c hud lite')            -- Alt-End to toggle light hud version       
-	windower.send_command('bind ^end gs c hud keybinds')        -- CTRL-End to toggle Keybinds  
+	windower.send_command('bind ^end gs c hud keybinds')        -- CTRL-End to toggle Keybinds
 
 --[[
     This gets passed in when the Keybinds is turned on.
@@ -75,6 +78,7 @@ keybinds_on['key_bind_subweapon'] = '(CTRL-F8)'
 keybinds_on['key_bind_lock_weapon'] = '(ALT-F9)'
 keybinds_on['key_bind_movespeed_lock'] = '(CTRL-PgUp)'
 keybinds_on['key_bind_matchsc'] = '(F10)'
+keybinds_on['key_bind_aeolianmode'] = '(CTRL-HOME)'
 
 -- Remember to unbind your keybinds on job change.
 function user_unload()
@@ -174,9 +178,9 @@ function get_sets()
         neck="Elite Royal Collar", --5
         waist="Null Belt", --(meva)
         left_ring="Murky Ring", --10
-        right_ring="Defending Ring", --10
-        left_ear="Alabaster Earring",
-        right_ear="Thureous Earring",
+        right_ring="Gelatinous Ring +1",
+        left_ear="Tuisto Earring",
+        right_ear="Odnowa Earring +1",
         back=THFCape.TP --5
     })
 
@@ -320,8 +324,25 @@ function get_sets()
         right_ring="Sroda Ring",
         back=THFCape.DEX,
     })
-    sets.me["Aeolian Edge"] = set_combine(sets.me["Savage Blade"], {
-        -- ammo="Per. Lucky Egg", --TH+1
+    -- sets.me["Aeolian Edge"] = set_combine(sets.me["Savage Blade"], {
+        -- head="Nyame Helm",
+        -- body="Nyame Mail",
+        -- hands="Nyame Gauntlets",
+        -- legs="Nyame Flanchard",
+        -- feet="Nyame Sollerets",
+        -- neck="Sibyl Scarf",
+        -- waist="Orpheus's Sash",
+        -- left_ear="Friomisi Earring",
+        -- right_ear="Moonshade Earring",
+        -- left_ring="Epaminondas's Ring",
+        -- right_ring="Dingir Ring",
+        -- back=THFCape.INT,
+    -- })
+    sets.me["Mandalic Stab"] = sets.me["Rudra's Storm"]
+	
+    sets.me.ws = {}
+    sets.me.ws.aeolian = {}
+    sets.me.ws.aeolian.mab = {
         head="Nyame Helm",
         body="Nyame Mail",
         hands="Nyame Gauntlets",
@@ -334,9 +355,23 @@ function get_sets()
         left_ring="Epaminondas's Ring",
         right_ring="Dingir Ring",
         back=THFCape.INT,
-    })
-    sets.me["Mandalic Stab"] = sets.me["Rudra's Storm"]
-	
+    }
+    sets.me.ws.aeolian.th = {
+        ammo="Per. Lucky Egg",
+        head=equipment.Herc.Helm.TH, --1
+        body="Nyame Mail",
+        hands=RELIC.Hands, --3
+        legs="Nyame Flanchard",
+        feet="Nyame Sollerets",
+        neck="Sibyl Scarf",
+        waist="Orpheus's Sash",
+        left_ear="Friomisi Earring",
+        right_ear="Moonshade Earring",
+        left_ring="Epaminondas's Ring",
+        right_ring="Dingir Ring",
+        back=THFCape.INT,
+    }
+
 	
     ---------------
     -- Casting Sets
