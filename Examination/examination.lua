@@ -19,12 +19,15 @@ local responses = {
 	"is examined by a sussy baka.",
 	"is examined... OwO what's this?",
 	"feels examined by the CIA.",
-	"gets examined by someone who's probably wearing binoculars."
+	"gets examined by someone who's probably wearing binoculars.",
+	"is examined and likes it.",
+	"prepares a restraining order.",
 }
 
 windower.register_event('incoming text', function(original, modified, mode, blocked)
     if original:find('examines you.') then
 		local response = responses[math.random(#responses)]
         windower.chat.input("/em "..response)
+		local response = nil
     end
 end)
