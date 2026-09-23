@@ -147,7 +147,7 @@ function get_sets()
     EMPY.Hands		=	"Arbatel Bracers +2"
     EMPY.Legs		=	"Arbatel Pants +2"
     EMPY.Feet		=	"Arbatel Loafers +2"
-    EMPY.Earring    =   ""
+    EMPY.Earring    =   "Arbatel Earring +1"
 
     -- Capes:
     -- Sucellos's And such, add your own.
