@@ -601,6 +601,8 @@ function midcast(spell)
         if lagMode.value == true then
             windower.add_to_chat(2, 'lagmode enabled')
             send_command('wait 0.5;gs c EquipBP '..spell.name)
+        else
+            send_command('gs c EquipBP '..spell.name)
         end
     elseif spell.name=="Elemental Siphon" then
         if pet.element==world.day_element and ZodiacElements:contains(pet.element) then
