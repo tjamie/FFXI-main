@@ -5,12 +5,15 @@ res = require('resources')
 texts = require('texts')
 include('Modes.lua')
 
+settings = require('settings.lua')
+equipment = require('equipment.lua')
+
 -- Define your modes: 
 -- You can add or remove modes in the table below, they will get picked up in the cycle automatically. 
 -- to define sets for idle if you add more modes, name them: sets.me.idle.mymode and add 'mymode' in the group.
 -- Same idea for nuke modes. 
 idleModes = M('dt', 'dynamis')
-meleeModes = M('normal', 'dw', 'hybrid', 'crit', 'dynamis')
+meleeModes = M('normal', 'dw', 'hybrid', 'crit', 'th', 'dynamis')
 
 ------------------------------------------------------------------------------------------------------
 -- Important to read!
@@ -34,15 +37,13 @@ CP_CAPE = "Mecisto. Mantle" -- Put your CP cape here
 ----------------------------------------------------------
 
 -- Setting this to true will stop the text spam, and instead display modes in a UI.
--- Currently in construction.
 use_UI = true
-hud_x_pos = 2200    --important to update these if you have a smaller screen
-hud_y_pos = 500     --important to update these if you have a smaller screen
-hud_draggable = true
-hud_font_size = 8
-hud_transparency = 180 -- a value of 0 (invisible) to 255 (no transparency at all)
-hud_font = 'Impact'
-
+hud_x_pos = settings.hud_x_pos
+hud_y_pos = settings.hud_y_pos
+hud_draggable = settings.hud_draggable
+hud_font_size = settings.hud_font_size
+hud_transparency = settings.hud_transparency
+hud_font = settings.hud_font
 
 -- Setup your Key Bindings here:
 windower.send_command('bind ^insert gs c nuke cycle')        -- ctrl insert to Cycles Nuke element
@@ -234,6 +235,12 @@ function get_sets()
     })
     sets.me.melee.dynamis = set_combine(sets.me.melee.normal,{
         neck="Etoile Gorget +1",
+    })
+    sets.me.melee.th = set_combine(sets.me.melee.normal, {
+        ammo = "Per. Lucky Egg",
+        head = equipment.Herc.Helm.TH,
+        feet = "Volte Boots",
+        waist = "Chaac Belt",
     })
     sets.me.melee.accuracy = set_combine(sets.me.melee.normal,{
         neck = "Null Loop",
