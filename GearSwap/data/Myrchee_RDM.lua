@@ -151,6 +151,7 @@ function get_sets()
     RDMCape.STR     =   { name="Sucellos's Cape", augments={'STR+20','Accuracy+20 Attack+20','STR+10','Weapon skill damage +10%',}}
     RDMCape.DEX     =   { name="Sucellos's Cape", augments={'DEX+20','Mag. Acc+20 /Mag. Dmg.+20','DEX+10','"Dual Wield"+10',}}
     RDMCape.INT     =   { name="Sucellos's Cape", augments={'INT+20','Mag. Acc+20 /Mag. Dmg.+20','INT+10','"Mag.Atk.Bns."+10',}}
+    RDMCape.Crit    =   { name="Sucellos's Cape", augments={'DEX+20','Accuracy+20 Attack+20','DEX+10','Crit.hit rate+10',}}
 
     -- etc
     Taeon = {}
@@ -383,20 +384,19 @@ function get_sets()
         -- back        =   RDMCape.TP,
     }
     sets.me["Chant du Cygne"] = {
-        head="Malignance Chapeau",
-        -- body="Malignance Tabard",
-        body="Nyame Mail",
-        hands="Malignance Gloves",
-        legs="Aya. Cosciales +2",
+        head = "Blistering Sallet +1", -- crit +10
+        body = "Malignance Tabard",
+        hands = "Malignance Gloves",
+        legs = "Aya. Cosciales +2",
         -- legs="Nyame Flanchard",
-        feet="Malignance Boots",
-        neck="Rep. Plat. Medal",
-        waist="Fotia Belt",
-        left_ear="Mache Earring",
-        right_ear="Sherida Earring",
-        left_ring="Ilabrat Ring",
-        right_ring="Lehko's Ring",
-        back		=	RDMCape.DEX,
+        feet = "Malignance Boots",
+        neck = "Rep. Plat. Medal",
+        waist = "Fotia Belt",
+        left_ear = "Mache Earring",
+        right_ear = "Sherida Earring",
+        left_ring = "Ilabrat Ring",
+        right_ring = "Lehko's Ring", -- crit +10
+        back = RDMCape.Crit, -- crit +10
     }
 
     sets.me["Evisceration"] = sets.me["Chant du Cygne"]

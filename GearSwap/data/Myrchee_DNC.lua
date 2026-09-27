@@ -270,7 +270,7 @@ function get_sets()
     }
     sets.me["Evisceration"] = set_combine(sets.me["Rudra's Storm"], {
         ammo = "Coiste Bodhar",
-        head = "Gleti's Mask",
+        head = "Blistering Sallet +1",
         body = "Gleti's Cuirass",
         hands = "Gleti's Gauntlets",
         legs = "Gleti's Breeches",

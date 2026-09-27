@@ -296,7 +296,7 @@ function get_sets()
         back=THFCape.DEX,
     })
     sets.me["Evisceration"] = set_combine(sets.me["Savage Blade"], {
-        head="Malignance Chapeau",
+        head="Blistering Sallet +1",
         body="Mummu Jacket +2",
         hands="Meg. Gloves +2",
         legs="Mummu Kecks +2",
