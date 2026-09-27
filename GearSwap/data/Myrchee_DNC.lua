@@ -328,6 +328,20 @@ function get_sets()
         right_ring = "Gere Ring",
         back = DNCCape.DEX --TODO make STR/WSD or STR/DA back
     })
+    sets.me["Aeolian Edge"] = set_combine(sets.me["Rudra's Storm"], {
+        head="Nyame Helm",
+        body="Nyame Mail",
+        hands="Nyame Gauntlets",
+        legs="Nyame Flanchard",
+        feet="Nyame Sollerets",
+        neck="Sibyl Scarf",
+        waist="Orpheus's Sash",
+        left_ear="Friomisi Earring",
+        right_ear="Moonshade Earring",
+        left_ring="Epaminondas's Ring",
+        right_ring="Metamor. Ring +1",
+        back=DNCCape.DEX,
+    })
 	
 	
     ---------------
