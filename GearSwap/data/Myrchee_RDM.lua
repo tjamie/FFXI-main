@@ -194,56 +194,56 @@ function get_sets()
     -- Leave weapons out of the idles and melee sets. You can/should add weapons to the casting sets though
     -- Your idle set
     sets.me.idle.refresh = {
-        ammo="Staunch Tathlum +1",
-        head=RELIC.Head,
-        body=EMPY.Body,
-        hands="Malignance Gloves",
-        legs="Malignance Tights",
-        feet="Malignance Boots",
-        neck="Elite Royal Collar",
-        waist="Flume Belt +1",
-        left_ear="Thureous Earring",
-        right_ear="Alabaster Earring",
-        left_ring="Murky Ring",
-        right_ring="Defending Ring",
-        back		=	RDMCape.TP,
+        ammo = "Staunch Tathlum +1",
+        head = RELIC.Head,
+        body = EMPY.Body,
+        hands = "Malignance Gloves",
+        legs = "Malignance Tights",
+        feet = "Malignance Boots",
+        neck = "Elite Royal Collar",
+        waist = "Flume Belt +1",
+        left_ear = "Alabaster Earring",
+        right_ear = "Thureous Earring",
+        left_ring = "Murky Ring",
+        right_ring = "Defending Ring",
+        back = RDMCape.TP,
     }
 
     -- Your idle DT set
     sets.me.idle.dtmeva = set_combine(sets.me.idle.refresh,{
-        ammo="Staunch Tathlum +1", --3
-        head="Nyame Helm", --7
-        body="Nyame Mail", --9
-        hands="Nyame Gauntlets", --7
-        legs="Nyame Flanchard", --8
-        feet="Nyame Sollerets", --7
-        neck="Elite Royal Collar", --5
-        waist="Flume Belt +1", --4
-        left_ear="Thureous Earring",
-        right_ear="Odnowa Earring +1",
-        left_ring="Murky Ring", --10
-        right_ring="Gelatinous Ring +1",
-        back=RDMCape.VIT, --5
+        ammo = "Staunch Tathlum +1", --3
+        head = "Nyame Helm", --7
+        body = "Nyame Mail", --9
+        hands = "Nyame Gauntlets", --7
+        legs = "Nyame Flanchard", --8
+        feet = "Nyame Sollerets", --7
+        neck = "Elite Royal Collar", --5
+        waist = "Flume Belt +1", --4
+        left_ear = "Tuisto Earring",
+        right_ear = "Odnowa Earring +1",
+        left_ring = "Murky Ring", --10
+        right_ring = "Gelatinous Ring +1",
+        back = RDMCape.VIT, --5
     })
 
     sets.me.idle.dt = set_combine(sets.me.idle.dtmeva, {
-        ammo="Staunch Tathlum +1", --3
-        head="Nyame Helm", --7
-        body="Adamantite Armor", --20
-        hands="Nyame Gauntlets", --7
-        legs="Nyame Flanchard", --8
-        feet="Nyame Sollerets", --7
-        neck="Loricate Torque +1", --6
-        waist="Flume Belt +1", --4
-        left_ear="Tuisto Earring",
-        right_ear="Odnowa Earring +1",
-        left_ring="Murky Ring", --10
-        right_ring="Gelatinous Ring +1",
-        back=RDMCape.VIT, --5
+        amm o ="Staunch Tathlum +1", --3
+        head = "Nyame Helm", --7
+        body = "Adamantite Armor", --20
+        hands = "Nyame Gauntlets", --7
+        legs = "Nyame Flanchard", --8
+        feet = "Nyame Sollerets", --7
+        neck = "Loricate Torque +1", --6
+        waist = "Flume Belt +1", --4
+        left_ear = "Tuisto Earring",
+        right_ear = "Odnowa Earring +1",
+        left_ring = "Murky Ring", --10
+        right_ring = "Gelatinous Ring +1",
+        back = RDMCape.VIT, --5
     })
 
     sets.me.idle.dynamis = set_combine(sets.me.idle.dt,{
-        neck="Dls. Torque +2",
+        neck = "Dls. Torque +2",
     })
 
     -- sets.me.idle.mdt = set_combine(sets.me.idle.refresh,{
